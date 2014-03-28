@@ -6,7 +6,7 @@
 	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 	        <span class="fa fa-bars" style="font-size:30px; color:#3498db;"></span>
 	      </button>
-	      <a class="navbar-brand" href="#home"><span style="font-size:20px;"></span>HelpDesk</a>
+	      <a class="navbar-brand" href="/"><span style="font-size:20px;"></span>HelpDesk</a>
 	    </div>
 	    <div class="navbar-collapse collapse">
 	      <ul class="nav navbar-nav">
@@ -19,8 +19,9 @@
 		   <ul class="nav navbar-nav pull-right">
 				<li> <a href="" class="smoothScroll" style="right:0;"> Sign In</a></li>
 				<li> <a href="" class="smoothScroll"> Register</a></li>
+				<!--
 				<li class="drop_down"> <a href="" class="smoothScroll" ><i class="fa fa-bars"></i></a>
-		        </li>
+		        </li>-->
 			</ul>
 	    </div><!--/.nav-collapse -->
 	  </div>
@@ -129,6 +130,164 @@
 	<div class="container" id="pricing" name="pricing">
 	<br>
 		<div class="row white centered">
+				<br>
+				<h2>Our Pricing Options</h2>
+				<hr><br><br>
+					<div class="col-xs-12 col-md-3">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title">Starter</h3>
+							</div>
+							<div class="panel-body">
+								<div class="the-price">
+									<h2>$9<span class="subscript">/mo</span></h2>
+									<small>1 month FREE Trial</small>
+								</div>
+								<table class="table">
+									<tbody><tr>
+										<td>1 Account</td>
+									</tr>
+									<tr>
+										<td>1 Project</td>
+									</tr>
+									<tr>
+										<td>50K API Access</td>
+									</tr>
+									<tr>
+										<td>100MB Storage</td>
+									</tr>
+									<tr>
+										<td>Custom Cloud Services</td>
+									</tr>
+									<tr>
+										<td>Weekly Reports</td>
+									</tr>
+								</tbody></table>
+							</div>
+							<div class="panel-footer">
+								<a role="button" class="btn btn-danger" href="#">Sign Up</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-md-3">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title">Standard</h3>
+							</div>
+							<div class="panel-body">
+								<div class="the-price">
+									<h2>$19<span class="subscript">/mo</span></h2>
+									<small>1 month FREE Trial</small>
+								</div>
+								<table class="table">
+									<tbody><tr>
+										<td>2 Accounts</td>
+									</tr>
+									<tr>
+										<td>5 Projects</td>
+									</tr>
+									<tr>
+										<td>100K API Access</td>
+									</tr>
+									<tr>
+										<td>200MB Storage</td>
+									</tr>
+									<tr>
+										<td>Custom Cloud Services</td>
+									</tr>
+									<tr>
+										<td>Weekly Reports</td>
+									</tr>
+								</tbody></table>
+							</div>
+							<div class="panel-footer">
+								<a role="button" class="btn btn-danger" href="#">Sign Up</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-md-3">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title">Premium</h3>
+							</div>
+							<div class="panel-body">
+							<div class="the-price">
+								<h2>$39<span class="subscript">/mo</span></h2>
+								<small>1 month FREE Trial</small>
+							</div>
+							<table class="table">
+								<tbody><tr>
+									<td>5 Accounts</td>
+								</tr>
+								<tr>
+									<td>20 Projects</td>
+								</tr>
+								<tr>
+									<td>300K API Access</td>
+								</tr>
+								<tr>
+									<td>500MB Storage</td>
+								</tr>
+								<tr>
+									<td>Custom Cloud Services</td>
+								</tr>
+								<tr>
+									<td>Weekly Reports</td>
+								</tr>
+							</tbody></table>
+							</div>
+							<div class="panel-footer">
+								<a role="button" class="btn btn-danger" href="#">Sign Up</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-md-3">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title">Enterprise</h3>
+							</div>
+							<div class="panel-body">
+								<div class="the-price">
+									<h2>$59<span class="subscript">/mo</span></h2>
+									<small>1 month FREE Trial</small>
+								</div>
+								<table class="table">
+									<tbody><tr>
+										<td>10 Accounts</td>
+									</tr>
+									<tr>
+										<td>50 Projects</td>
+									</tr>
+									<tr>
+										<td>500K API Access</td>
+									</tr>
+									<tr>
+										<td>1GB Storage</td>
+									</tr>
+									<tr>
+										<td>Custom Cloud Services</td>
+									</tr>
+									<tr>
+										<td>Weekly Reports</td>
+									</tr>
+								</tbody></table>
+							</div>
+							<div class="panel-footer">
+								<a role="button" class="btn btn-danger" href="#">Sign Up</a>
+							</div>
+						</div>
+				</div><!-- /row -->
+				<br>
+			</div>
+				<br>
+				<br>
+				<br>
+		<% if false %>
+		
+		<div class="row white centered">
 			<h1 class="centered">MEET OUR AWESOME TEAM</h1>
 			<hr>
 			<br>
@@ -174,8 +333,10 @@
 			</div><!-- col-lg-3 -->
 			
 		</div><!-- row -->
+		<% end %>
 	</div><!-- container -->
 
+	<% if false %>
 	<!-- ==== GREYWRAP ==== -->
 	<div id="greywrap">
 		<div class="container">
@@ -193,7 +354,8 @@
 		<br>
 		<br>
 	</div><!-- greywrap -->
-	
+	<% end %>
+
 	<!-- ==== SECTION DIVIDER3 -->
 	<section class="section-divider textdivider divider3">
 		<div class="container">
