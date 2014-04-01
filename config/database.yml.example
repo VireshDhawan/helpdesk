@@ -1,0 +1,20 @@
+production: &defaults
+  host: localhost
+  adapter: postgresql
+  encoding: unicode
+  database: helpdesk_development
+  pool: 5
+  username:
+  password:
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+  database: helpdesk_test
+
+staging:
+  <<: *defaults
+  database: helpdesk_staging
+
