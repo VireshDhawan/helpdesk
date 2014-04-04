@@ -18,7 +18,11 @@ gem 'uglifier', '>= 1.3.0'
 gem "font-awesome-rails"
 gem 'simple_form'
 #gem 'country_select' Gem for Country select in forms if required.
+gem 'protected_attributes'
+gem 'rest-client'
+gem 'mailgun_api'
 gem 'mail_form'
+gem 'devise'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -29,7 +33,6 @@ gem 'jquery-rails'
 gem 'modernizr-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
@@ -44,9 +47,9 @@ group :development do
 	gem "binding_of_caller"
 	gem "unicorn-rails"
 	gem 'capistrano', '~> 3.1.0'
-  gem 'capistrano-rvm'
-  gem 'capistrano-bundler', '~> 1.1.2'
-  gem 'capistrano-rails', '~> 1.1'
+	gem 'capistrano-rvm'
+	gem 'capistrano-bundler', '~> 1.1.2'
+	gem 'capistrano-rails', '~> 1.1'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

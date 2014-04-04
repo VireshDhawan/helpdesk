@@ -1,4 +1,9 @@
 Helpdesk::Application.routes.draw do
+  
+  devise_for :agents, :controllers => {:confirmations => 'confirmations'}
+  devise_scope :agent do
+    patch "/agents/confirm" => "confirmations#confirm", :as => :agent_confirm
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

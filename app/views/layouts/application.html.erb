@@ -2,13 +2,15 @@
 <html>
 <head>
   <title>Helpdesk</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
   <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic|Raleway:400,300,700' rel='stylesheet' type='text/css'>
 </head>
-<body data-spy="scroll" data-offset="110" data-target=".navbar-collapse">
+<body data-spy="scroll" data-offset="150" data-target=".navbar-collapse">
+<% if notice %><p class="notice"><%= notice %></p><%end%>
+<% if alert %><p class="alert"><%= alert %></p><%end%>
 
 <%= yield %>
 
