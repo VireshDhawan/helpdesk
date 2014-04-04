@@ -6,7 +6,7 @@ Helpdesk::Application.routes.draw do
   devise_scope :agent do
     patch "/agents/confirm" => "confirmations#confirm", :as => :agent_confirm
   end
-  resources :companies
+  resources :companies, :except => [:show, :index]
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"

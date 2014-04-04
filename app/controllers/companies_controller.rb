@@ -45,10 +45,6 @@ class CompaniesController < ApplicationController
     end
   end
 
-  #doesn't look like 'show' is necessary
-  def show
-  end
-
   protected
 
   def authorize
