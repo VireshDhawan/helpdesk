@@ -1,0 +1,12 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="container sign_in">
+			<h2>Company Details</h2>
+			<%= simple_form_for @company , html: { :class => "form-horizontal" } do |f| %>
+			  <%= f.error_notification %>
+			    <%= f.input :name, required: true, autofocus: true %>
+			  <div class="col-sm-3 col-sm-offset-1 form_button"><%= f.button :submit, "Update",class: "btn btn-info" %></div>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -15,7 +15,11 @@ class ConfirmationsController < Devise::ConfirmationsController
       #self.resource = resource_class.confirm_by_token(params[resource_name][:confirmation_token])
       resource.update_attributes(confirmed_at: Time.now)
       set_flash_message :notice, :confirmed
-      redirect_to edit_agent_registration_path
+      if resource.company.nil?
+        redirect_to new_company_path
+      else
+        redirect_to edit_agent_registration_path
+      end
     else
       render :action => "show"
     end    
