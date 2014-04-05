@@ -7,7 +7,7 @@
 			  <%= devise_error_messages! %>
 
 			<% resource.class.invite_key_fields.each do |field| -%>
-			  <%= f.input field %>
+			  <%= f.input field,required: true %>
 			<% end -%>
 			<%= f.input :role,collection: [["Admin",true],["Agent",false]],include_blank: false, required: true %>
 			<%= f.input :company_id, required: true, :as => :hidden, input_html: {:value => current_agent.company.id} %>

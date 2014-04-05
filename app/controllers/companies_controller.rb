@@ -13,7 +13,7 @@ class CompaniesController < ApplicationController
       current_agent.company = @company
       current_agent.save
       flash[:success] = "Company details were updated successfully!"
-      redirect_to edit_agent_registration_path
+      redirect_to new_subscription_path
     else
       flash[:error] = "Something went wrong. Please review the problems below."
       render :action => "new"
@@ -26,7 +26,7 @@ class CompaniesController < ApplicationController
 
   def update
     @company = Company.find(params[:id])
-    if @company.update_attributes(params[:company])
+    if @company.update_attributes(params[:company]) && @company.agents.inlcude?(current_agent)
       flash[:success] = "Company details were updated successfully!"
       redirect_to root_url
     else
@@ -43,16 +43,6 @@ class CompaniesController < ApplicationController
     else
       flash[:error] = "Something went wrong. Please review the problems"
       redirect_to :back
-    end
-  end
-
-  protected
-
-  def authorize
-    unless current_agent.role
-      flash[:error] = "You are not allowed to perform the action"
-      #redirect to default page
-      redirect_to root_url
     end
   end
 

@@ -1,4 +1,8 @@
 Helpdesk::Application.routes.draw do
+  get "subscriptions/new"
+  get "subscriptions/edit"
+  get "subscriptions/create"
+  get "subscriptions/update"
   # The priority is based upon order of creation: first created -> highest priority.
   
   devise_for :agents, :controllers => {
@@ -9,7 +13,9 @@ Helpdesk::Application.routes.draw do
   devise_scope :agent do
     patch "/agents/confirm" => "confirmations#confirm", :as => :agent_confirm
   end
+  
   resources :companies, :except => [:show, :index]
+  resources :subscriptions, :except => [:show, :index, :destroy],:path => "subscription"
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"

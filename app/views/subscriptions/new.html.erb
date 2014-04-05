@@ -1,0 +1,14 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="container sign_in">
+			<h2>Subscription details</h2>
+			<%= simple_form_for @subscription , html: { :class => "form-horizontal" } do |f| %>
+			  <%= f.error_notification %>
+			    <%= f.input :billing_period, collection: ["Monthly","Annually"], required: true, autofocus: true,include_blank: false %>
+			    <%= f.input :plan, collection: @subscription.plans, required: true, autofocus: true,include_blank: false %>
+			    <%= f.input :company_id, required: true, :as => :hidden, input_html: {:value => current_agent.company.id} %>
+			  <div class="col-sm-3 col-sm-offset-1 form_button"><%= f.button :submit, "Update",class: "btn btn-info" %></div>
+			<% end %>
+		</div>
+	</div>
+</div>

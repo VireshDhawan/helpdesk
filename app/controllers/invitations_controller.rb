@@ -1,16 +1,11 @@
 class InvitationsController < Devise::InvitationsController
 
+
+	prepend_before_filter :has_subscription, only: [:new,:create,:destroy]
+	prepend_before_filter :require_company
 	prepend_before_filter :if_admin, only: [:new,:create,:destroy]
 
 	private
-	# this is called when creating invitation
-	# should return an instance of resource class
-#	def invite_resource(&block)
-#		agent = resource_class.invite!(invite_params, current_inviter, &block)
-#		agent.company = current_inviter.company
-#		agent.save
-#		return agent
-#	end
 
 	def invite_resource
 	## skip sending emails on invite
@@ -22,8 +17,11 @@ class InvitationsController < Devise::InvitationsController
 	end
 
 	def if_admin
-		unless current_agent.role
-			flash[:error] = "You are not authorized to invite other Agents."
+		if current_agent
+			#check if admin
+			authorize
+		else
+			flash[:error] = "You need to sign in before continuing"
 			redirect_to root_url
 		end
 	end
@@ -36,6 +34,16 @@ class InvitationsController < Devise::InvitationsController
 	      :role,
 	      :company_id
 	    )
+	end
+
+	#check if the company has subscription plans
+	def has_subscription
+		if current_agent.company.subscription.nil?
+			flash[:error] = "You need to choose a plan before you start inviting agents."
+			redirect_to new_subscription_path
+		else
+			true
+		end
 	end
 
 end

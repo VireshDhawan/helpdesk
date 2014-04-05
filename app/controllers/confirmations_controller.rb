@@ -16,8 +16,10 @@ class ConfirmationsController < Devise::ConfirmationsController
       resource.update_attributes(confirmed_at: Time.now)
       set_flash_message :notice, :confirmed
       if resource.company.nil?
+        flash[:notice] = "Upate your Company info"
         redirect_to new_company_path
       else
+        flash[:notice] = "Upate your info"
         redirect_to edit_agent_registration_path
       end
     else
