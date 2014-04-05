@@ -23,6 +23,7 @@ gem 'rest-client'
 gem 'mailgun_api'
 gem 'mail_form'
 gem 'devise'
+gem 'devise_invitable'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

@@ -1,15 +1,15 @@
 class Agent < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable
+         :confirmable, :validate_on_invite => true
 	
 	belongs_to :company
 
 	attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :first_name,:last_name,:role,:signature,:api_token,
-                  :company_id,:confirmed_at
+                  :company_id,:confirmed_at,:invitation_sent_at
 
   def password_required?
     super if confirmed?

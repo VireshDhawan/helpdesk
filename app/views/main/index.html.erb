@@ -18,6 +18,7 @@
 		   </ul>	
 		   <ul class="nav navbar-nav pull-right">
 		   	<% if agent_signed_in? %>
+		   		<li class="smoothScroll"><%= link_to "Invite Agents",new_agent_invitation_path, class: "smoothScroll" if current_agent.role %></li>
 		   		<li><%= link_to "Sign Out",destroy_agent_session_path, :method => :delete, class: "smoothScroll" %></li>
 		   	<% else %>
 				<li><%= link_to "Sign In",new_agent_session_path, class: "smoothScroll" %></li>
@@ -28,7 +29,6 @@
 	  </div>
 	</div>
 	</div>
-
 
 
 	<!-- ==== HEADERWRAP ==== -->

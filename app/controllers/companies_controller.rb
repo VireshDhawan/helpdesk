@@ -28,6 +28,7 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
     if @company.update_attributes(params[:company])
       flash[:success] = "Company details were updated successfully!"
+      redirect_to root_url
     else
       flash[:error] = "Something went wrong. Please review the problems below."
       render :action => "edit"
