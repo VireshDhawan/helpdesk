@@ -1,6 +1,5 @@
 class InvitationsController < Devise::InvitationsController
 
-
 	prepend_before_filter :has_subscription, only: [:new,:create,:destroy]
 	prepend_before_filter :require_company
 	prepend_before_filter :if_admin, only: [:new,:create,:destroy]

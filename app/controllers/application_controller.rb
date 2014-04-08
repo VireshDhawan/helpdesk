@@ -22,6 +22,9 @@ class ApplicationController < ActionController::Base
     if current_agent && current_agent.role && current_agent.company.nil?
       flash[:error] = "You need to provide company details before you invite agents."
       redirect_to new_company_path
+    elsif current_agent && current_agent.company.nil?
+      flash[:error] = "Your account is not yet activated. Contact your account administrator."
+      redirect_to :back
     end
   end
 

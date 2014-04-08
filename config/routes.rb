@@ -1,8 +1,7 @@
 Helpdesk::Application.routes.draw do
-  get "subscriptions/new"
-  get "subscriptions/edit"
-  get "subscriptions/create"
-  get "subscriptions/update"
+  
+  devise_for :superadmins
+
   # The priority is based upon order of creation: first created -> highest priority.
   
   devise_for :agents, :controllers => {

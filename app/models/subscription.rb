@@ -1,17 +1,15 @@
 class Subscription < ActiveRecord::Base
 
 	belongs_to :company
-	
-	attr_accessible :billing_period,:plan,:company_id
+	belongs_to :plan
+
+	attr_accessible :billing_period,:company_id,:plan_id,:last_payment_at
 
 	validates :billing_period, presence: true
-	validates :plan, presence: true
 	validates :company_id, presence: true,uniqueness: {message: "already has a subscription plan."}
 
 	def plans
-		[
-			"Starter","Startups","Small","Medium","Large","Enterprise"
-		]
+		Plan.pluck(:name,:id)
 	end
 
 end
