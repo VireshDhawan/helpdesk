@@ -1,4 +1,4 @@
-class ConfirmationsController < Devise::ConfirmationsController
+class AgentConfirmationsController < Devise::ConfirmationsController
 
   def show
     @original_token = params[:confirmation_token]

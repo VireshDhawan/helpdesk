@@ -1,0 +1,17 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="container sign_in">
+			<h3>You're almost done! Now create a password to securely access your account.</h3><br>
+
+			<%= simple_form_for(resource, :as => resource_name ,:url => send(:"#{resource_name}_confirm_path") ,html: { :class => "form-horizontal" }) do |f| %>
+			  <%= f.error_notification %>
+			    <%= f.input :password, required: true, autofocus: true %>
+			    <%= f.input :password_confirmation, required: true %>
+			    <%= f.input :confirmation_token, required: true, :as => :hidden, :value => @original_token %>
+			  <div class="col-sm-3 col-sm-offset-1 form_button"><%= f.button :submit, "Confirm Account",class: "btn btn-info" %></div>
+			<% end %>
+
+			<div class="col-sm-5 links"><%= render "devise/shared/links" %></div>
+		</div>
+	</div>
+</div>

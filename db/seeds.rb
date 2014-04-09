@@ -8,6 +8,7 @@
 
 Company.create(name: "MyCompany")
 Agent.create(email: "demo@helpdesk.com",password: "demo.helpdesk",password_confirmation: "demo.helpdesk",confirmed_at: Time.now,company_id: 1)
+# -1 for unlimited plans
 Plan.create(name: "Starter",emails: 1,groups: 1,agents: -1,tickets: 200,price: 0)
 Plan.create(name: "For Startups",emails: 3,groups: 3,agents: -1,tickets: 500,price: 9.99)
 Plan.create(name: "Small",emails: 5,groups: 5,agents: -1,tickets: 2000,price: 29.99)

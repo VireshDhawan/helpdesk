@@ -2,16 +2,16 @@
 	<div class="row">
 		<div class="container sign_in">
 			<h2>Sign in</h2>
-
-			<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+			<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { method: :post, class: "form-horizontal" }) do |f| %>
 				<%= f.error_notification %>
+				<%= devise_error_messages! %>
 			    <%= f.input :email, required: false, autofocus: true %>
 			    <%= f.input :password, required: false %>
 			    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
 			    <div class="col-sm-3 col-sm-offset-1 form_button"><%= f.button :submit, "Sign in",class: "btn btn-info" %></div>
+			<% end %>
 
 			<div class="col-sm-5 links"><%= render "devise/shared/links" %></div>
-			<% end %>
 		</div>
 	</div>
 </div>

@@ -1,20 +1,29 @@
 Helpdesk::Application.routes.draw do
   
-  devise_for :superadmins
-
   # The priority is based upon order of creation: first created -> highest priority.
+
+  devise_for :superadmins,:controllers => {
+    :confirmations => 'superadmin_confirmations',
+    :invitations => 'superadmin_invitations'
+  }
+
+  devise_scope :superadmin do
+    patch "/superadmins/confirm" => "superadmin_confirmations#confirm", :as => :superadmin_confirm
+  end
   
   devise_for :agents, :controllers => {
-    :confirmations => 'confirmations',
-    :invitations => 'invitations'
+    :confirmations => 'agent_confirmations',
+    :invitations => 'agent_invitations'
   }
              
   devise_scope :agent do
-    patch "/agents/confirm" => "confirmations#confirm", :as => :agent_confirm
+    patch "/agents/confirm" => "agent_confirmations#confirm", :as => :agent_confirm
   end
   
   resources :companies, :except => [:show, :index]
   resources :subscriptions, :except => [:show, :index, :destroy],:path => "subscription"
+  resources :plans, :except => [:destroy], :path => "plans"
+
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"

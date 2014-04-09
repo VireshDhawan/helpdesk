@@ -1,4 +1,4 @@
-class InvitationsController < Devise::InvitationsController
+class AgentInvitationsController < Devise::InvitationsController
 
 	prepend_before_filter :has_subscription, only: [:new,:create,:destroy]
 	prepend_before_filter :require_company
