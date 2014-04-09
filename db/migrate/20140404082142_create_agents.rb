@@ -7,6 +7,12 @@ class CreateAgents < ActiveRecord::Migration
       t.string :signature
       t.string :api_token
       t.integer :company_id
+      t.boolean :allow_reporting , default: false
+      t.boolean :allow_agent_management , default: false
+      t.boolean :allow_to_invite , default: false
+      t.boolean :allow_billing_management , default: false
+      t.boolean :allow_company_management , default: false
+      t.boolean :allow_subscription_management , default: false
 
       t.timestamps
     end

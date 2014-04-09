@@ -18,7 +18,7 @@
 		   </ul>	
 		   <ul class="nav navbar-nav pull-right">
 		   	<% if agent_signed_in? %>
-		   		<li class="smoothScroll"><%= link_to "Invite Agents",new_agent_invitation_path, class: "smoothScroll" if current_agent.role %></li>
+		   		<li class="smoothScroll"><%= link_to "Invite Agents",new_agent_invitation_path, class: "smoothScroll" if current_agent.allow_to_invite %></li>
 		   		<li><%= link_to "Sign Out",destroy_agent_session_path, :method => :delete, class: "smoothScroll" %></li>
 		   	<% elsif superadmin_signed_in? %>
 		   		<li class="smoothScroll"><%= link_to "Invite Admins",new_superadmin_invitation_path, class: "smoothScroll" %></li>
@@ -26,7 +26,7 @@
 		   		<li><%= link_to "Sign Out",destroy_superadmin_session_path, :method => :delete, class: "smoothScroll" %></li>
 		   	<% else %>
 				<li><%= link_to "Agent's Sign In",new_agent_session_path, class: "smoothScroll" %></li>
-				<li><%= link_to "Su-Admin's Sign In",new_superadmin_session_path, class: "smoothScroll" %></li>
+				<li><%= link_to "Super admin's Sign In",new_superadmin_session_path, class: "smoothScroll" %></li>
 		   		<li><%= link_to "Register",new_agent_registration_path, class: "smoothScroll" %></li>
 		   	<% end %>
 			</ul>

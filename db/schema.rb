@@ -19,18 +19,24 @@ ActiveRecord::Schema.define(version: 20140408195243) do
   create_table "agents", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.boolean  "role",                   default: true
+    t.boolean  "role",                          default: true
     t.string   "signature"
     t.string   "api_token"
     t.integer  "company_id"
+    t.boolean  "allow_reporting",               default: false
+    t.boolean  "allow_agent_management",        default: false
+    t.boolean  "allow_to_invite",               default: false
+    t.boolean  "allow_billing_management",      default: false
+    t.boolean  "allow_company_management",      default: false
+    t.boolean  "allow_subscription_management", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "",   null: false
-    t.string   "encrypted_password",     default: ""
+    t.string   "email",                         default: "",    null: false
+    t.string   "encrypted_password",            default: ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,    null: false
+    t.integer  "sign_in_count",                 default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -46,7 +52,7 @@ ActiveRecord::Schema.define(version: 20140408195243) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
-    t.integer  "invitations_count",      default: 0
+    t.integer  "invitations_count",             default: 0
   end
 
   add_index "agents", ["confirmation_token"], name: "index_agents_on_confirmation_token", unique: true, using: :btree

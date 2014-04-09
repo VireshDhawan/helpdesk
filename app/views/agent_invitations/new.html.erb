@@ -9,11 +9,48 @@
 			<% resource.class.invite_key_fields.each do |field| -%>
 			  <%= f.input field,required: true %>
 			<% end -%>
-			<%= f.input :role,collection: [["Admin",true],["Agent",false]],include_blank: false, required: true %>
+			<%= f.input :role, collection: [["Select one",nil],["Admin",true],["Agent",false]], required: true,include_blank: false,selected: "Select one" %>
+			<div class="col-md-offset-2">
+				<div id="admin_privilages">
+				<%= f.input :allow_billing_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage billing preferences" %>
+				<%= f.input :allow_company_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage company preferences" %>
+				<%= f.input :allow_subscription_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage plans and subscriptions" %>
+				</div>
+				<div id="agent_privilages">
+				<%= f.input :allow_to_invite, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false , inline_label: "allow to invite agents" %>
+				<%= f.input :allow_reporting, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to view and manage reports" %>
+				<%= f.input :allow_agent_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage agents" %>
+				</div>
+			</div>
+			<br>
 			<%= f.input :company_id, required: true, :as => :hidden, input_html: {:value => current_agent.company.id} %>
 
-			<div class="col-sm-3 col-sm-offset-1 form_button"><%= f.submit t("devise.invitations.new.submit_button"),class: "btn btn-info" %></div>
+			<div class="col-sm-3 col-sm-offset-1 form_button"><%= f.submit t("devise.invitations.new.submit_button"),class: "btn btn-info btn-lg" %></div>
 			<% end %>
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	$('input[type="checkbox"]').checkbox({
+	    buttonStyle: 'btn-link',
+	    checkedClass: 'fa fa-check-square-o fa-2x',
+	    uncheckedClass: 'fa fa-square-o fa-2x',
+	    constructorCallback: null,
+	    defaultState: false,
+	    defaultEnabled: true,
+	    checked: false,
+	    enabled: true
+    });
+</script>
+<script type="text/javascript">
+	$('body').on('change','#agent_role', function (){
+		if($(this).val() == "true" ){
+			$("#agent_privilages").hide();
+			$("#admin_privilages").fadeIn(1000);
+		}
+		else if($(this).val() == "false" ){
+			$("#admin_privilages").hide();
+			$("#agent_privilages").fadeIn(1000);
+		}
+	});
+</script>

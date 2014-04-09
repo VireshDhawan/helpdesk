@@ -2,7 +2,7 @@ class AgentInvitationsController < Devise::InvitationsController
 
 	prepend_before_filter :has_subscription, only: [:new,:create,:destroy]
 	prepend_before_filter :require_company
-	prepend_before_filter :if_admin, only: [:new,:create,:destroy]
+	prepend_before_filter :can_invite, only: [:new,:create,:destroy]
 
 	private
 
@@ -15,12 +15,10 @@ class AgentInvitationsController < Devise::InvitationsController
 		edit_agent_registration_path
 	end
 
-	def if_admin
-		if current_agent
-			#check if admin
-			authorize
-		else
-			flash[:error] = "You need to sign in before continuing"
+	def can_invite
+		#check if allowed to invite admin
+		unless current_agent && current_agent.allow_to_invite?
+			flash[:error] = "You are not allowed to perform the action"
 			redirect_to root_url
 		end
 	end
@@ -29,9 +27,15 @@ class AgentInvitationsController < Devise::InvitationsController
 
 	def invite_params
 	   params.require(resource_name).permit(
-	      :email,
-	      :role,
-	      :company_id
+			:email,
+			:role,
+			:company_id,
+			:allow_reporting,
+			:allow_agent_management,
+			:allow_to_invite,
+			:allow_billing_management,
+			:allow_company_management,
+			:allow_subscription_management
 	    )
 	end
 

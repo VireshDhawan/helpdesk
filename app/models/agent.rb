@@ -9,7 +9,11 @@ class Agent < ActiveRecord::Base
 
 	attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :first_name,:last_name,:role,:signature,:api_token,
-                  :company_id,:confirmed_at,:invitation_sent_at
+                  :company_id,:confirmed_at,:invitation_sent_at,:allow_reporting,
+                  :allow_agent_management,:allow_to_invite,:allow_billing_management,
+                  :allow_company_management,:allow_subscription_management
+
+  validates :role, inclusion: { in: [true,false], message: "can't be blank" }
 
   def password_required?
     super if confirmed?
@@ -26,5 +30,5 @@ class Agent < ActiveRecord::Base
   def is_admin?
     self.role ? true : false
   end
-      
+
 end
