@@ -13,6 +13,8 @@ Plan.create(name: "Small",emails: 5,groups: 5,agents: -1,tickets: 2000,price: 29
 Plan.create(name: "Medium",emails: 10,groups: 10,agents: -1,tickets: 10000,price: 99.99)
 Plan.create(name: "Enterprise",emails: -1,groups: -1,agents: -1,tickets: 50000,price: 499.99)
 company = Company.create(name: "MyCompany")
+company.build_subscription(billing_period: "Monthly",company_id: 1,plan_id: 1)
+company.save
 Agent.create(
 	email: "demo@helpdesk.com",password: "demo.helpdesk",password_confirmation: "demo.helpdesk",confirmed_at: Time.now,company_id: 1,
     :allow_reporting => true,
@@ -22,6 +24,4 @@ Agent.create(
     :allow_company_management => true,
     :allow_subscription_management => true
 )
-company.build_subscription(billing_period: "Monthly",company_id: 1,plan_id: 1)
-company.save
 Superadmin.create(email: "admin@helpdesk.com",password: "admin.helpdesk",password_confirmation: "admin.helpdesk",confirmed_at: Time.now)
