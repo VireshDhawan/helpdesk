@@ -1,7 +1,8 @@
 class CompaniesController < ApplicationController
 
   before_filter :authenticate_agent!
-  before_filter :authorize #check if user is admin
+  before_filter :authorize_admin #check if user is admin
+  before_filter :authorize_company_privilages
 
   def new
     @company = Company.new
@@ -44,6 +45,18 @@ class CompaniesController < ApplicationController
       flash[:error] = "Something went wrong. Please review the problems"
       redirect_to :back
     end
+  end
+
+  protected
+
+  def authorize_company_privilages
+    unless current_agent.allow_company_management
+      flash[:error] = "You are not authorized to perform the action"
+      #redirect to default page
+      redirect_to root_url
+    else
+      true
+    end   
   end
 
 end

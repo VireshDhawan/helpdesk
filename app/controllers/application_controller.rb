@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def authorize
+  def authorize_admin
     unless current_agent.role
       flash[:error] = "You are not authorized to perform the action"
       #redirect to default page

@@ -1,7 +1,8 @@
 class SubscriptionsController < ApplicationController
 
 	before_filter :authenticate_agent!
-	before_filter :authorize #check if user is admin
+	before_filter :authorize_admin #check if user is admin
+	before_filter :authorize_subscription_privilages
 
 	def new
 		@subscription = Subscription.new
@@ -45,6 +46,18 @@ class SubscriptionsController < ApplicationController
 			flash[:error] = "Please update your own company subscription."
       		render :action => "edit"
 		end
+	end
+
+	protected
+
+	def authorize_subscription_privilages
+		unless current_agent.allow_subscription_management
+			flash[:error] = "You are not authorized to perform the action"
+			#redirect to default page
+			redirect_to root_url
+		else
+			true
+		end		
 	end
 
 end
