@@ -25,3 +25,6 @@ Agent.create(
     :allow_subscription_management => true
 )
 Superadmin.create(email: "admin@helpdesk.com",password: "admin.helpdesk",password_confirmation: "admin.helpdesk",confirmed_at: Time.now)
+
+# NOTE: Make Sure that you need to enter the new data through server's console itself.
+#       Seeds will not be running with deployment.
