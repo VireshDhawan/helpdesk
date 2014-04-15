@@ -6,6 +6,9 @@ class Agent < ActiveRecord::Base
          :confirmable, :validate_on_invite => true
 	
 	belongs_to :company
+  has_many :tickets
+  has_many :groups_agents, :class_name => "GroupsAgents"
+  has_many :groups, :through => :groups_agents
 
 	attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :first_name,:last_name,:role,:signature,:api_token,

@@ -5,6 +5,6 @@ class Plan < ActiveRecord::Base
 	has_many :subscriptions
 
 	validates_presence_of :name,:emails,:price,:groups,:agents,:tickets
-	validates_uniqueness_of :name
+	validates_uniqueness_of :name, :case_sensitive => false
 
 end

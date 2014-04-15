@@ -15,6 +15,10 @@ Plan.create(name: "Enterprise",emails: -1,groups: -1,agents: -1,tickets: 50000,p
 company = Company.create(name: "MyCompany")
 company.build_subscription(billing_period: "Monthly",company_id: 1,plan_id: 1)
 company.save
+["Billing","Technical","Support"].each do |group|
+	company.groups.build(name: group)
+	company.save
+end
 Agent.create(
 	email: "demo@helpdesk.com",password: "demo.helpdesk",password_confirmation: "demo.helpdesk",confirmed_at: Time.now,company_id: 1,
     :allow_reporting => true,
@@ -24,4 +28,9 @@ Agent.create(
     :allow_company_management => true,
     :allow_subscription_management => true
 )
+Agent.first.groups << Group.first
+company.tickets.create(customer_name: "demo user",customer_email: "demo@example.com")
+company.agents.first.tickets.create(customer_name: "agent user",customer_email: "agent@example.com")
+company.groups.first.tickets.create(customer_name: "group user",customer_email: "group@example.com")
+company.groups.first.agents.last.tickets.create(customer_name: "group & agents",customer_email: "groupsnagents@example.com")
 Superadmin.create(email: "admin@helpdesk.com",password: "admin.helpdesk",password_confirmation: "admin.helpdesk",confirmed_at: Time.now)
