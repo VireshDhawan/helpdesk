@@ -34,3 +34,6 @@ company.agents.first.tickets.create(customer_name: "agent user",customer_email: 
 company.groups.first.tickets.create(customer_name: "group user",customer_email: "group@example.com")
 company.groups.first.agents.last.tickets.create(customer_name: "group & agents",customer_email: "groupsnagents@example.com")
 Superadmin.create(email: "admin@helpdesk.com",password: "admin.helpdesk",password_confirmation: "admin.helpdesk",confirmed_at: Time.now)
+
+# NOTE: Make Sure that you need to enter the new data through server's console itself.
+#       Seeds will not be running with deployment.
