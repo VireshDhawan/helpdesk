@@ -1,3 +1,4 @@
+
 #contactwrap{
     background: #333333;
     color:#FFFFFF;
@@ -19,3 +20,40 @@
 #agent_privilages,#admin_privilages{
     display: none;
 }
+.container-full {
+  padding: 0 -15px;
+  margin: 0 auto;
+  width: 100%;
+}
+#action_header{
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background: linear-gradient(#739DDD, #516D97) repeat scroll 0 0 rgba(0, 0, 0, 0);
+  border-color: #4F6B9A #4F6B9A -moz-use-text-color;
+  border-image: none;
+  border-style: solid solid none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-width: 1px 1px medium;
+  color: #999999;
+  line-height: 50px;
+  padding: 7px 0 6px;
+  height: 65px;
+}
+#control_panel_navbar{
+  .navbar{
+    margin-bottom: 0;
+  }
+}
+/*
+@media screen and (min-width: 768px) {
+    #tickets_cp{
+      .col-sm-10 {
+        padding-right: 0;
+        padding-left: 0;
+      }
+    }
+  }
+*/

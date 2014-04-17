@@ -1,0 +1,13 @@
+// Place all the styles related to the admin controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.navbar-main,#admins_cp_body{
+		hr:before {
+		width:100%;
+		left:0 ;
+	}
+}
+#admins_cp_sidebar{
+	ul{padding-bottom:10%;}
+}

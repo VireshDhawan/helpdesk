@@ -1,0 +1,16 @@
+<div class="row">
+	<h1>Add a New Group</h1>
+	<p>To add users to your new group, edit users and select groups that you want them to be a part of.&nbsp; <%= link_to "Learn More »", '' %></p>
+	<hr>
+</div>
+<div class="row">
+	<div class="container">
+		<br>
+		<%= simple_form_for @group , html: { :class => "form-horizontal" } do |f| %>
+			<%= f.error_notification %>
+			<%= f.input :name %>
+			<%= f.input :company_id, as: :hidden, input_html:{ value: current_agent.company.id } %>
+			<div class="col-sm-3 col-sm-offset-2 form_button"><%= f.button :submit, "Create Group",class: "btn btn-info" %></div>
+		<% end %>
+	</div>
+</div>

@@ -3,6 +3,7 @@ class SubscriptionsController < ApplicationController
 	before_filter :authenticate_agent!
 	before_filter :authorize_admin #check if user is admin
 	before_filter :authorize_subscription_privilages
+	layout "admin_panel"
 
 	def new
 		@subscription = Subscription.new

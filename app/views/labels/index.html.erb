@@ -1,0 +1,36 @@
+<div class="row">
+	<h1>Labels</h1>
+	<p>Labels can help you categorize your tickets or keep track of them.&nbsp; <%= link_to "Learn More »", '' %></p>
+	<hr>
+</div>
+<div class="row">
+	<br>
+	<%= link_to "Add a New Label", new_label_path,class: "btn btn-danger" %>
+	<br><br>
+	<hr>
+</div>
+<div class="row">
+	<h3>Existing Labels</h3>
+	<% if @labels %>
+	<table class="table table-stripped">
+		<tr>
+			<th>*</th>
+			<th>Name</th>
+			<th>Color</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+		<% @labels.each_with_index do |lab, i| %>
+		<tr>
+			<td><%= i+1 %></td>
+			<td><%= lab.name %></td>
+			<td>Color</td>
+			<td><%= link_to '', edit_label_path(lab.id),class: "fa fa-pencil" %> </td>
+			<td><%= link_to '',label_path(lab.id),:method => :delete, :data => { :confirm => 'Are you sure?' },class: "fa fa-trash-o" %> </td>
+		</tr>
+		<% end %>
+	</table>
+	<% else %>
+		<p>No labels created yet!</p>
+	<% end %>
+</div>

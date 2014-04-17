@@ -28,6 +28,15 @@ Agent.create(
     :allow_company_management => true,
     :allow_subscription_management => true
 )
+Agent.create(
+	email: "agent1@helpdesk.com",password: "agent1.helpdesk",password_confirmation: "agent1.helpdesk",confirmed_at: Time.now,company_id: 1,
+    :allow_reporting => false,
+    :allow_agent_management => false,
+    :allow_to_invite => false,
+    :allow_billing_management => false,
+    :allow_company_management => false,
+    :allow_subscription_management => false
+)
 Agent.first.groups << Group.first
 company.tickets.create(customer_name: "demo user",customer_email: "demo@example.com")
 company.agents.first.tickets.create(customer_name: "agent user",customer_email: "agent@example.com")

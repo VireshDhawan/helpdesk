@@ -1,0 +1,14 @@
+<div class="row">
+	<h1>Add a New Label</h1>
+	<hr>
+</div>
+<div class="row">
+	<div class="container">
+		<br>
+		<%= simple_form_for @label , html: { :class => "form-horizontal" } do |f| %>
+			<%= f.error_notification %>
+			<%= f.input :name %>
+			<div class="col-sm-3 col-sm-offset-2 form_button"><%= f.button :submit, "Add Label",class: "btn btn-info" %></div>
+		<% end %>
+	</div>
+</div>

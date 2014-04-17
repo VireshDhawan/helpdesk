@@ -1,0 +1,36 @@
+<div class="row">
+	<h1>Groups</h1>
+	<p>Some text here</p>
+	<hr>
+</div>
+<div class="row">
+	<br>
+	<%= link_to "Add a New Group", new_group_path,class: "btn btn-danger" %>
+	<br><br>
+	<hr>
+</div>
+<div class="row">
+	<h3>Existing Groups</h3>
+	<% if @groups %>
+	<table class="table table-stripped">
+		<tr>
+			<th>*</th>
+			<th>Name</th>
+			<th>No of Agents</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+		<% @groups.each_with_index do |group, i| %>
+		<tr>
+			<td><%= i+1 %></td>
+			<td><%= group.name %></td>
+			<td><%= group.agents.count %></td>
+			<td><%= link_to '', edit_group_path(group.id),class: "fa fa-pencil" %> </td>
+			<td><%= link_to '',group_path(group.id),:method => :delete, :data => { :confirm => 'Are you sure?' },class: "fa fa-trash-o" %> </td>
+		</tr>
+		<% end %>
+	</table>
+	<% else %>
+		<p>No groups added yet!</p>
+	<% end %>
+</div>

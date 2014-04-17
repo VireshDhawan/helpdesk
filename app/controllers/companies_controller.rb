@@ -3,6 +3,7 @@ class CompaniesController < ApplicationController
   before_filter :authenticate_agent!
   before_filter :authorize_admin #check if user is admin
   before_filter :authorize_company_privilages
+  layout "admin_panel"
 
   def new
     @company = Company.new
@@ -27,9 +28,14 @@ class CompaniesController < ApplicationController
 
   def update
     @company = Company.find(params[:id])
-    if @company.update_attributes(params[:company]) && @company.agents.inlcude?(current_agent)
-      flash[:success] = "Company details were updated successfully!"
-      redirect_to root_url
+    if current_agent.company == @company
+      if @company.update_attributes(params[:company])
+        flash[:success] = "Company details were updated successfully!"
+        redirect_to admin_path
+      else
+        flash[:error] = "Something went wrong. Please review the problems below."
+        render :action => "edit"
+      end
     else
       flash[:error] = "Something went wrong. Please review the problems below."
       render :action => "edit"

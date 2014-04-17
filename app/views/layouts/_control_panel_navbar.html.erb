@@ -1,0 +1,43 @@
+<div class="container-full" id="control_panel_navbar">
+	<div class="navbar-main">
+		<!-- Fixed navbar -->
+		<div class="navbar navbar-default">
+		  <div class="row">
+		    <div class="navbar-header" style="padding-left:2%;">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		        <span class="fa fa-bars" style="font-size:30px; color:#3498db;"></span>
+		      </button>
+		      <a class="navbar-brand" href="/"><span style="font-size:20px;"></span>HelpDesk</a>
+		    </div>
+		    <div class="navbar-collapse collapse">
+				<% if false %>
+				<ul class="nav navbar-nav">
+					<li><a href="#home" class="smoothScroll">Home</a></li>
+					<li> <a href="#about" class="smoothScroll"> About</a></li>
+					<li> <a href="#features" class="smoothScroll">Features</a></li>
+					<li> <a href="#pricing" class="smoothScroll"> Pricing</a></li>
+					<li> <a href="#contact" class="smoothScroll">Contact</a></li>
+				</ul>
+			   <% end %>
+			   <ul class="nav navbar-nav pull-right">
+			   	<% if agent_signed_in? %>
+			   		<li><%= link_to "Account",'', class: "smoothScroll"%></li>
+			   		<li><%= link_to "Admin",admin_path, class: "smoothScroll"%></li>
+			   		<li><%= link_to "Reports",'', class: "smoothScroll" if current_agent.allow_reporting %></li>
+			   		<li><%= link_to "Help",'', class: "smoothScroll" %></li>
+			   		<li><%= link_to "Contact Support",'', class: "smoothScroll" %></li>
+			   		<li><%= link_to "Sign Out",destroy_agent_session_path, :method => :delete, class: "smoothScroll" %></li>
+			   	<% elsif superadmin_signed_in? %>
+			   		<li class="smoothScroll"><%= link_to "Invite Admins",new_superadmin_invitation_path, class: "smoothScroll" %></li>
+			   		<li class="smoothScroll"><%= link_to "Create Plan",new_plan_path, class: "smoothScroll" %></li>
+			   		<li><%= link_to "Sign Out",destroy_superadmin_session_path, :method => :delete, class: "smoothScroll" %></li>
+			   	<% end %>
+				</ul>
+		    </div><!--/.nav-collapse -->
+		  </div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div id="action_header"></div>
+</div>

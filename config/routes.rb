@@ -13,21 +13,32 @@ Helpdesk::Application.routes.draw do
   
   devise_for :agents, :controllers => {
     :confirmations => 'agent_confirmations',
-    :invitations => 'agent_invitations'
+    :invitations => 'agent_invitations',
+    :registrations => 'agents/registrations'
   }
              
   devise_scope :agent do
     patch "/agents/confirm" => "agent_confirmations#confirm", :as => :agent_confirm
+    get '/agents' => "agent_invitations#index"
   end
   
   resources :companies, :except => [:show, :index]
   resources :subscriptions, :except => [:show, :index, :destroy],:path => "subscription"
   resources :plans, :except => [:destroy], :path => "plans"
+  resources :tickets, :path => "tickets"
+  resources :labels, :except => [:show], :path => "labels"
+  resources :groups,:except => [:show], :path => "groups"
+
+  get '/admin',  to: "admin#index"
 
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'main#index'
+  authenticated :agent do
+    root to: "tickets#index", as: :agents_root
+  end
+
+  root 'main#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

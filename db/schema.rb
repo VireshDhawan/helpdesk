@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140415185312) do
+ActiveRecord::Schema.define(version: 20140416184009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,23 @@ ActiveRecord::Schema.define(version: 20140415185312) do
   add_index "groups_agents", ["agent_id"], name: "index_groups_agents_on_agent_id", using: :btree
   add_index "groups_agents", ["group_id"], name: "index_groups_agents_on_group_id", using: :btree
 
+  create_table "labels", force: true do |t|
+    t.string   "name"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "labels", ["company_id"], name: "index_labels_on_company_id", using: :btree
+  add_index "labels", ["name"], name: "index_labels_on_name", unique: true, using: :btree
+
+  create_table "labels_tickets", id: false, force: true do |t|
+    t.integer "ticket_id"
+    t.integer "label_id"
+  end
+
+  add_index "labels_tickets", ["ticket_id", "label_id"], name: "index_labels_tickets_on_ticket_id_and_label_id", using: :btree
+
   create_table "plans", force: true do |t|
     t.string   "name"
     t.float    "price"
@@ -143,6 +160,14 @@ ActiveRecord::Schema.define(version: 20140415185312) do
   add_index "superadmins", ["invited_by_id"], name: "index_superadmins_on_invited_by_id", using: :btree
   add_index "superadmins", ["reset_password_token"], name: "index_superadmins_on_reset_password_token", unique: true, using: :btree
 
+  create_table "ticket_categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ticket_categories", ["name"], name: "index_ticket_categories_on_name", using: :btree
+
   create_table "tickets", force: true do |t|
     t.string   "customer_name"
     t.string   "customer_email"
@@ -154,6 +179,7 @@ ActiveRecord::Schema.define(version: 20140415185312) do
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "ticket_category_id"
   end
 
   add_index "tickets", ["agent_id"], name: "index_tickets_on_agent_id", using: :btree
@@ -161,5 +187,6 @@ ActiveRecord::Schema.define(version: 20140415185312) do
   add_index "tickets", ["customer_email"], name: "index_tickets_on_customer_email", using: :btree
   add_index "tickets", ["group_id"], name: "index_tickets_on_group_id", using: :btree
   add_index "tickets", ["reply_email"], name: "index_tickets_on_reply_email", using: :btree
+  add_index "tickets", ["ticket_category_id"], name: "index_tickets_on_ticket_category_id", using: :btree
 
 end

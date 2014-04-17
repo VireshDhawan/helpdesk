@@ -2,11 +2,16 @@
 
 Login with:
 
-Agent:
+Admin Agent:
 	Username: demo@helpdesk.com
 	Password: demo.helpdesk
 
+Agent:
+	Username: agent1@helpdesk.com
+	Password: agent1.helpdesk
+
 Superadmin:
 	Username: admin@helpdesk.com
-	Password: admin.helpdesk	
+	Password: admin.helpdesk
+
 When you invite a agent (for testing you might invite yourself), do remember to logout before clicking the invitation link in the mail

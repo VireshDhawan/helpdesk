@@ -1,0 +1,36 @@
+<div class="row">
+	<h1>Agents</h1>
+	<p>Invite your team members to HelpDesk to help you answer tickets or manage the desk.&nbsp; <%= link_to "Learn More »", '' %></p>
+	<hr>
+</div>
+<div class="row">
+	<br>
+	<%= link_to "Invite New Agent ", new_agent_invitation_path,class: "btn btn-danger" %>
+	<br><br>
+	<hr>
+</div>
+<div class="row">
+	<h3>Admins</h3>
+	<% if @admins %>
+	<table class="table table-stripped">
+		<tr>
+			<th>*</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+		<% @admins.each_with_index do |admin, i| %>
+		<tr>
+			<td><%= i+1 %></td>
+			<td><%= "#{admin.first_name} #{admin.last_name}" %></td>
+			<td><%= admin.email %></td>
+			<td><%= link_to '', edit_agent_registration_path(admin.id),class: "fa fa-pencil" %> </td>
+			<td><%= link_to '',agents_path(admin.id),:method => :delete, :data => { :confirm => 'Are you sure?' },class: "fa fa-trash-o" %> </td>
+		</tr>
+		<% end %>
+	</table>
+	<% else %>
+		<p>No Agents created yet!</p>
+	<% end %>
+</div>

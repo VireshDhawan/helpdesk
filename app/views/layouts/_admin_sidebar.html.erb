@@ -1,0 +1,21 @@
+<div class="navbar-main">
+	<div class="navbar navbar-default">
+		<ul class="nav nav-pills nav-stacked">
+			<li><h3 style="padding-left:7%;"><%= link_to "Dashboard",admin_path %></h3></li><hr>
+			<li class="nav-header">Setup</li><hr>
+			<li><%= link_to "Email",'' %></li>
+			<li><%= link_to "Users",agents_path %></li>
+			<li><%= link_to "Groups",groups_path %></li>
+			<li><%= link_to "Widgets",'' %></li><hr>
+			<li class="nav-header">Settings</li><hr>
+			<li><%= link_to "General",edit_company_path(current_agent.company.id) %></li>
+			<li><%= link_to "Billing",edit_subscription_path(current_agent.company.subscription.id) %></li><hr>
+			<li class="nav-header">Organise</li><hr>
+			<li><%= link_to "Labels",labels_path %></li>
+			<li><%= link_to "Snippets",'' %></li><hr>
+			<li class="nav-header">Automate</li><hr>
+			<li><%= link_to "Filters",'' %></li>
+			<li><%= link_to "Webhooks",'' %></li>
+		</ul>
+	</div>
+</div>
