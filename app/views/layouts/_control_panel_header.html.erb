@@ -21,8 +21,23 @@
 			   <% end %>
 			   <ul class="nav navbar-nav pull-right">
 			   	<% if agent_signed_in? %>
-			   		<li><p>Hi <%= current_agent.first_name %></p></li>
-			   		<li><%= link_to "Account",'', class: "smoothScroll"%></li>
+			   		<li class="dropdown">
+			   			<%= link_to '#',class: "smoothScroll" ,:"role" => "button", :"data-toggle"=>"dropdown" do %>
+				          Account <b class="caret"></b>
+				        <% end %>
+				        <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+				          <li>
+				          	<%= link_to edit_agent_registration_path,:"tabindex" => "-1",:"role" => "menuitem",class: "smoothScroll" do %>
+				          	My Profile
+				          	<% end %>
+				          </li>
+				          <li>
+				          	<%= link_to '',:"tabindex" => "-1",:"role" => "menuitem",class: "smoothScroll" do %>
+				          	Notifications
+				          	<% end %>
+				          </li>
+				        </ul>
+			   		</li>
 			   		<li><%= link_to "Admin",admin_path, class: "smoothScroll"%></li>
 			   		<li><%= link_to "Reports",'', class: "smoothScroll" if current_agent.allow_reporting %></li>
 			   		<li><%= link_to "Help",'', class: "smoothScroll" %></li>

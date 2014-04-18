@@ -1,0 +1,48 @@
+<div class="row">
+	<h1>Filters</h1>
+	<p>Filters can help you automate ticket routing, adding a label and other tasks. &nbsp; <%= link_to "Learn More »", '' %></p>
+	<hr>
+</div>
+<div class="row">
+	<br>
+	<%= link_to "Add a New Filter", new_filter_path,class: "btn btn-danger" %>
+	<br><br>
+	<hr>
+</div>
+<div class="row">
+	<h3>Existing Filters</h3>
+	<% if @filters %>
+	<table class="table table-stripped">
+		<tr>
+			<th>*</th>
+			<th>Matches</th>
+			<th>Does</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+		<% @filters.each_with_index do |filt, i| %>
+		<tr>
+			<td><%= i+1 %></td>
+			<td>
+				<b>From:</b> <%= filt.from_email %><br>
+				<b>To:</b> <%= filt.delivered_to %><br>
+				<b>Subject:</b> <%= filt.subject_with_keywords %><br>
+				<b>Body:</b> <%= filt.body_with_keywords %><br>
+			</td>
+			<td>
+				<%= raw "<b>Add To:</b> Spam <br>" if filt.spam? %>
+				<%= raw "<b>Add To:</b> Trash <br>" if filt.trash? %>
+				<%= raw "<b>Add To:</b> Archive <br>" if filt.archive? %>
+				<%= raw "<b>Label:</b> #{filt.label}" if !filt.label.blank?  %><br>
+				<%= raw "<b>Assign To:</b> #{filt.agent}" if !filt.agent.blank? %><br>
+				<%= raw "<b>Assign To:</b> #{filt.group}" if !filt.group.blank? %><br>
+			</td>
+			<td><%= link_to '', edit_filter_path(filt.id),class: "fa fa-pencil" %> </td>
+			<td><%= link_to '',filter_path(filt.id),:method => :delete, :data => { :confirm => 'Are you sure?' },class: "fa fa-trash-o" %> </td>
+		</tr>
+		<% end %>
+	</table>
+	<% else %>
+		<p>No Filters created yet!</p>
+	<% end %>
+</div>

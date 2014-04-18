@@ -1,0 +1,27 @@
+<div class="row">
+	<h1>Add a New Filter</h1>
+	<p>Filters can help you automate ticket routing, adding a label and other tasks. &nbsp; <%= link_to "Learn More »", '' %></p>
+	<hr>
+</div>
+<div class="row">
+	<div class="container">
+		<br>
+		<%= simple_form_for @filter , html: { :class => "form-horizontal" } do |f| %>
+			<%= f.error_notification %>
+			<%= f.input :from_email %>
+			<%= f.input :delivered_to %>
+			<%= f.input :subject_with_keywords %>
+			<%= f.input :body_with_keywords %>
+			<div class="col-md-offset-3">
+			<%= f.input :archive, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Add to archive" %>
+			<%= f.input :trash, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Move to trash" %>
+			<%= f.input :spam, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Mark spam" %>
+			</div>
+			<%= f.input :label_id, label: "Add Label", collection: filter_labels, as: :select %>
+			<%= f.input :agent_id, label: "Assign to Agent", collection: filter_agents, as: :select %>
+			<%= f.input :group_id, label: "Assign to Group", collection: filter_groups, as: :select %>
+			<%= f.input :company_id, as: :hidden, input_html:{ value: current_agent.company.id } %>
+			<div class="col-sm-3 col-sm-offset-2 form_button"><%= f.button :submit, "Create Filter",class: "btn btn-info" %></div>
+		<% end %>
+	</div>
+</div>

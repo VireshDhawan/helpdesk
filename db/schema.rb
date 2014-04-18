@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140417215801) do
+ActiveRecord::Schema.define(version: 20140418203207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,31 @@ ActiveRecord::Schema.define(version: 20140417215801) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "filters", force: true do |t|
+    t.string   "from_email"
+    t.string   "delivered_to"
+    t.string   "subject_with_keywords"
+    t.string   "body_with_keywords"
+    t.boolean  "archive"
+    t.boolean  "trash"
+    t.boolean  "spam"
+    t.integer  "label_id"
+    t.integer  "group_id"
+    t.integer  "agent_id"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "filters", ["agent_id"], name: "index_filters_on_agent_id", unique: true, using: :btree
+  add_index "filters", ["body_with_keywords"], name: "index_filters_on_body_with_keywords", unique: true, using: :btree
+  add_index "filters", ["company_id"], name: "index_filters_on_company_id", unique: true, using: :btree
+  add_index "filters", ["delivered_to"], name: "index_filters_on_delivered_to", unique: true, using: :btree
+  add_index "filters", ["from_email"], name: "index_filters_on_from_email", unique: true, using: :btree
+  add_index "filters", ["group_id"], name: "index_filters_on_group_id", unique: true, using: :btree
+  add_index "filters", ["label_id"], name: "index_filters_on_label_id", unique: true, using: :btree
+  add_index "filters", ["subject_with_keywords"], name: "index_filters_on_subject_with_keywords", unique: true, using: :btree
 
   create_table "groups", force: true do |t|
     t.string   "name"

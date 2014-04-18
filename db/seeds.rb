@@ -23,17 +23,30 @@ company.labels.create(name: "important")
 company.labels.create(name: "critical")
 Agent.create(
 	email: "demo@helpdesk.com",password: "demo.helpdesk",password_confirmation: "demo.helpdesk",confirmed_at: Time.now,company_id: 1,
+    first_name: "Demo",:last_name => "User",
     :allow_reporting => true,
     :allow_agent_management => true,
     :allow_to_invite => true,
     :allow_billing_management => true,
     :allow_company_management => true,
-    :allow_subscription_management => true
+    :allow_subscription_management => true,
+    :allow_groups_management => true
 )
 Agent.create(
 	email: "agent1@helpdesk.com",password: "agent1.helpdesk",password_confirmation: "agent1.helpdesk",confirmed_at: Time.now,company_id: 1,
+    first_name: "Agent1",:last_name => "Agent1",
     :allow_reporting => false,
     :allow_agent_management => false,
+    :allow_to_invite => false,
+    :allow_billing_management => false,
+    :allow_company_management => false,
+    :allow_subscription_management => false
+)
+Agent.create(
+    email: "agent2@helpdesk.com",password: "agent2.helpdesk",password_confirmation: "agent2.helpdesk",confirmed_at: Time.now,company_id: 1,role: false,
+    first_name: "Agent2",:last_name => "Agent2",
+    :allow_reporting => true,
+    :allow_agent_management => true,
     :allow_to_invite => false,
     :allow_billing_management => false,
     :allow_company_management => false,

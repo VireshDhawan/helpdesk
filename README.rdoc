@@ -15,3 +15,6 @@ Superadmin:
 	Password: admin.helpdesk
 
 When you invite a agent (for testing you might invite yourself), do remember to logout before clicking the invitation link in the mail
+
+Key points to remember:
+1. add_index on foreign keys

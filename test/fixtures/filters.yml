@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from_email: MyString
+  delivered_to: MyString
+  subject_with_keywords: MyString
+  body_with_keywords: MyString
+  archive: false
+  trash: false
+  spam: false
+
+two:
+  from_email: MyString
+  delivered_to: MyString
+  subject_with_keywords: MyString
+  body_with_keywords: MyString
+  archive: false
+  trash: false
+  spam: false

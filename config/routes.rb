@@ -32,6 +32,7 @@ Helpdesk::Application.routes.draw do
   resources :tickets, :path => "tickets"
   resources :labels, :except => [:show], :path => "labels"
   resources :groups,:except => [:show], :path => "groups"
+  resources :filters,:except => [:show]
 
   get '/admin',  to: "admin#index"
 

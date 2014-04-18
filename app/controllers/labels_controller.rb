@@ -41,7 +41,7 @@ class LabelsController < ApplicationController
   def destroy
     @label = current_agent.company.labels.find(params[:id])
     if @label.delete
-      flash[:success] = "label was successfully deleted!"
+      flash[:success] = "The Label was successfully deleted!"
       redirect_to labels_path
     else
       flash[:error] = "Something went wrong. Please review the problems"
