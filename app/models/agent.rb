@@ -14,7 +14,8 @@ class Agent < ActiveRecord::Base
                   :first_name,:last_name,:role,:signature,:api_token,
                   :company_id,:confirmed_at,:invitation_sent_at,:allow_reporting,
                   :allow_agent_management,:allow_to_invite,:allow_billing_management,
-                  :allow_company_management,:allow_subscription_management
+                  :allow_company_management,:allow_subscription_management,
+                  :allow_groups_management
 
   validates :role, inclusion: { in: [true,false], message: "can't be blank" }
 

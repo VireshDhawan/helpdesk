@@ -7,8 +7,8 @@ class AgentInvitationsController < Devise::InvitationsController
 	layout "admin_panel", :except => [:edit,:update]
 
 	def index
-		@admins = current_agent.company.agents.where(role: true)
-		@agents = current_agent.company.agents.where(role: false)
+		@admins = current_agent.company.agents.find(:all, :conditions => ["role = ? and id != ?", true, current_agent.id])
+		@agents = current_agent.company.agents.find(:all, :conditions => ["role = ? and id != ?", false, current_agent.id])
 	end
 
 	def update

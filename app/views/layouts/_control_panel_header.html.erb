@@ -21,6 +21,7 @@
 			   <% end %>
 			   <ul class="nav navbar-nav pull-right">
 			   	<% if agent_signed_in? %>
+			   		<li><p>Hi <%= current_agent.first_name %></p></li>
 			   		<li><%= link_to "Account",'', class: "smoothScroll"%></li>
 			   		<li><%= link_to "Admin",admin_path, class: "smoothScroll"%></li>
 			   		<li><%= link_to "Reports",'', class: "smoothScroll" if current_agent.allow_reporting %></li>

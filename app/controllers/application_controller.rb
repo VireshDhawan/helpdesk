@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   
 # prepend_before_filter :require_company
 # prepend_before_filter :subscription_expired
-  around_filter :catch_not_found
+#  around_filter :catch_not_found
 
   def after_update_path_for(resource)
     admin_path

@@ -13,7 +13,8 @@ class Agents::RegistrationsController < Devise::RegistrationsController
 			 :current_password,:first_name,:last_name,:role,
 			 :signature,:api_token,:company_id,:allow_reporting,
 			 :allow_agent_management,:allow_to_invite,:allow_billing_management,
-			 :allow_company_management,:allow_subscription_management)
+			 :allow_company_management,:allow_subscription_management,
+			 :allow_groups_management)
 		end
 	end
 

@@ -1,5 +1,5 @@
 Helpdesk::Application.routes.draw do
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   devise_for :superadmins,:controllers => {
@@ -20,6 +20,10 @@ Helpdesk::Application.routes.draw do
   devise_scope :agent do
     patch "/agents/confirm" => "agent_confirmations#confirm", :as => :agent_confirm
     get '/agents' => "agent_invitations#index"
+  end
+
+  scope "/manage" do
+    resources :agents, :only => [:edit,:update,:destroy], :as => "manage_agent"
   end
   
   resources :companies, :except => [:show, :index]

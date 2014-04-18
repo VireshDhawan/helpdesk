@@ -1,0 +1,55 @@
+<div class="row">
+	<h1>Edit Agent's Permissions</h1>
+	<p>To add users to your new group, edit users and select groups that you want them to be a part of.&nbsp; <%= link_to "Learn More »", '' %></p>
+	<hr>
+</div>
+<div class="row">
+	<div class="container">
+		<br>
+		<%= simple_form_for(@agent), html: { method: :put ,class: "form-horizontal" }) do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :role, collection: [["Select one",nil],["Admin",true],["Agent",false]], required: true,include_blank: false,selected: "Select one" %>
+		<div class="col-md-offset-2">
+			<div id="admin_privilages">
+			<%= f.input :allow_billing_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage billing preferences" %>
+			<%= f.input :allow_company_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage company preferences" %>
+			<%= f.input :allow_subscription_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage plans and subscriptions" %>
+			<%= f.input :allow_groups_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage groups" %>
+			</div>
+			<div id="agent_privilages">
+			<%= f.input :allow_to_invite, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false , inline_label: "allow to invite agents" %>
+			<%= f.input :allow_agent_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage agents" %>
+			<%= f.input :allow_reporting, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to view and manage reports" %>
+			</div>
+		</div>
+          <div class="col-sm-3 col-sm-offset-1 form_button">
+            <%= f.button :submit, "Update Permissions",class: "btn btn-danger" %>&nbsp;&nbsp;&nbsp;
+            <%= link_to "Back", root_url %>
+          </div>
+      	<% end %>
+	</div>
+</div>
+<script type="text/javascript">
+	$('input[type="checkbox"]').checkbox({
+	    buttonStyle: 'btn-link',
+	    checkedClass: 'fa fa-check-square-o fa-2x',
+	    uncheckedClass: 'fa fa-square-o fa-2x',
+	    constructorCallback: null,
+	    defaultState: false,
+	    defaultEnabled: true,
+	    checked: false,
+	    enabled: true
+    });
+</script>
+<script type="text/javascript">
+	$('body').on('change','#agent_role', function (){
+		if($(this).val() == "true" ){
+			$("#agent_privilages").hide();
+			$("#admin_privilages").fadeIn(1000);
+		}
+		else if($(this).val() == "false" ){
+			$("#admin_privilages").hide();
+			$("#agent_privilages").fadeIn(1000);
+		}
+	});
+</script>
