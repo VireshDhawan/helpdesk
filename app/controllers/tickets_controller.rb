@@ -1,6 +1,7 @@
 class TicketsController < ApplicationController
 
   before_filter :authenticate_agent!, except: [:new,:create]
+  
   layout "control_panel"
 
   def index

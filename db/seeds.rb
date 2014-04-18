@@ -19,6 +19,8 @@ company.save
 	company.groups.build(name: group)
 	company.save
 end
+company.labels.create(name: "important")
+company.labels.create(name: "critical")
 Agent.create(
 	email: "demo@helpdesk.com",password: "demo.helpdesk",password_confirmation: "demo.helpdesk",confirmed_at: Time.now,company_id: 1,
     :allow_reporting => true,

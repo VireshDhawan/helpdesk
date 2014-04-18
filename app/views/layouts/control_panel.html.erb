@@ -9,17 +9,17 @@
   <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic|Raleway:400,300,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<%= render 'layouts/control_panel_navbar' %>
+	<%= render 'layouts/control_panel_header' %>
 	<%= render 'layouts/errors' %>
 	<div class="row" id="tickets_cp">
 		<div class="col-sm-2" id="tickets_sidebar">
 			<%= render 'layouts/tickets_sidebar' %>
-			<%= render 'layouts/admin_sidebar' %>
 		</div>
 		<div class="col-sm-10">
 			<div class="row"><%= render 'layouts/tickets_menubar' %></div>
 			<%= yield %>
 		</div>
 	</div>
+	<%= render 'layouts/control_panel_footer' %>
 </body>
 </html>

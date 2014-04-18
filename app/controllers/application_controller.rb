@@ -8,13 +8,17 @@ class ApplicationController < ActionController::Base
 # prepend_before_filter :subscription_expired
   around_filter :catch_not_found
 
+  def after_update_path_for(resource)
+    admin_path
+  end
+
   protected
 
   def authorize_admin
     unless current_agent.role
       flash[:error] = "You are not authorized to perform the action"
       #redirect to default page
-      redirect_to root_url
+      redirect_to(:back) rescue redirect_to(root_url)
     else
       true
     end

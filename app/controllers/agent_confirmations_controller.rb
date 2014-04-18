@@ -20,7 +20,8 @@ class AgentConfirmationsController < Devise::ConfirmationsController
         :allow_to_invite => true,
         :allow_billing_management => true,
         :allow_company_management => true,
-        :allow_subscription_management => true
+        :allow_subscription_management => true,
+        :allow_groups_management => true
       )
       set_flash_message :notice, :confirmed
       if resource.company.nil?

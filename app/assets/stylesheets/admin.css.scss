@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.alert{
+	margin-bottom:0px;
+}
 .navbar-main,#admins_cp_body{
 		hr:before {
 		width:100%;
@@ -10,4 +13,43 @@
 }
 #admins_cp_sidebar{
 	ul{padding-bottom:10%;}
+	.navbar{
+		margin-bottom: 1px;
+	}
+}
+#control_panel_header{
+  .navbar{
+    margin-bottom: 0;
+  }
+}
+#control_panel_footer{
+	text-align: center;
+  .navbar{
+    margin-bottom: 0;
+  }
+  .row{
+  	min-height: 250px;
+  }
+  border-top:1.5px solid #ACACAC;
+  h2{
+  	margin-top: 5%; 
+  	margin-bottom: 2%; 
+  }
+}
+.panel-custom {
+  border-color: #2B3E50;
+}
+.panel-custom > .panel-body {
+	min-height: 100px;
+}
+.panel-custom > .panel-heading {
+  color: white;
+  background-color: #2B3E50;
+  border-color: #2B3E50;
+}
+.panel-custom > .panel-heading + .panel-collapse .panel-body {
+  border-top-color: #2B3E50;
+}
+.panel-custom > .panel-footer + .panel-collapse .panel-body {
+  border-bottom-color: #2B3E50;
 }

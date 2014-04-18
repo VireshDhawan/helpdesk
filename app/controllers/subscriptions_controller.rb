@@ -3,6 +3,7 @@ class SubscriptionsController < ApplicationController
 	before_filter :authenticate_agent!
 	before_filter :authorize_admin #check if user is admin
 	before_filter :authorize_subscription_privilages
+
 	layout "admin_panel"
 
 	def new
@@ -52,10 +53,10 @@ class SubscriptionsController < ApplicationController
 	protected
 
 	def authorize_subscription_privilages
-		unless current_agent.allow_subscription_management
+		unless current_agent.allow_subscription_management || current_agent.allow_billing_management
 			flash[:error] = "You are not authorized to perform the action"
 			#redirect to default page
-			redirect_to root_url
+			redirect_to(:back) rescue redirect_to root_url
 		else
 			true
 		end		

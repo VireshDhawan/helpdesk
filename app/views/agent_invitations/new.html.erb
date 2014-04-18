@@ -17,11 +17,12 @@
 			<%= f.input :allow_billing_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage billing preferences" %>
 			<%= f.input :allow_company_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage company preferences" %>
 			<%= f.input :allow_subscription_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage plans and subscriptions" %>
+			<%= f.input :allow_groups_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage groups" %>
 			</div>
 			<div id="agent_privilages">
 			<%= f.input :allow_to_invite, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false , inline_label: "allow to invite agents" %>
-			<%= f.input :allow_reporting, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to view and manage reports" %>
 			<%= f.input :allow_agent_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage agents" %>
+			<%= f.input :allow_reporting, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to view and manage reports" %>
 			</div>
 		</div>
 		<br>

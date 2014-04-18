@@ -9,7 +9,7 @@
   <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic|Raleway:400,300,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<%= render 'layouts/control_panel_navbar' %>
+	<%= render 'layouts/control_panel_header' %>
 	<%= render 'layouts/errors' %>
 	<div class="row" id="admins_cp_sidebar">
 		<div class="col-sm-2">
@@ -19,5 +19,6 @@
 			<%= yield %>
 		</div>
 	</div>
+	<%= render 'layouts/control_panel_footer' %>
 </body>
 </html>

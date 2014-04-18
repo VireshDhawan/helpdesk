@@ -3,6 +3,7 @@
 	<p>Manage your subscription here.&nbsp; <%= link_to "Learn More »", '' %></p>
 	<hr>
 </div>
+<% if current_agent.allow_subscription_management %>
 <div class="row">
 	<div class="container">
 		<br>
@@ -15,3 +16,10 @@
 		<% end %>
 	</div>
 </div>
+<% end %>
+<% if current_agent.allow_billing_management %>
+<div class="row">
+	<h1>Billing Preferences</h1>
+	<p>Credit card info / Stripe / etc</p>
+</div>
+<% end %>

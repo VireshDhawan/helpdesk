@@ -2,6 +2,8 @@ class GroupsController < ApplicationController
 
   before_filter :authenticate_agent!
   before_filter :authorize_admin
+  before_filter :check_group_management
+
   layout "admin_panel"
 
   def index
@@ -52,6 +54,17 @@ class GroupsController < ApplicationController
     else
       flash[:error] = "Something went wrong. Please review the problems"
       redirect_to :back
+    end
+  end
+
+  protected
+
+  def check_group_management
+    unless current_agent.allow_groups_management
+      flash[:error] = "You are not authorized to manage groups. Contact your account administrator."
+      redirect_to admin_path
+    else
+      true
     end
   end
 

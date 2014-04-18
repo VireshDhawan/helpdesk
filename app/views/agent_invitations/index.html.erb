@@ -3,12 +3,15 @@
 	<p>Invite your team members to HelpDesk to help you answer tickets or manage the desk.&nbsp; <%= link_to "Learn More »", '' %></p>
 	<hr>
 </div>
+<% if current_agent.allow_to_invite %>
 <div class="row">
 	<br>
 	<%= link_to "Invite New Agent ", new_agent_invitation_path,class: "btn btn-danger" %>
 	<br><br>
 	<hr>
 </div>
+<% end %>
+<% if current_agent.allow_agent_management %>
 <div class="row">
 	<h3>Admins</h3>
 	<% if @admins %>
@@ -31,6 +34,33 @@
 		<% end %>
 	</table>
 	<% else %>
+		<p>No Admins created yet!</p>
+	<% end %>
+</div><br>
+<hr>
+<div class="row">
+	<h3>Agents</h3>
+	<% if @agents %>
+	<table class="table table-stripped">
+		<tr>
+			<th>*</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+		<% @agents.each_with_index do |agent, i| %>
+		<tr>
+			<td><%= i+1 %></td>
+			<td><%= "#{agent.first_name} #{agent.last_name}" %></td>
+			<td><%= agent.email %></td>
+			<td><%= link_to '', edit_agent_registration_path(agent.id),class: "fa fa-pencil" %> </td>
+			<td><%= link_to '',agents_path(agent.id),:method => :delete, :data => { :confirm => 'Are you sure?' },class: "fa fa-trash-o" %> </td>
+		</tr>
+		<% end %>
+	</table>
+	<% else %>
 		<p>No Agents created yet!</p>
 	<% end %>
-</div>
+</div><br>
+<% end %>

@@ -3,6 +3,9 @@ class CompaniesController < ApplicationController
   before_filter :authenticate_agent!
   before_filter :authorize_admin #check if user is admin
   before_filter :authorize_company_privilages
+  
+  helper_method :authorize_company_privilages
+
   layout "admin_panel"
 
   def new
@@ -53,13 +56,11 @@ class CompaniesController < ApplicationController
     end
   end
 
-  protected
-
   def authorize_company_privilages
     unless current_agent.allow_company_management
       flash[:error] = "You are not authorized to perform the action"
       #redirect to default page
-      redirect_to root_url
+      redirect_to(:back) rescue redirect_to root_url
     else
       true
     end   
