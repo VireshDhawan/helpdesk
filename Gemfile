@@ -54,6 +54,7 @@ group :development do
 	gem 'capistrano-rvm'
 	gem 'capistrano-bundler', '~> 1.1.2'
 	gem 'capistrano-rails', '~> 1.1'
+	gem 'capistrano-sidekiq'
 end
 
 # Use ActiveModel has_secure_password
