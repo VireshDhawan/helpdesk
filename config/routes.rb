@@ -1,5 +1,5 @@
 Helpdesk::Application.routes.draw do
-
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   devise_for :superadmins,:controllers => {
@@ -33,6 +33,7 @@ Helpdesk::Application.routes.draw do
   resources :labels, :except => [:show], :path => "labels"
   resources :groups,:except => [:show], :path => "groups"
   resources :filters,:except => [:show]
+  resources :snippets,:except => [:show]
 
   get '/admin',  to: "admin#index"
 
@@ -41,6 +42,12 @@ Helpdesk::Application.routes.draw do
   # You can have the root of your site routed with "root"
   authenticated :agent do
     root to: "tickets#index", as: :agents_root
+  end
+
+  authenticated :superadmin do
+    # superadmin's root
+    require 'sidekiq/web'
+    mount Sidekiq::Web => '/sidekiq'
   end
 
   root 'main#index'

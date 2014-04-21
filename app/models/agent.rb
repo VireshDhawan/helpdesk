@@ -1,14 +1,16 @@
 class Agent < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
+
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :validate_on_invite => true
+         :async, :confirmable, :validate_on_invite => true
 	
 	belongs_to :company
   has_many :tickets
   has_many :groups_agents, :class_name => "GroupsAgents"
   has_many :groups, :through => :groups_agents
+  has_many :snippets, as: :snippetable
 
 	attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :first_name,:last_name,:role,:signature,:api_token,

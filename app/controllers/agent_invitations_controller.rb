@@ -62,7 +62,8 @@ class AgentInvitationsController < Devise::InvitationsController
 			:allow_to_invite,
 			:allow_billing_management,
 			:allow_company_management,
-			:allow_subscription_management
+			:allow_subscription_management,
+			:allow_groups_management
 	    )
 	end
 

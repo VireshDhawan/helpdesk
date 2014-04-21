@@ -3,9 +3,8 @@ class Label < ActiveRecord::Base
 	has_and_belongs_to_many :tickets
 	belongs_to :company
 	
-	attr_accessible :name
+	attr_accessible :name,:company_id
 
-	validates_presence_of :name
-	validates_uniqueness_of :name, case_insensitive: false
+	validates :name, presence: true, uniqueness: {scope: :company_id, case_insensitive: false, message: "label with the name already exists."}
 
 end

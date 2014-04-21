@@ -1,6 +1,6 @@
 == README
 
-Login with:
+Login options:
 
 Admin Agent:
 	Username: demo@helpdesk.com
@@ -16,5 +16,10 @@ Superadmin:
 
 When you invite a agent (for testing you might invite yourself), do remember to logout before clicking the invitation link in the mail
 
-Key points to remember:
+**** Sidekiq  Config ****
+
+1. start sidekiq with: 'bundle exec sidekiq -C config/sidekiq.yml'
+2. Sidekiq Dashboard available at '/sidekiq' (only with superadmin privilages.)
+
+Key points to remember (later on):
 1. add_index on foreign keys

@@ -1,0 +1,21 @@
+<div class="row">
+	<h1>Edit Snippet</h1>
+	<hr>
+</div>
+<div class="row">
+	<div class="container">
+		<br>
+		<%= simple_form_for @snippet , html: { :class => "form-horizontal" } do |f| %>
+			<%= f.error_notification %>
+			<%= f.input :name %>
+			<%= f.input :content %>
+			<%= f.input :tags %>
+			<% if current_agent.is_admin? %>
+				<%= f.input :scope, collection: [["Company",true],["Agent",false]] %>
+			<% else %>
+			<%= f.input :scope,:as => :hidden, input_html: {value: false} %>
+			<% end %>
+			<div class="col-sm-3 col-sm-offset-2 form_button"><%= f.button :submit, "Update Snippet",class: "btn btn-info" %></div>
+		<% end %>
+	</div>
+</div>

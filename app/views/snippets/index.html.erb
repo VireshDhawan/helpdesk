@@ -1,0 +1,61 @@
+<div class="row">
+	<h1>Snippets</h1>
+	<p>You can use snippets to reply to frequently asked questions faster. Tags are used for searching snippets (along with content/title etc)&nbsp; <%= link_to "Learn More »", '' %></p>
+	<hr>
+</div>
+<div class="row">
+	<br>
+	<%= link_to "Add a New Snippet", new_snippet_path,class: "btn btn-danger" %>
+	<br><br>
+	<hr>
+</div>
+<% if current_agent.is_admin? %>
+<div class="row">
+	<h3>Company Snippets</h3>
+	<% if !@company_snippets.blank? %>
+	<table class="table table-stripped">
+		<tr>
+			<th>*</th>
+			<th>Name</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+		<% @company_snippets.each_with_index do |snippet, i| %>
+		<tr>
+			<td><%= i+1 %></td>
+			<td><%= snippet.name %></td>
+			<td><%= link_to '', edit_snippet_path(snippet.id),class: "fa fa-pencil" %> </td>
+			<td><%= link_to '',snippet_path(snippet.id),:method => :delete, :data => { :confirm => 'Are you sure?' },class: "fa fa-trash-o" %> </td>
+		</tr>
+		<% end %>
+	</table>
+	<% else %>
+		<p>No company snippets created yet!</p>
+	<% end %>
+	<br>
+	<hr>
+</div>
+<% end %>
+<div class="row">
+	<h3>Your Snippets</h3>
+	<% if !@snippets.blank? %>
+	<table class="table table-stripped">
+		<tr>
+			<th>*</th>
+			<th>Name</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+		<% @snippets.each_with_index do |snippet, i| %>
+		<tr>
+			<td><%= i+1 %></td>
+			<td><%= snippet.name %></td>
+			<td><%= link_to '', edit_snippet_path(snippet.id),class: "fa fa-pencil" %> </td>
+			<td><%= link_to '',snippet_path(snippet.id),:method => :delete, :data => { :confirm => 'Are you sure?' },class: "fa fa-trash-o" %> </td>
+		</tr>
+		<% end %>
+	</table>
+	<% else %>
+		<p>You haven't created any snippets created yet!</p>
+	<% end %>
+</div>

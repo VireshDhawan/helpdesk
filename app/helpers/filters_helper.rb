@@ -9,7 +9,7 @@ module FiltersHelper
 	end
 
 	def filter_agents
-		current_agent.company.agents.select([:first_name,:last_name,:id]).map {|e| [e.first_name+" "+e.last_name,e.id]}
+		current_agent.company.agents.select([:first_name,:last_name,:id]).map {|e| ["#{e.first_name} #{e.last_name}",e.id]}
 	end
 
 end

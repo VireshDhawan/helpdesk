@@ -24,6 +24,9 @@ gem 'mailgun_api'
 gem 'mail_form'
 gem 'devise'
 gem 'devise_invitable'
+gem 'devise-async'
+gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', :require => nil
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

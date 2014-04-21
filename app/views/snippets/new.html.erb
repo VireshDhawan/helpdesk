@@ -1,0 +1,22 @@
+<div class="row">
+	<h1>Add a New Snippet</h1>
+	<p>You can use snippets to reply to frequently asked questions faster. Tags are used for searching snippets (along with content/title etc)&nbsp; <%= link_to "Learn More »", '' %></p>
+	<hr>
+</div>
+<div class="row">
+	<div class="container">
+		<br>
+		<%= simple_form_for @snippet , html: { :class => "form-horizontal" } do |f| %>
+			<%= f.error_notification %>
+			<%= f.input :name %>
+			<%= f.input :content %>
+			<%= f.input :tags %>
+			<% if current_agent.is_admin? %>
+				<%= f.input :scope,as: :radio_buttons, collection: [["Create snippet for Company",true],["Create my personal snippet",false]] %>
+			<% else %>
+			<%= f.input :scope,:as => :hidden, input_html: {value: false} %>
+			<% end %>
+			<div class="col-sm-3 col-sm-offset-2 form_button"><%= f.button :submit, "Create Snippet",class: "btn btn-info" %></div>
+		<% end %>
+	</div>
+</div>
