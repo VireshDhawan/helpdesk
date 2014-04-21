@@ -10,5 +10,7 @@ class CreatePlans < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :plans, :name, :unique => true
   end
 end

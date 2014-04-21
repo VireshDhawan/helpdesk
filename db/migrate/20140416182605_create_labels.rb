@@ -7,7 +7,7 @@ class CreateLabels < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :labels, :name, unique: true
+    add_index :labels, :name
     add_index :labels, :company_id
   end
 end

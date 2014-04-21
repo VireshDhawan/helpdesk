@@ -8,5 +8,7 @@ class CreateSubscriptions < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    #add_index :subscriptions,:company_id,unique: true
   end
 end

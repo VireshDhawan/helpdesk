@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140418203207) do
+ActiveRecord::Schema.define(version: 20140420180620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,14 +85,14 @@ ActiveRecord::Schema.define(version: 20140418203207) do
     t.datetime "updated_at"
   end
 
-  add_index "filters", ["agent_id"], name: "index_filters_on_agent_id", unique: true, using: :btree
-  add_index "filters", ["body_with_keywords"], name: "index_filters_on_body_with_keywords", unique: true, using: :btree
-  add_index "filters", ["company_id"], name: "index_filters_on_company_id", unique: true, using: :btree
-  add_index "filters", ["delivered_to"], name: "index_filters_on_delivered_to", unique: true, using: :btree
-  add_index "filters", ["from_email"], name: "index_filters_on_from_email", unique: true, using: :btree
-  add_index "filters", ["group_id"], name: "index_filters_on_group_id", unique: true, using: :btree
-  add_index "filters", ["label_id"], name: "index_filters_on_label_id", unique: true, using: :btree
-  add_index "filters", ["subject_with_keywords"], name: "index_filters_on_subject_with_keywords", unique: true, using: :btree
+  add_index "filters", ["agent_id"], name: "index_filters_on_agent_id", using: :btree
+  add_index "filters", ["body_with_keywords"], name: "index_filters_on_body_with_keywords", using: :btree
+  add_index "filters", ["company_id"], name: "index_filters_on_company_id", using: :btree
+  add_index "filters", ["delivered_to"], name: "index_filters_on_delivered_to", using: :btree
+  add_index "filters", ["from_email"], name: "index_filters_on_from_email", using: :btree
+  add_index "filters", ["group_id"], name: "index_filters_on_group_id", using: :btree
+  add_index "filters", ["label_id"], name: "index_filters_on_label_id", using: :btree
+  add_index "filters", ["subject_with_keywords"], name: "index_filters_on_subject_with_keywords", using: :btree
 
   create_table "groups", force: true do |t|
     t.string   "name"
@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 20140418203207) do
   end
 
   add_index "labels", ["company_id"], name: "index_labels_on_company_id", using: :btree
-  add_index "labels", ["name"], name: "index_labels_on_name", unique: true, using: :btree
+  add_index "labels", ["name"], name: "index_labels_on_name", using: :btree
 
   create_table "labels_tickets", id: false, force: true do |t|
     t.integer "ticket_id"
@@ -141,6 +141,25 @@ ActiveRecord::Schema.define(version: 20140418203207) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "plans", ["name"], name: "index_plans_on_name", unique: true, using: :btree
+
+  create_table "snippets", force: true do |t|
+    t.string   "name"
+    t.text     "content"
+    t.string   "tags"
+    t.boolean  "scope"
+    t.integer  "snippetable_id"
+    t.string   "snippetable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "snippets", ["content"], name: "index_snippets_on_content", using: :btree
+  add_index "snippets", ["name"], name: "index_snippets_on_name", using: :btree
+  add_index "snippets", ["snippetable_id"], name: "index_snippets_on_snippetable_id", using: :btree
+  add_index "snippets", ["snippetable_type"], name: "index_snippets_on_snippetable_type", using: :btree
+  add_index "snippets", ["tags"], name: "index_snippets_on_tags", using: :btree
 
   create_table "subscriptions", force: true do |t|
     t.string   "billing_period"

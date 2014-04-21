@@ -16,13 +16,13 @@ class CreateFilters < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :filters, :from_email, :unique => true
-    add_index :filters, :delivered_to, :unique => true
-    add_index :filters, :subject_with_keywords, :unique => true
-    add_index :filters, :body_with_keywords, :unique => true
-    add_index :filters, :label_id, :unique => true
-    add_index :filters, :group_id, :unique => true
-    add_index :filters, :agent_id, :unique => true
-    add_index :filters, :company_id, :unique => true
+    add_index :filters, :from_email
+    add_index :filters, :delivered_to
+    add_index :filters, :subject_with_keywords
+    add_index :filters, :body_with_keywords
+    add_index :filters, :label_id
+    add_index :filters, :group_id
+    add_index :filters, :agent_id
+    add_index :filters, :company_id
   end
 end
