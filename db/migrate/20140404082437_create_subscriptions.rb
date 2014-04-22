@@ -9,6 +9,9 @@ class CreateSubscriptions < ActiveRecord::Migration
       t.timestamps
     end
 
-    #add_index :subscriptions,:company_id,unique: true
+    add_index :subscriptions,:company_id
+    add_index :subscriptions,:plan_id
+    add_index :subscriptions,:last_payment_at
+    add_index :subscriptions,:billing_period
   end
 end

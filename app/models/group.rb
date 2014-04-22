@@ -8,6 +8,6 @@ class Group < ActiveRecord::Base
 	attr_accessible :name,:company_id
 
 	validates_presence_of :name,:company_id
-	validates_uniqueness_of :name, :case_sensitive => false, message: "Group with the given name already exists."
+	validates_uniqueness_of :name,scope: [:company_id], :case_sensitive => false, message: "Group with the given name already exists."
 	
 end

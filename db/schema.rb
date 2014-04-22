@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20140420180620) do
   end
 
   add_index "groups", ["company_id"], name: "index_groups_on_company_id", using: :btree
-  add_index "groups", ["name"], name: "index_groups_on_name", unique: true, using: :btree
+  add_index "groups", ["name"], name: "index_groups_on_name", using: :btree
 
   create_table "groups_agents", force: true do |t|
     t.integer  "group_id"
@@ -170,6 +170,11 @@ ActiveRecord::Schema.define(version: 20140420180620) do
     t.datetime "updated_at"
   end
 
+  add_index "subscriptions", ["billing_period"], name: "index_subscriptions_on_billing_period", using: :btree
+  add_index "subscriptions", ["company_id"], name: "index_subscriptions_on_company_id", using: :btree
+  add_index "subscriptions", ["last_payment_at"], name: "index_subscriptions_on_last_payment_at", using: :btree
+  add_index "subscriptions", ["plan_id"], name: "index_subscriptions_on_plan_id", using: :btree
+
   create_table "superadmins", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -222,9 +227,9 @@ ActiveRecord::Schema.define(version: 20140420180620) do
     t.integer  "agent_id"
     t.integer  "group_id"
     t.integer  "company_id"
+    t.integer  "ticket_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "ticket_category_id"
   end
 
   add_index "tickets", ["agent_id"], name: "index_tickets_on_agent_id", using: :btree

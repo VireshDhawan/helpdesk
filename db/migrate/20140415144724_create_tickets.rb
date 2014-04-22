@@ -9,6 +9,7 @@ class CreateTickets < ActiveRecord::Migration
       t.integer :agent_id
       t.integer :group_id
       t.integer :company_id
+      t.integer :ticket_category_id
 
       t.timestamps
     end
@@ -18,5 +19,6 @@ class CreateTickets < ActiveRecord::Migration
     add_index :tickets, :group_id
     add_index :tickets, :reply_email
     add_index :tickets, :customer_email
+    add_index :tickets, :ticket_category_id
   end
 end
