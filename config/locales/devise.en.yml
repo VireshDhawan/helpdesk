@@ -50,7 +50,7 @@ en:
     agent_invitations:
       agent:
         updated: "Your password was set successfully!"
-        send_instructions: "An email with the invitation and registration instructions was send to %{resource.email}."
+        send_instructions: "An email with the invitation and registration instructions was send to the email."
     superadmin_invitations:
       superadmin:
         updated: "Your password was set successfully!"

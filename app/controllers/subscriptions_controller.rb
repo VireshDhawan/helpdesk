@@ -4,7 +4,7 @@ class SubscriptionsController < ApplicationController
 	before_filter :authorize_admin #check if user is admin
 	before_filter :authorize_subscription_privilages
 
-	layout "admin_panel"
+layout "admin_panel",except: [:new,:create]
 
 	def new
 		@subscription = Subscription.new

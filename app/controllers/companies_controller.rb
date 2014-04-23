@@ -6,7 +6,7 @@ class CompaniesController < ApplicationController
   
   helper_method :authorize_company_privilages
 
-  layout "admin_panel"
+  layout "admin_panel",except: [:new,:create]
 
   def new
     @company = Company.new

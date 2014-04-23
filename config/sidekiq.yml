@@ -2,5 +2,4 @@
 :concurrency:  25
 :logfile: ./log/sidekiq.log
 :queues:
-  - [mailer, 5]
-  - [default, 5]
+  - [helpdesk_devise_queue, 5]
