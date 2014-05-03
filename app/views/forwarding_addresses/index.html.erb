@@ -1,0 +1,38 @@
+<div class="row">
+	<h1>Email Setup</h1>
+	<p>To use your own email addresses (like support@your_company.com, billing@your_company.com), you need to create forwarding addresses and forward emails to them. <%= link_to "Learn More »",'' %></p>
+	<hr>
+</div>
+<div class="row">
+	<br>
+	<%= link_to "Add a New Forwarding Address", new_forwarding_address_path,class: "btn btn-danger" %>
+	<br><br>
+	<hr>
+</div>
+<div class="row">
+	<h3>Current Forwarding Addresses</h3><br>
+	<% if @forwarding_addresses %>
+	<table class="table table-stripped">
+		<tr>
+			<th>*</th>
+			<th>From</th>
+			<th>To</th>
+			<th>Alias Name<br>(Name in customer replies)</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+		<% @forwarding_addresses.each_with_index do |address, i| %>
+		<tr>
+			<td><%= i+1 %></td>
+			<td><%= address.from %></td>
+			<td><%= address.to %></td>
+			<td><%= address.alias_name %></td>
+			<td><%= link_to '', edit_forwarding_address_path(address.id),class: "fa fa-pencil" %> </td>
+			<td><%= link_to '',forwarding_address_path(address.id),:method => :delete, :data => { :confirm => 'Are you sure?' },class: "fa fa-trash-o" %> </td>
+		</tr>
+		<% end %>
+	</table>
+	<% else %>
+		<p>No addresses created yet!</p>
+	<% end %>
+</div>

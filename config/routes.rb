@@ -1,5 +1,5 @@
 Helpdesk::Application.routes.draw do
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   devise_for :superadmins,:controllers => {
@@ -35,6 +35,7 @@ Helpdesk::Application.routes.draw do
   resources :filters,:except => [:show]
   resources :snippets,:except => [:show]
   resources :notifications,:except => [:show,:index,:new,:create,:destroy]
+  resources :forwarding_addresses,:except => [:show]
 
   get '/admin',  to: "admin#index"
 

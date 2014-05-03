@@ -1,0 +1,35 @@
+<div class="row">
+	<h1>Generate a New Forwarding Address</h1>
+	<p>To use your own email addresses (like support@your_company.com, billing@your_company.com), you need to create forwarding addresses and forward emails to them. <%= link_to "Learn More »",'' %></p>
+	<hr>
+</div>
+<div class="row">
+	<div class="container">
+		<br>
+		<%= simple_form_for @forwarding_address , html: { :class => "form-horizontal" } do |f| %>
+			<%= f.error_notification %>
+			<%= f.input :from, label: "Forward mails from" %>
+			<%= f.input :alias_name,label: "Name in replies to customer" %>
+			<div class="col-md-offset-3">
+				<b>OR</b><br>
+			<%= f.input :use_agents_name, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Use Agents Name" %>
+			</div>
+			<div class="col-md-offset-1" ><a href="#" id="optional_settings_link">Optional Settings</a></div><br>
+			<div id="optional_settings">
+				<%= f.input :bcc_to, label: "Bcc all agent replies to" %>
+				<div class="col-md-offset-3">
+				<%= f.input :spam_filter, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Spam Filter on All Incoming Emails" %>
+				</div><br>
+			</div>
+			<div class="col-sm-3 col-sm-offset-2 form_button"><%= f.button :submit, "Generate Forward.",class: "btn btn-info" %></div>
+		<% end %>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+        $('#optional_settings_link').click(function(e) {
+        		e.preventDefault();
+                $('#optional_settings').slideToggle("fast");
+        });
+    });
+</script>

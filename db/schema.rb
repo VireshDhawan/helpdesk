@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140503083833) do
+ActiveRecord::Schema.define(version: 20140503134018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,22 @@ ActiveRecord::Schema.define(version: 20140503083833) do
   add_index "filters", ["group_id"], name: "index_filters_on_group_id", using: :btree
   add_index "filters", ["label_id"], name: "index_filters_on_label_id", using: :btree
   add_index "filters", ["subject_with_keywords"], name: "index_filters_on_subject_with_keywords", using: :btree
+
+  create_table "forwarding_addresses", force: true do |t|
+    t.string   "from"
+    t.string   "to"
+    t.string   "alias_name"
+    t.string   "bcc_to"
+    t.boolean  "spam_filter"
+    t.boolean  "use_agents_name"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "forwarding_addresses", ["alias_name"], name: "index_forwarding_addresses_on_alias_name", using: :btree
+  add_index "forwarding_addresses", ["from"], name: "index_forwarding_addresses_on_from", using: :btree
+  add_index "forwarding_addresses", ["to"], name: "index_forwarding_addresses_on_to", unique: true, using: :btree
 
   create_table "groups", force: true do |t|
     t.string   "name"

@@ -1,0 +1,2 @@
+module ForwardingAddressesHelper
+end
