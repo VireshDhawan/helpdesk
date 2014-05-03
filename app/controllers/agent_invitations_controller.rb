@@ -16,11 +16,13 @@ class AgentInvitationsController < Devise::InvitationsController
 
 		if resource.errors.empty?
 			if resource.role
-				resource.update_attributes(allow_reporting: true,
+				resource.update_attributes(
+					allow_reporting: true,
 					allow_agent_management: true,
 					allow_to_invite: true
 				)
 			end
+		  resource.create_notification()
 		  yield resource if block_given?
 		  flash_message = resource.active_for_authentication? ? :updated : :updated_not_active
 		  set_flash_message :notice, flash_message

@@ -20,6 +20,8 @@ gem 'simple_form'
 #gem 'country_select' Gem for Country select in forms if required.
 gem 'protected_attributes'
 gem 'rest-client'
+gem 'multimap'
+#for devise emails only
 gem 'mailgun_api'
 gem 'mail_form'
 gem 'devise'

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  unassigned_tickets: 
+  assigned_tickets: 
+  assigned_group: 
+
+two:
+  unassigned_tickets: 
+  assigned_tickets: 
+  assigned_group: 

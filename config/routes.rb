@@ -34,6 +34,7 @@ Helpdesk::Application.routes.draw do
   resources :groups,:except => [:show], :path => "groups"
   resources :filters,:except => [:show]
   resources :snippets,:except => [:show]
+  resources :notifications,:except => [:show,:index,:new,:create,:destroy]
 
   get '/admin',  to: "admin#index"
 

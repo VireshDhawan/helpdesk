@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140420180620) do
+ActiveRecord::Schema.define(version: 20140503083833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,40 @@ ActiveRecord::Schema.define(version: 20140420180620) do
   end
 
   add_index "labels_tickets", ["ticket_id", "label_id"], name: "index_labels_tickets_on_ticket_id_and_label_id", using: :btree
+
+  create_table "mailgun_apis", force: true do |t|
+    t.string   "key"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mailgun_apis", ["key"], name: "index_mailgun_apis_on_key", unique: true, using: :btree
+
+  create_table "notifications", force: true do |t|
+    t.boolean  "unassigned_tickets",           default: false
+    t.boolean  "assigned_tickets",             default: true
+    t.boolean  "assigned_group",               default: true
+    t.boolean  "reply_all",                    default: false
+    t.boolean  "reply_on_my_tickets",          default: true
+    t.boolean  "reply_on_my_group_tickets",    default: true
+    t.boolean  "all_comments",                 default: false
+    t.boolean  "comments_on_my_tickets",       default: true
+    t.boolean  "comments_on_my_group_tickets", default: true
+    t.integer  "agent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notifications", ["agent_id"], name: "index_notifications_on_agent_id", unique: true, using: :btree
+  add_index "notifications", ["all_comments"], name: "index_notifications_on_all_comments", using: :btree
+  add_index "notifications", ["assigned_group"], name: "index_notifications_on_assigned_group", using: :btree
+  add_index "notifications", ["assigned_tickets"], name: "index_notifications_on_assigned_tickets", using: :btree
+  add_index "notifications", ["comments_on_my_group_tickets"], name: "index_notifications_on_comments_on_my_group_tickets", using: :btree
+  add_index "notifications", ["comments_on_my_tickets"], name: "index_notifications_on_comments_on_my_tickets", using: :btree
+  add_index "notifications", ["reply_all"], name: "index_notifications_on_reply_all", using: :btree
+  add_index "notifications", ["reply_on_my_group_tickets"], name: "index_notifications_on_reply_on_my_group_tickets", using: :btree
+  add_index "notifications", ["reply_on_my_tickets"], name: "index_notifications_on_reply_on_my_tickets", using: :btree
+  add_index "notifications", ["unassigned_tickets"], name: "index_notifications_on_unassigned_tickets", using: :btree
 
   create_table "plans", force: true do |t|
     t.string   "name"

@@ -1,0 +1,22 @@
+<div class="row">
+	<h1>Notifications</h1>
+	<hr>
+</div>
+<div class="row">
+	<div class="container">
+		<br>
+		<%= simple_form_for @notification , html: { :class => "form-horizontal" } do |f| %>
+			<%= f.error_notification %>
+			<%= f.input :unassigned_tickets, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me of new unassigned tickets" %>
+			<%= f.input :assigned_tickets, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me if a ticket is assigned to me" %>
+			<%= f.input :assigned_group, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me if a ticket is assigned to one of my groups" %>
+			<%= f.input :reply_all, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me on new reply of all tickets" %>
+			<%= f.input :reply_on_my_tickets, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me on new customer reply if I have participated in the ticket" %>
+			<%= f.input :reply_on_my_group_tickets, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me of a reply if a ticket is assigned to one of my groups" %>
+			<%= f.input :all_comments, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me of all comments" %>
+			<%= f.input :comments_on_my_tickets, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me of a comment if a ticket is assigned to me" %>
+			<%= f.input :comments_on_my_group_tickets, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me of a comment if a ticket is assigned to one of my groups" %><br>
+			<div class="col-sm-3"><%= f.button :submit, "Update Preferences",class: "btn btn-info" %></div>
+		<% end %>
+	</div>
+</div>

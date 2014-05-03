@@ -11,6 +11,7 @@ class Agent < ActiveRecord::Base
   has_many :groups_agents, :class_name => "GroupsAgents"
   has_many :groups, :through => :groups_agents
   has_many :snippets, as: :snippetable
+  has_one :notification
 
 	attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :first_name,:last_name,:role,:signature,:api_token,

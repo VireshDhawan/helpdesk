@@ -19,7 +19,7 @@ class AgentsController < ApplicationController
 			flash[:success] = "Agent permissions were successfully updated!"
 		else
 			flash[:error] = "Something went wrong. Please review the errors below."
-			render :Action => "edit"
+			render :action => "edit"
 		end
 	end
 
