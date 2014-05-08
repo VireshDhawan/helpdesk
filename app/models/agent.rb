@@ -38,8 +38,8 @@ class Agent < ActiveRecord::Base
     self.role ? true : false
   end
 
-  def get_full_name
-    full_name = "#{self.first_name} #{self.last_name}"
+  def self.get_full_name(first,last)
+    full_name = "#{first} #{last}"
   end
 
 end

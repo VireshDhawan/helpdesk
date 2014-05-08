@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140503134018) do
+ActiveRecord::Schema.define(version: 20140508121429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -273,13 +273,15 @@ ActiveRecord::Schema.define(version: 20140503134018) do
     t.string   "customer_email"
     t.string   "subject"
     t.text     "message"
-    t.text     "reply_email"
+    t.string   "reply_email"
     t.integer  "agent_id"
     t.integer  "group_id"
     t.integer  "company_id"
     t.integer  "ticket_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "notify_customer",    default: false
+    t.string   "cc"
   end
 
   add_index "tickets", ["agent_id"], name: "index_tickets_on_agent_id", using: :btree

@@ -1,3 +1,9 @@
+#tickets_cp{
+    hr:before {
+    width:100%;
+    left:0;
+  }
+}
 #contactwrap{
     background: #333333;
     color:#FFFFFF;
@@ -41,16 +47,6 @@
   padding: 7px 0 6px;
   height: 65px;
 }
-/*
-@media screen and (min-width: 768px) {
-    #tickets_cp{
-      .col-sm-10 {
-        padding-right: 0;
-        padding-left: 0;
-      }
-    }
-  }
-*/
 .no_layout_heading{
   text-align: center;
 }

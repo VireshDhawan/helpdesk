@@ -21,6 +21,7 @@
 			   <% end %>
 			   <ul class="nav navbar-nav pull-right">
 			   	<% if agent_signed_in? %>
+				   	<li><%= link_to "Tickets",tickets_path, class: "smoothScroll"%></li>
 			   		<li class="dropdown">
 			   			<%= link_to '#',class: "smoothScroll" ,:"role" => "button", :"data-toggle"=>"dropdown" do %>
 				          Account <b class="caret"></b>

@@ -7,6 +7,7 @@ class ForwardingAddress < ActiveRecord::Base
 					:use_agents_name,:company_id
 
 	validates_presence_of :from
+	validates_uniqueness_of :to
 	validates_format_of :from, :with => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
 
 	def create_forwarding_address

@@ -1,2 +1,21 @@
-<h1>Tickets#index</h1>
-<p>Find me in app/views/tickets/index.html.erb</p>
+<div class="row">
+	<h1>Tickets</h1>
+	<hr>
+</div>
+<div class="row">
+	<% if @tickets %>
+	<table class="table table-stripped">
+		<% @tickets.each_with_index do |ticket, i| %>
+		<tr>
+			<td><%= i+1 %></td>
+			<td><%= ticket.customer_name %></td>
+			<td><b><%= ticket.subject %></b> - <%= ticket.message %></td>
+			<td><%= ticket.agent.first_name if !ticket.agent.blank? %></td>
+			<td><%= ticket.created_at.strftime("%b %d") %></td>
+		</tr>
+		<% end %>
+	</table>
+	<% else %>
+		<p>No labels created yet!</p>
+	<% end %>
+</div>

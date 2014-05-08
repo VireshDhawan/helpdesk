@@ -1,2 +1,23 @@
-<h1>Tickets#new</h1>
-<p>Find me in app/views/tickets/new.html.erb</p>
+<div class="row">
+	<h1>Create a New Ticket</h1>
+	<hr>
+</div>
+<div class="row">
+	<div class="container">
+		<br>
+		<%= simple_form_for @ticket , html: { :class => "form-horizontal" } do |f| %>
+			<%= f.error_notification %>
+			<%= f.input :reply_email %>
+			<%= f.input :customer_name %>
+			<%= f.input :customer_email %>
+			<%= f.input :cc,label: "CC To" %>
+			<%= f.input :subject %>
+			<%= f.input :message %>
+			<%= f.input :customer_name %>
+			<%= f.input :customer_name %>
+			<%= f.input :customer_name %>
+			<%= f.input :notify_customer, as: :boolean, checked_value: true, unchecked_value: false, inline_label: "Notify customer via email", label: false %>
+			<div class="col-sm-3 col-sm-offset-2 form_button"><%= f.button :submit, "Create Ticket",class: "btn btn-info" %></div>
+		<% end %>
+	</div>
+</div>
