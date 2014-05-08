@@ -10,8 +10,14 @@ class ForwardingAddress < ActiveRecord::Base
 	validates_uniqueness_of :to
 	validates_format_of :from, :with => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
 
+	private
+
 	def create_forwarding_address
 		self.to = SecureRandom.hex(13) + "@sandbox43590170d39542e8a97603c1fcd840d1.mailgun.org" 
+	end
+
+	def self.get_company_of_address(address)
+		ForwardingAddress.find_by(to: address).company
 	end
 
 end

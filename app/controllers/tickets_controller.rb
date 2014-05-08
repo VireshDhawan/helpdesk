@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
 
-  before_filter :authenticate_agent!, except: [:new,:create]
+  before_filter :authenticate_agent!
   
   layout "control_panel"
 
@@ -21,6 +21,10 @@ class TicketsController < ApplicationController
   def create
     @ticket = current_agent.company.tickets.create(params[:ticket])
     if @ticket.save
+      filter = Filter.get_matching_filter(@ticket.company,@ticket)
+      unless filter.blank?
+        @ticket.add_filter(filter)          
+      end
       flash[:success] = "Ticket was successfully created!"
       redirect_to @ticket
     else

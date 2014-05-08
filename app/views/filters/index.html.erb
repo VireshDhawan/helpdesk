@@ -33,7 +33,7 @@
 				<%= raw "<b>Add To:</b> Spam <br>" if filt.spam? %>
 				<%= raw "<b>Add To:</b> Trash <br>" if filt.trash? %>
 				<%= raw "<b>Add To:</b> Archive <br>" if filt.archive? %>
-				<%= raw "<b>Label:</b> #{filt.label}" if !filt.label.blank?  %><br>
+				<%= raw "<b>Label:</b>" "#{filt.label}" if !filt.label.blank?  %><br>
 				<%= raw "<b>Assign To:</b> #{filt.agent}" if !filt.agent.blank? %><br>
 				<%= raw "<b>Assign To:</b> #{filt.group}" if !filt.group.blank? %><br>
 			</td>

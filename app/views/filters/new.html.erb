@@ -17,7 +17,7 @@
 			<%= f.input :trash, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Move to trash" %>
 			<%= f.input :spam, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Mark spam" %>
 			</div>
-			<%= f.input :label_id, label: "Add Label", collection: filter_labels, as: :select %>
+			<%= f.input :label_id, label: "Add Labels", collection: filter_labels, as: :select %>
 			<%= f.input :agent_id, label: "Assign to Agent", collection: filter_agents, as: :select %>
 			<%= f.input :group_id, label: "Assign to Group", collection: filter_groups, as: :select %>
 			<%= f.input :company_id, as: :hidden, input_html:{ value: current_agent.company.id } %>
