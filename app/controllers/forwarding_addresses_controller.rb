@@ -40,7 +40,7 @@ class ForwardingAddressesController < ApplicationController
 
 	def destroy
 		@forwarding_address = current_agent.company.forwarding_addresses.find(params[:id])
-		if @forwarding_address.delete
+		if @forwarding_address.destroy
 	      flash[:success] = "Forwarding Address was successfully deleted!"
 	      redirect_to forwarding_addresses_path
 	    else

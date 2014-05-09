@@ -6,8 +6,7 @@ class TicketsController < ApplicationController
 
   def index
     if params[:type] == "unassigned"
-      category = TicketCategory.find_by(name: "Unassigned")
-      @tickets = current_agent.company.tickets.select{|t| t.ticket_category == category}
+      @tickets = current_agent.company.tickets.in_category("Unassigned")
     elsif
       @tickets = current_agent.company.tickets
     end
@@ -23,7 +22,7 @@ class TicketsController < ApplicationController
     if @ticket.save
       filter = Filter.get_matching_filter(@ticket.company,@ticket)
       unless filter.blank?
-        @ticket.add_filter(filter)          
+        @ticket.add_filter(filter.first)
       end
       flash[:success] = "Ticket was successfully created!"
       redirect_to @ticket

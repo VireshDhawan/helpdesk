@@ -12,4 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= bootstrap.min
+//= highcharts
+//= require wysihtml5
+//= require bootstrap-wysihtml5
 //= require_tree .

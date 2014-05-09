@@ -8,10 +8,10 @@
 		<%= simple_form_for @snippet , html: { :class => "form-horizontal" } do |f| %>
 			<%= f.error_notification %>
 			<%= f.input :name %>
-			<%= f.input :content %>
+			<%= f.input :content, as: :text,:input_html => {class: "snippet_content",id: "snippet_content", 'rows' => 12, 'cols' => 70} %>
 			<%= f.input :tags %>
 			<% if current_agent.is_admin? %>
-				<%= f.input :scope, collection: [["Company",true],["Agent",false]] %>
+				<%= f.input :scope,as: :radio_buttons, collection: [["Make Company Snippet",true],["My Personal snippet",false]] %>
 			<% else %>
 			<%= f.input :scope,:as => :hidden, input_html: {value: false} %>
 			<% end %>
@@ -19,3 +19,9 @@
 		<% end %>
 	</div>
 </div>
+<script type="text/javascript">
+	$('#snippet_content').wysihtml5({
+    	"html": false,
+    	"image": false
+    });
+</script>

@@ -47,7 +47,7 @@ class CompaniesController < ApplicationController
 
   def destroy
     @company = Company.find(params[:id])
-    if @company.delete
+    if @company.destroy
       flash[:success] = "Sad to see you go! Company details were successfully deleted!"
       redirect_to root_url
     else

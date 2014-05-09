@@ -29,6 +29,7 @@ gem 'devise_invitable'
 gem 'devise-async'
 gem 'sidekiq'
 gem 'sinatra', '>= 1.3.0', :require => nil
+gem 'gon', '3.0.5'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

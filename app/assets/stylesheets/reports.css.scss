@@ -1,0 +1,31 @@
+// Place all the styles related to the reports controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.reports_header{
+	background-color:#DADADA;
+}
+.stats{
+	margin: 50px auto;
+	p{
+		background: #353537;
+		color:#FFFFF7;
+		min-width: 125px !important;
+		border-radius: 5px;
+		padding: 5px 10px;
+	}
+	p:hover{
+		background: #353537 !important;
+		color:#999999;
+	}
+	ul{
+		text-align: center;
+		li{
+			min-height: 50px;
+			padding: 0 20px;
+		}
+	}
+}
+.centered-pills { text-align:center; }
+.centered-pills ul.nav.nav-pills, .centered-pills ul.nav.nav-tabs { display:inline-block; }
+.centered-pills ul.nav.nav-pills li, .centered-pills ul.nav.nav-tabs li { display:inline; }

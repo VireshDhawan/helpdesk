@@ -24,6 +24,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authorize_reporting
+    unless current_agent.allow_reporting?
+      flash[:error] = "You are not authorized to perform the action"
+      #redirect to default page
+      redirect_to(:back) rescue redirect_to(root_url)
+    else
+      true
+    end
+  end
+
   def require_company
     if current_agent && current_agent.role && current_agent.company.nil?
       flash[:error] = "You need to provide company details before you invite agents."

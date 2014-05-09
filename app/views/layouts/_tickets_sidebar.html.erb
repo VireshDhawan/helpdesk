@@ -1,19 +1,21 @@
-<div class="navbar-main">
-	<div class="navbar navbar-default">
-		<ul class="nav nav-pills nav-stacked">
-			<li class="nav-header"><h3>Tickets</h3></li><hr>
-			<li><%= link_to "All",tickets_path %></li>
-			<li><%= link_to "Unassigned",tickets_path(type: "unassigned") %></li>
-			<li><%= link_to "My",tickets_path(type: "agent") %></li>
-			<li><%= link_to "Groups",tickets_path(type: "groups") %></li>
-			<li><%= link_to "Drafts",tickets_path(type: "drafts") %></li>
-			<li><%= link_to "Archived",tickets_path(type: "archived") %></li>
-			<li><%= link_to "Spam",tickets_path(type: "spam") %></li>
-			<li><%= link_to "Trash",tickets_path(type: "trash") %></li>
-			<hr>
-			<li class="nav-header">Labels</li>
-			<li><%= link_to "label 1",'' %></li>
-			<li><%= link_to "label 2",'' %></li>
-		</ul>
+<div class="left_nav">
+	<div class="navbar-main">
+		<div class="navbar navbar-default">
+			<ul class="nav nav-pills nav-stacked">
+				<li class="nav-header"><h3>Tickets</h3></li><hr>
+				<li><%= link_to "All",tickets_path %></li>
+				<li><%= link_to "Unassigned",tickets_path(type: "unassigned") %></li>
+				<li><%= link_to "My",tickets_path(type: "agent") %></li>
+				<li><%= link_to "Groups",tickets_path(type: "groups") %></li>
+				<li><%= link_to "Drafts",tickets_path(type: "drafts") %></li>
+				<li><%= link_to "Archived",tickets_path(type: "archived") %></li>
+				<li><%= link_to "Spam",tickets_path(type: "spam") %></li>
+				<li><%= link_to "Trash",tickets_path(type: "trash") %></li>
+				<hr>
+				<li class="nav-header">Labels</li>
+				<li><%= link_to "label 1",'' %></li>
+				<li><%= link_to "label 2",'' %></li>
+			</ul>
+		</div>
 	</div>
 </div>

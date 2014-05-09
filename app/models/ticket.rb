@@ -12,13 +12,23 @@ class Ticket < ActiveRecord::Base
 
 	validates_presence_of :customer_email,:subject,:message,:reply_email
 
+	scope :in_category, ->(category) do
+		type = TicketCategory.find_by(name: category)
+		select{ |t| t.ticket_category == type }
+	end
+
 	def add_labels(labels)
-		self.labels = ticket.labels + labels
+		self.labels << labels
 		self.save
 	end
 
 	def mark_answered
-		self.ticket_category = TicketCategory.find_by(name: "Answered")
+		self.ticket.answered = true
+		self.save
+	end
+
+	def mark_unanswered
+		self.ticket.answered = false
 		self.save
 	end
 

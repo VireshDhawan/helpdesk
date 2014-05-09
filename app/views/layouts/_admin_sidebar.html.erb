@@ -1,29 +1,31 @@
-<div class="navbar-main">
-	<div class="navbar navbar-default">
-		<ul class="nav nav-pills nav-stacked">
-			<li><h4 style="padding-left:7%;padding-top:5%;"><%= link_to "Dashboard",admin_path %></h4></li><hr>
-			<li class="nav-header">Setup</li><hr>
+<div class="left_nav">
+	<div class="navbar-main">
+		<div class="navbar navbar-default">
+			<ul class="nav nav-pills nav-stacked">
+				<li><h4 style="padding-left:7%;padding-top:5%;"><%= link_to "Dashboard",admin_path %></h4></li><hr>
+				<li class="nav-header">Setup</li><hr>
 
-			<% if current_agent.is_admin? %>
-			<li><%= link_to "Email",forwarding_addresses_path %></li>
-			<% end %>
-			<% if current_agent.allow_agent_management || current_agent.allow_to_invite %><li><%= link_to "Users",agents_path %></li><% end %>
-			<% if current_agent.allow_groups_management %><li><%= link_to "Groups",groups_path %></li><% end %>
-			<li><%= link_to "Widgets",'' %></li><hr>
+				<% if current_agent.is_admin? %>
+				<li><%= link_to "Email",forwarding_addresses_path %></li>
+				<% end %>
+				<% if current_agent.allow_agent_management || current_agent.allow_to_invite %><li><%= link_to "Users",agents_path %></li><% end %>
+				<% if current_agent.allow_groups_management %><li><%= link_to "Groups",groups_path %></li><% end %>
+				<li><%= link_to "Widgets",'' %></li><hr>
 
-			<% if current_agent.allow_company_management || current_agent.allow_billing_management %>
-			<li class="nav-header">Settings</li><hr>
-			<% if current_agent.allow_company_management %><li><%= link_to "General",edit_company_path(current_agent.company.id) %></li><% end %>
-			<% if current_agent.allow_billing_management || current_agent.allow_subscription_management %><li><%= link_to "Billing",edit_subscription_path(current_agent.company.subscription.id) %></li><% end %><hr>
-			<% end %>
+				<% if current_agent.allow_company_management || current_agent.allow_billing_management %>
+				<li class="nav-header">Settings</li><hr>
+				<% if current_agent.allow_company_management %><li><%= link_to "General",edit_company_path(current_agent.company.id) %></li><% end %>
+				<% if current_agent.allow_billing_management || current_agent.allow_subscription_management %><li><%= link_to "Billing",edit_subscription_path(current_agent.company.subscription.id) %></li><% end %><hr>
+				<% end %>
 
-			<li class="nav-header">Organise</li><hr>
-			<li><%= link_to "Labels",labels_path %></li>
-			<li><%= link_to "Snippets",snippets_path %></li><hr>
+				<li class="nav-header">Organise</li><hr>
+				<li><%= link_to "Labels",labels_path %></li>
+				<li><%= link_to "Snippets",snippets_path %></li><hr>
 
-			<li class="nav-header">Automate</li><hr>
-			<li><%= link_to "Filters",filters_path %></li>
-			<li><%= link_to "Webhooks",'' %></li>
-		</ul>
+				<li class="nav-header">Automate</li><hr>
+				<li><%= link_to "Filters",filters_path %></li>
+				<li><%= link_to "Webhooks",'' %></li>
+			</ul>
+		</div>
 	</div>
-</div>
+</div>	

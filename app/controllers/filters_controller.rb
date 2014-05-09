@@ -39,7 +39,7 @@ class FiltersController < ApplicationController
 
 	def destroy
 		@filter = current_agent.company.filters.find(params[:id])
-		if @filter.delete
+		if @filter.destroy
 			flash[:success] = "Filter was successfully deleted!"
 			redirect_to filters_path
 		else

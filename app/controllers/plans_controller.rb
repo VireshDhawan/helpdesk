@@ -45,7 +45,7 @@ class PlansController < ApplicationController
 
   def destroy
     @plan = Plan.find(params[:id])
-    if @plan.delete
+    if @plan.destroy
       flash[:success] = "Plan was successfully deleted!"
       redirect_to plans_path
     else

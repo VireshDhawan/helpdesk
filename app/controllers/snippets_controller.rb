@@ -4,12 +4,8 @@ class SnippetsController < ApplicationController
 	layout "admin_panel"
 
 	def index
-		if current_agent.is_admin?
-			@company_snippets = current_agent.company.snippets
-			@snippets = current_agent.snippets
-		else
-			@snippets = current_agent.snippets
-		end
+		@company_snippets = current_agent.company.snippets
+		@snippets = current_agent.snippets
 	end
 
 	def new
@@ -53,7 +49,25 @@ class SnippetsController < ApplicationController
 	end
 
 	def update
-		#
+		snippet = Snippet.find(params[:id])
+		if snippet.scope && current_agent.is_admin?
+			snippet.update_attributes(params[:snippet])
+			snippet.snippetable = current_agent if snippet.scope == false
+			snippet.save
+			redirect_to snippets_path
+		elsif !snippet.scope && current_agent.is_admin?
+			snippet.update_attributes(params[:snippet])
+			snippet.snippetable = current_agent.company if snippet.scope == true
+			snippet.save
+			redirect_to snippets_path
+		elsif !snippet.scope && current_agent == snippet.snippetable
+			snippet.update_attributes(params[:snippet])
+			snippet.save
+			redirect_to snippets_path
+		else
+			flash[:error] = "Snippet not found."
+			render :action => "edit"
+		end
 	end
 
 	def destroy
@@ -61,12 +75,12 @@ class SnippetsController < ApplicationController
 		# if company wide snippet only admin can delete
 		if snippet.scope && current_agent.is_admin?
 			@snippet = current_agent.company.snippets.find(params[:id])
-			@snippet.delete
+			@snippet.destroy
 			redirect_to snippets_path
 		# if agent's snippet only agent can delete
 		elsif !snippet.scope && current_agent == snippet.snippetable
 			@snippet = current_agent.snippets.find(params[:id])
-			@snippet.delete
+			@snippet.destroy
 			redirect_to snippets_path
 		else
 			flash[:error] = "Snippet not found."

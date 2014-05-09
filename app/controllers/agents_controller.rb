@@ -26,7 +26,7 @@ class AgentsController < ApplicationController
 	#before delete take care of dependencies
 	def destroy
 		@agent = current_agent.company.agents.find(params[:id])
-	    if @agent.delete
+	    if @agent.destroy
 	      flash[:success] = "Agent was successfully deleted!"
 	      redirect_to :back
 	    else

@@ -39,6 +39,12 @@ Helpdesk::Application.routes.draw do
 
   get '/admin',  to: "admin#index"
 
+  scope '/reports' do
+    ReportsController.action_methods.each do |action|
+      match "/#{action}", to: "reports##{action}", via: [:get, :post]
+    end
+  end
+
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"

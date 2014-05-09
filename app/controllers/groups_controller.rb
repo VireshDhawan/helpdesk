@@ -48,7 +48,7 @@ class GroupsController < ApplicationController
 
   def destroy
     @group = current_agent.company.groups.find(params[:id])
-    if @group.delete
+    if @group.destroy
       flash[:success] = "Group was successfully deleted!"
       redirect_to :back
     else

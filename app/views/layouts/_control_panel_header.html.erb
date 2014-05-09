@@ -40,7 +40,7 @@
 				        </ul>
 			   		</li>
 			   		<li><%= link_to "Admin",admin_path, class: "smoothScroll"%></li>
-			   		<li><%= link_to "Reports",'', class: "smoothScroll" if current_agent.allow_reporting %></li>
+			   		<li><%= link_to "Reports",index_path, class: "smoothScroll" if current_agent.allow_reporting %></li>
 			   		<li><%= link_to "Help",'', class: "smoothScroll" %></li>
 			   		<li><%= link_to "Contact Support",'', class: "smoothScroll" %></li>
 			   		<li><%= link_to "Sign Out",destroy_agent_session_path, :method => :delete, class: "smoothScroll" %></li>
