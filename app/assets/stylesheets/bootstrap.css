@@ -5846,3 +5846,4 @@ td.visible-print {
   padding: 10px 15px;
   position: relative;
 }
+body { overflow-x: hidden;}
