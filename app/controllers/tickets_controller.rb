@@ -6,7 +6,7 @@ class TicketsController < ApplicationController
 
   def index
     if params[:type] == "unassigned"
-      category = TicketCategory.where(name: "Unassigned").first
+      category = TicketCategory.find_by(name: "Unassigned")
       @tickets = current_agent.company.tickets.select{|t| t.ticket_category == category}
     elsif
       @tickets = current_agent.company.tickets

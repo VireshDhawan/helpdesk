@@ -16,7 +16,7 @@
 			<%= f.input :customer_name %>
 			<%= f.input :customer_name %>
 			<%= f.input :customer_name %>
-			<%= f.input :notify_customer, as: :boolean, checked_value: true, unchecked_value: false, inline_label: "Notify customer via email", label: false %>
+			<div class="col-md-offset-3"><%= f.input :notify_customer, as: :boolean, checked_value: true, unchecked_value: false, inline_label: "Notify customer via email", label: false %></div>
 			<div class="col-sm-3 col-sm-offset-2 form_button"><%= f.button :submit, "Create Ticket",class: "btn btn-info" %></div>
 		<% end %>
 	</div>

@@ -8,12 +8,17 @@ class Ticket < ActiveRecord::Base
 
 	attr_accessible :customer_name,:customer_email,:subject,:message,:reply_email,
 					:agent_id,:group_id,:company_id,:ticket_category_id,:notify_customer,
-					:cc
+					:cc,:answered
 
 	validates_presence_of :customer_email,:subject,:message,:reply_email
 
 	def add_labels(labels)
 		self.labels = ticket.labels + labels
+		self.save
+	end
+
+	def mark_answered
+		self.ticket_category = TicketCategory.find_by(name: "Answered")
 		self.save
 	end
 

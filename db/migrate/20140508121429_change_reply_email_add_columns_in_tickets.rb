@@ -3,5 +3,6 @@ class ChangeReplyEmailAddColumnsInTickets < ActiveRecord::Migration
   	change_column :tickets, :reply_email, :string
   	add_column :tickets, :notify_customer, :boolean, :default => false
   	add_column :tickets, :cc, :string
+  	add_column :tickets, :answered, :boolean, :default => false
   end
 end
