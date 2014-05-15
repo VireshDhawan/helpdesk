@@ -1,5 +1,7 @@
 :verbose: true
 :concurrency:  25
-:logfile: ./log/sidekiq.log
+#:logfile: ./log/sidekiq.log
 :queues:
   - [helpdesk_devise_queue, 5]
+  - [helpdesk_ticket_queue, 5]
+  - [helpdesk_notification_queue, 5]

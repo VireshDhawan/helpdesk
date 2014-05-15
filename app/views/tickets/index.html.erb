@@ -5,17 +5,23 @@
 <div class="row">
 	<% if @tickets %>
 	<table class="table table-stripped">
-		<% @tickets.each_with_index do |ticket, i| %>
-		<tr>
-			<td><%= i+1 %></td>
-			<td><%= ticket.customer_name %></td>
-			<td><b><%= ticket.subject %></b> - <%= ticket.message %></td>
-			<td><%= ticket.agent.first_name if !ticket.agent.blank? %></td>
-			<td><%= ticket.created_at.strftime("%b %d") %></td>
-		</tr>
+		<%= form_tag('') do %>
+			<% @tickets.each do |ticket| %>
+			<tr>
+				<td><%= 1 %></td>
+				<td><%= link_to ticket.customer_name,ticket_path(ticket.id) %></td>
+				<td>
+					<%= link_to ticket_path(ticket.id) do %>
+					<b><%= ticket.subject %></b> - <%= raw ticket.message %>
+					<% end %>
+				</td>
+				<td><%= ticket.agent.first_name if !ticket.agent.blank? %></td>
+				<td><%= ticket.created_at.strftime("%b %d") %></td>
+			</tr>
+			<% end %>
 		<% end %>
 	</table>
 	<% else %>
-		<p>No labels created yet!</p>
+		<p>No tickets created yet!</p>
 	<% end %>
 </div>

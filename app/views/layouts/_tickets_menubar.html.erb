@@ -2,11 +2,34 @@
 	<div class="navbar-main">
 		<div class="navbar navbar-default">
 			<ul class="nav nav-pills">
-				<li><%= link_to "New Ticket",new_ticket_path,class: "btn btn-success" %></li>
-			  <li><%= link_to "Archive",''%></li>
-			  <li><%= link_to "Assign",''%></li>
-			  <li><%= link_to "Spam",''%></li>
-			  <li><%= link_to "Trash",''%></li>
+				<li><%= link_to '',:back,class: "fa fa-caret-square-o-left" %></li>
+				<li><%= link_to "Archive",''%></li>
+				<li class="dropdown">
+					<%= link_to '#',:"role" => "button", :"data-toggle"=>"dropdown" do %>
+			          Assign <b class="caret"></b>
+			        <% end %>
+			        <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+				          <li>
+			          	<%= link_to '',:"tabindex" => "-1",:"role" => "menuitem",class: "smoothScroll" do %>
+			          	To an Agent
+			          	<% end %>
+			          </li>
+			          <li>
+			          	<%= link_to '',:"tabindex" => "-1",:"role" => "menuitem",class: "smoothScroll" do %>
+			          	To a Group
+			          	<% end %>
+			          </li>
+			          <li class="divider"></li>
+			          <li>
+			          	<%= link_to '',:"tabindex" => "-1",:"role" => "menuitem",class: "smoothScroll" do %>
+			          	To Me
+			          	<% end %>
+			          </li>
+			        </ul>
+				</li>
+				<li><%= link_to "Spam",''%></li>
+				<li><%= link_to "Trash",''%></li>
+				<li><%= link_to "New Ticket",new_ticket_path,class: "btn btn-success pull-right" %></li>
 			</ul>
 		</div>
 	</div>

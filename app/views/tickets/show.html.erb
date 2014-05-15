@@ -1,2 +1,9 @@
-<h1>Tickets#show</h1>
-<p>Find me in app/views/tickets/show.html.erb</p>
+<div class="row">
+	<div class="container" id="customer-info">
+		<%= @ticket.subject %><br><%= @ticket.customer_email %>
+	</div>
+	<hr>
+	<div class="container" id="ticket-state">
+		<%= @ticket.ticket_category.name if @ticket.ticket_category %> | <%= @ticket.status %>
+	</div>
+</div>

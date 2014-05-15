@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140508121429) do
+ActiveRecord::Schema.define(version: 20140515163918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,11 +63,25 @@ ActiveRecord::Schema.define(version: 20140508121429) do
   add_index "agents", ["invited_by_id"], name: "index_agents_on_invited_by_id", using: :btree
   add_index "agents", ["reset_password_token"], name: "index_agents_on_reset_password_token", unique: true, using: :btree
 
+  create_table "comments", force: true do |t|
+    t.text     "content"
+    t.integer  "ticket_id"
+    t.integer  "agent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["agent_id"], name: "index_comments_on_agent_id", using: :btree
+  add_index "comments", ["ticket_id"], name: "index_comments_on_ticket_id", using: :btree
+
   create_table "companies", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
   end
+
+  add_index "companies", ["email"], name: "index_companies_on_email", using: :btree
 
   create_table "filters", force: true do |t|
     t.string   "from_email"
@@ -148,12 +162,13 @@ ActiveRecord::Schema.define(version: 20140508121429) do
   add_index "labels_tickets", ["ticket_id", "label_id"], name: "index_labels_tickets_on_ticket_id_and_label_id", using: :btree
 
   create_table "mailgun_apis", force: true do |t|
-    t.string   "key"
+    t.string   "private_key"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "public_key"
   end
 
-  add_index "mailgun_apis", ["key"], name: "index_mailgun_apis_on_key", unique: true, using: :btree
+  add_index "mailgun_apis", ["private_key"], name: "index_mailgun_apis_on_private_key", unique: true, using: :btree
 
   create_table "notifications", force: true do |t|
     t.boolean  "unassigned_tickets",           default: false
@@ -193,6 +208,17 @@ ActiveRecord::Schema.define(version: 20140508121429) do
   end
 
   add_index "plans", ["name"], name: "index_plans_on_name", unique: true, using: :btree
+
+  create_table "replies", force: true do |t|
+    t.text     "content"
+    t.integer  "ticket_id"
+    t.integer  "agent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "replies", ["agent_id"], name: "index_replies_on_agent_id", using: :btree
+  add_index "replies", ["ticket_id"], name: "index_replies_on_ticket_id", using: :btree
 
   create_table "snippets", force: true do |t|
     t.string   "name"
@@ -282,6 +308,7 @@ ActiveRecord::Schema.define(version: 20140508121429) do
     t.datetime "updated_at"
     t.boolean  "notify_customer",    default: false
     t.string   "cc"
+    t.boolean  "answered",           default: false
   end
 
   add_index "tickets", ["agent_id"], name: "index_tickets_on_agent_id", using: :btree

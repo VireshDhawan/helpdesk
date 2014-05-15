@@ -11,5 +11,4 @@ class Notification < ActiveRecord::Base
 							:reply_all,:reply_on_my_tickets,:reply_on_my_group_tickets,
 							:all_comments,:comments_on_my_tickets,:comments_on_my_group_tickets, :allow_blank => true
 	
-	
 end

@@ -10,33 +10,6 @@ class MailgunTasks
 
 	class  << self
 
-		def send_simple_message
-		  RestClient.post "https://api:#{@@private_key}"\
-		  "@api.mailgun.net/v2/#{@@domain}/messages",
-		  :from => "Helpdesk <postmasters@#{@@domain}>",
-		  :to => "xmpirate.m@gmail.com",
-		  :subject => "Hello",
-		  :text => "Testing some Mailgun awesomness!"
-		end
-
-		def send_complex_message
-		  data = Multimap.new
-		  data[:from] = "Excited User <postmasters@#{@@domain}>"
-		  data[:to] = "xmpirate.m@gmail.com"
-		  #data[:cc] = "baz@example.com"
-		  #data[:bcc] = "bar@example.com"
-		  data[:subject] = "Hello"
-		  #data[:text] = "Testing some Mailgun awesomness!"
-		  data[:html] = render_to_string(:template =>"mailgun_mails/send_complex_message.html.erb")
-		  #data[:attachment] = File.new(File.join("files", "test.jpg"))
-		  #data[:attachment] = File.new(File.join("files", "test.txt"))
-		  response = RestClient.post "https://api:#{@@private_kay}"\
-		  "@api.mailgun.net/v2/#{@@domain}/messages", data
-
-		  response = JSON.parse(response)
-
-		end
-
 		def validate_email(email)
 		  url_params = Multimap.new
 		  url_params[:address] = email
@@ -49,6 +22,16 @@ class MailgunTasks
 		end
 
 		##create email senders for each tenant
+		def create_first_credentials(company)
+		  response = RestClient.post("https://api:#{@@private_key}"\
+		  		  "@api.mailgun.net/v2/domains/#{@@domain}/credentials",
+		  		  :login => "#{company.name.downcase}-support@#{@@domain}",
+		  		  :password => company.name.downcase.reverse
+		  		  )
+
+		  response = JSON.parse(response)
+		end
+
 		def create_credentials(username,password)
 		  response = RestClient.post("https://api:#{@@private_key}"\
 		  		  "@api.mailgun.net/v2/domains/#{@@domain}/credentials",
@@ -57,7 +40,6 @@ class MailgunTasks
 		  		  )
 
 		  response = JSON.parse(response)
-		  return response["message"]
 		end
 
 		def delete_credentials(username)
@@ -83,12 +65,12 @@ class MailgunTasks
 		end
 
 		## Routes
-		def create_route
+		def create_route(email)
 		  data = Multimap.new
 		  data[:priority] = 1
 		  data[:description] = "Sample route"
-		  data[:expression] = "match_recipient('.*@#{@@domail}')"
-		  data[:action] = "forward('http://myhost.com/messages/')"
+		  data[:expression] = "match_recipient('#{email}')"
+		  data[:action] = "forward('http://helpdesk.apps.hiodecloud.com/messages')"
 		  data[:action] = "stop()"
 		  response = RestClient.post "https://api:#{@@private_key}"\
 		  "@api.mailgun.net/v2/routes", data

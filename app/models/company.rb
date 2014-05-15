@@ -9,8 +9,9 @@ class Company < ActiveRecord::Base
 	has_many :snippets, as: :snippetable
 	has_many :forwarding_addresses
 
-	attr_accessible :name
+	attr_accessible :name,:email
 
 	validates :name,presence: true
+	validates :email, :uniqueness => true
 	
 end

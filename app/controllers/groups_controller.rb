@@ -17,7 +17,7 @@ class GroupsController < ApplicationController
 
   def create
     if current_agent.company == Company.find(params[:group][:company_id]) 
-      @group = Group.create(params[:group])
+      @group = current_agent.company.groups.create(params[:group])
       if @group.save
         flash[:success] = "Group was successfully created!"
         redirect_to groups_path

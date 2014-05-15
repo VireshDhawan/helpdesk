@@ -22,7 +22,6 @@ class AgentInvitationsController < Devise::InvitationsController
 					allow_to_invite: true
 				)
 			end
-		  resource.create_notification()
 		  yield resource if block_given?
 		  flash_message = resource.active_for_authentication? ? :updated : :updated_not_active
 		  set_flash_message :notice, flash_message
@@ -41,6 +40,7 @@ class AgentInvitationsController < Devise::InvitationsController
 	end
 
 	def after_accept_path_for(resource)
+		resource.create_notification()
 		edit_agent_registration_path
 	end
 

@@ -38,10 +38,11 @@ Helpdesk::Application.routes.draw do
   resources :forwarding_addresses,:except => [:show]
 
   get '/admin',  to: "admin#index"
+  post '/messages', to: "tickets#messages"
 
   scope '/reports' do
     ReportsController.action_methods.each do |action|
-      match "/#{action}", to: "reports##{action}", via: [:get, :post]
+      match "/#{action}", to: "reports##{action}", via: [:get, :post], as: "reports_#{action}"
     end
   end
 

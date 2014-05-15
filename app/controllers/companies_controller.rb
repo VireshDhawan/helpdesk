@@ -8,6 +8,8 @@ class CompaniesController < ApplicationController
 
   layout "admin_panel",except: [:new,:create]
 
+  @@domain = "sandbox43590170d39542e8a97603c1fcd840d1.mailgun.org"
+  
   def new
     @company = Company.new
   end
@@ -17,6 +19,8 @@ class CompaniesController < ApplicationController
     if @company.save
       current_agent.company = @company
       current_agent.save
+      MailgunTasks.create_first_credentials(@company)
+      @company.update_attributes(email: "#{@company.name.downcase}-support@#{@@domain}")
       flash[:success] = "Company details were updated successfully!"
       redirect_to new_subscription_path
     else

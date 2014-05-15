@@ -2,6 +2,7 @@ class ForwardingAddress < ActiveRecord::Base
 
 	belongs_to :company
 	before_create :create_forwarding_address
+	after_create :create_route_for_address
 	before_destroy :delete_forwarding_address
 
 	attr_accessible :from,:to,:alias_name,:bcc_to,:spam_filter,
@@ -20,6 +21,10 @@ class ForwardingAddress < ActiveRecord::Base
 		MailgunTasks.create_credentials(username,username.reverse)
 	end
 
+	def create_route_for_address
+		MailgunTasks.create_route(self.to)
+	end
+
 	## delete the forwarding address from mailgun on delete
 	def delete_forwarding_address
 		MailgunTasks.delete_credentials(self.to.split("@")[0])
@@ -29,13 +34,16 @@ class ForwardingAddress < ActiveRecord::Base
 		ForwardingAddress.find_by(to: address).company
 	end
 
+	def self.get_reply_email(address)
+		ForwardingAddress.find_by(to: address).from
+	end
+
 	## restrict no of emails according to the plan
 	def validate_forwarding_address_count
 		company = self.company
 		plan = company.subscription.plan
 		puts company.forwarding_addresses.count , plan.emails
 		if company.forwarding_addresses.count == plan.emails || company.forwarding_addresses.count > plan.emails
-			puts "In if"
 			errors.add(:base, 'Max email address limit reached. Please upgrade your plan.')
 		end
 	end

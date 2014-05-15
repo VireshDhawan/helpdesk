@@ -57,6 +57,7 @@ en:
     agent_confirmations:
       agent:
         send_instructions: "An email with the confirmation instructions was send to the email."
+        confirmed: "Your email address has been confirmed!"
   errors:
     messages:
       already_confirmed: "was already confirmed, please try signing in"
