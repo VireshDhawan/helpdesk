@@ -4,6 +4,7 @@ class NotificationsController < ApplicationController
 	layout "admin_panel"
 
 	def edit
+		current_agent.create_notification if current_agent.notification.blank?
 		@notification = current_agent.notification
 	end
 

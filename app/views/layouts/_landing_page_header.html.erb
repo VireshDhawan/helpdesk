@@ -1,0 +1,123 @@
+<header class="navbar navbar-inverse" role="banner">
+
+    <div class="container">
+
+      <div class="navbar-header">
+        <a href="/" class="navbar-brand navbar-brand-img">
+          <%= image_tag('landing/logo.png',alt:"MVP Ready") %>
+        </a>
+        
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-bars"></i>
+        </button>
+      </div> <!-- /.navbar-header -->
+
+
+      <nav class="collapse navbar-collapse" role="navigation">
+
+        <ul class="nav navbar-nav navbar-right mainnav-menu">
+
+          <li class="active">
+            <a href="/">Home</a>
+          </li>    
+
+          <li class="">
+            <a href="/features">Features</a>
+          </li>      
+
+          <li class="">
+            <a href="faq">FAQ</a>
+          </li>
+
+          <li class="">
+            <a href="/pricing">Pricing</a>
+          </li>   
+
+          <li class="">
+            <a href="/contact">Contact</a>
+          </li>
+
+          <!-- <li class="dropdown">
+
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+            Dropdown
+            <i class="mainnav-caret"></i>
+            </a>
+
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="./page-notifications.html">
+                <i class="fa fa-bell"></i> 
+                &nbsp;&nbsp;Notifications
+                </a>
+              </li>     
+
+              <li>
+                <a href="./components-icons.html">
+                <i class="fa fa-smile-o"></i> 
+                &nbsp;&nbsp;Font Icons
+                </a>
+              </li> 
+
+            </ul>
+
+          </li> -->
+          <% if agent_signed_in? %>
+
+          <li><%= link_to "Invite Agents",new_agent_invitation_path, class: "smoothScroll" if current_agent.allow_to_invite %></li>
+
+          <li><%= link_to "Sign Out",destroy_agent_session_path, :method => :delete, class: "smoothScroll" %></li>
+
+          <% elsif superadmin_signed_in? %>
+
+          <li ><%= link_to "Sidekiq",'/sidekiq', class: "smoothScroll" %></li>
+
+          <li ><%= link_to "Invite Admins",new_superadmin_invitation_path, class: "smoothScroll" %></li>
+
+          <li ><%= link_to "Create Plan",new_plan_path, class: "smoothScroll" %></li>
+
+          <li><%= link_to "Sign Out",destroy_superadmin_session_path, :method => :delete, class: "smoothScroll" %></li>
+
+          <% else %>
+
+          <li><%= link_to "Login",new_agent_session_path, class: "smoothScroll" %></li>
+
+          <li><%= link_to "Signup",new_agent_registration_path, class: "smoothScroll" %></li>
+
+          <li><%= link_to "Admin Login",new_superadmin_session_path, class: "smoothScroll" %></li>
+
+          <% end %>
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-social navbar-left">   
+
+          <li>
+            <a href="javascript:;" class="ui-tooltip" title="Facebook" data-placement="bottom">
+              <i class="fa fa-facebook"></i>
+              <span class="navbar-social-label">Facebook</span>
+            </a>
+          </li>   
+
+          <li>
+            <a href="javascript:;" class="ui-tooltip" title="Twitter" data-placement="bottom">
+              <i class="fa fa-twitter"></i>
+              <span class="navbar-social-label">Twitter</span>
+            </a>
+          </li>   
+
+          <li>
+            <a href="javascript:;" class="ui-tooltip" title="Google+" data-placement="bottom">
+              <i class="fa fa-google-plus"></i>
+              <span class="navbar-social-label">Google+</span>
+            </a>
+          </li>         
+
+        </ul>
+
+      </nav>
+
+    </div> <!-- /.container -->
+
+  </header>

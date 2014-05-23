@@ -15,6 +15,7 @@ class AgentInvitationsController < Devise::InvitationsController
 		self.resource = accept_resource
 
 		if resource.errors.empty?
+			resource.create_notification()
 			if resource.role
 				resource.update_attributes(
 					allow_reporting: true,

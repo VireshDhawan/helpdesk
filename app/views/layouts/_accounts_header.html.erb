@@ -1,0 +1,29 @@
+  <header class="navbar navbar-inverse" role="banner">
+
+    <div class="container">
+
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-cog"></i>
+        </button>
+
+        <a href="/" class="navbar-brand navbar-brand-img">
+          <%= image_tag('landing/logo.png') %>
+        </a>
+      </div> <!-- /.navbar-header -->
+
+      <nav class="collapse navbar-collapse" role="navigation">   
+        <ul class="nav navbar-nav navbar-right">     
+          <li>
+            <%= link_to root_url do %>
+              <i class="fa fa-angle-double-left"></i> 
+              &nbsp;Back to Home
+            <% end %>
+          </li>   
+        </ul>
+      </nav>
+
+    </div> <!-- /.container -->
+
+  </header>

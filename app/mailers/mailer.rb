@@ -18,7 +18,7 @@ class Mailer < ActionMailer::Base
 		response = JSON.parse(response)
 	end
 
-	def unaasigned_tickets_notification(ticket,recipients)
+	def unassigned_tickets_notification(ticket,recipients)
 		data = Multimap.new
 		data[:from] = "#{ticket.company.name} <#{ticket.company.email}>"
 		data[:to] = recipients.join(",")

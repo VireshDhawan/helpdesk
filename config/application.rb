@@ -26,6 +26,18 @@ module Helpdesk
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
 
+    # Add fonts folder to assets path
+    config.assets.paths << "#{Rails.root}/app/assets/fonts"
+
+    # Layout for devise controllers
+    config.to_prepare do
+      Devise::SessionsController.layout "accounts"
+      Devise::RegistrationsController.layout proc{ |controller| agent_signed_in? ? "application" : "accounts" }
+      Devise::ConfirmationsController.layout "accounts"
+      Devise::UnlocksController.layout "accounts"
+      Devise::PasswordsController.layout "accounts"        
+    end
+
     #action mailer
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {

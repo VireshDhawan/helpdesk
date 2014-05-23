@@ -5,7 +5,7 @@ Helpdesk::Application.routes.draw do
   devise_for :superadmins,:controllers => {
     :confirmations => 'superadmin_confirmations',
     :invitations => 'superadmin_invitations'
-  }
+  }, :path => '/admin', :path_names => {:sign_in => 'admin_login',:sign_up => 'register'}
 
   devise_scope :superadmin do
     patch "/superadmins/confirm" => "superadmin_confirmations#confirm", :as => :superadmin_confirm
@@ -15,7 +15,7 @@ Helpdesk::Application.routes.draw do
     :confirmations => 'agent_confirmations',
     :invitations => 'agent_invitations',
     :registrations => 'agents/registrations'
-  }
+  }, :path => '', :path_names => {:sign_in => 'login', :sign_up => 'register'}
              
   devise_scope :agent do
     patch "/agents/confirm" => "agent_confirmations#confirm", :as => :agent_confirm
@@ -57,6 +57,10 @@ Helpdesk::Application.routes.draw do
     # superadmin's root
     require 'sidekiq/web'
     mount Sidekiq::Web => '/sidekiq'
+  end
+
+  MainController.action_methods.each do |action|
+    get "/#{action}", to: "main##{action}"
   end
 
   root 'main#index'

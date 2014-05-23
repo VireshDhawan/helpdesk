@@ -1,703 +1,486 @@
-<div class="navbar-main">
-	  <!-- Fixed navbar -->
-	<div class="navbar navbar-inverse navbar-fixed-top">
-	  <div class="row">
-	    <div class="navbar-header" style="padding-left:2%;">
-	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-	        <span class="fa fa-bars" style="font-size:30px; color:#3498db;"></span>
-	      </button>
-	      <a class="navbar-brand" href="/"><span style="font-size:20px;"></span>HelpDesk</a>
-	    </div>
-	    <div class="navbar-collapse collapse">
-	      <ul class="nav navbar-nav">
-	        <li><a href="#home" class="smoothScroll">Home</a></li>
-			<li> <a href="#about" class="smoothScroll"> About</a></li>
-			<li> <a href="#features" class="smoothScroll">Features</a></li>
-			<li> <a href="#pricing" class="smoothScroll"> Pricing</a></li>
-			<li> <a href="#contact" class="smoothScroll">Contact</a></li>
-		   </ul>	
-		   <ul class="nav navbar-nav pull-right">
-		   	<% if agent_signed_in? %>
-		   		<li class="smoothScroll"><%= link_to "Invite Agents",new_agent_invitation_path, class: "smoothScroll" if current_agent.allow_to_invite %></li>
-		   		<li><%= link_to "Sign Out",destroy_agent_session_path, :method => :delete, class: "smoothScroll" %></li>
-		   	<% elsif superadmin_signed_in? %>
-		   		<li class="smoothScroll"><%= link_to "Sidekiq",'/sidekiq', class: "smoothScroll" %></li>
-		   		<li class="smoothScroll"><%= link_to "Invite Admins",new_superadmin_invitation_path, class: "smoothScroll" %></li>
-		   		<li class="smoothScroll"><%= link_to "Create Plan",new_plan_path, class: "smoothScroll" %></li>
-		   		<li><%= link_to "Sign Out",destroy_superadmin_session_path, :method => :delete, class: "smoothScroll" %></li>
-		   	<% else %>
-				<li><%= link_to "Agent's Sign In",new_agent_session_path, class: "smoothScroll" %></li>
-				<li><%= link_to "Super admin's Sign In",new_superadmin_session_path, class: "smoothScroll" %></li>
-		   		<li><%= link_to "Register",new_agent_registration_path, class: "smoothScroll" %></li>
-		   	<% end %>
-			</ul>
-	    </div><!--/.nav-collapse -->
-	  </div>
-	</div>
-	</div>
+
+    <div class="masthead">
+      
+      <div class="container">
+            <!-- starts carousel -->
+
+        <div id="masthead-carousel" class="carousel masthead-carousel slide">
+          <div class="carousel-inner">
+
+            <div class="item active">
+
+              <div class="row">
+
+                <div class="col-md-6 masthead-text animated fadeInDownBig">
+                  <h1 class="masthead-title">Don't feel limited to color schemes provided.</h1>
+
+                  <p class="masthead-">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisi ut aliquip ex ea commodo consequat.
+                  </p>
+
+                  <br>
+
+                  <div class="masthead-actions">
+                    <a href="/features" class="btn btn-transparent btn-jumbo">
+                    Learn More
+                    </a>
+
+                    <a href="/register" class="btn btn-primary btn-jumbo">
+                    Create an Account
+                    </a>
+                  </div> <!-- /.masthead-actions -->
+                </div> <!-- /.masthead-text -->
+
+                <div class="col-md-6 masthead-img animated fadeInUpBig">
+                  <%= image_tag('landing/masthead/mobile.png',class: "img-responsive") %>
+                </div> <!-- /.masthead-img -->
+
+              </div> <!-- /.row -->
+
+            </div> <!-- /.item -->
+
+            <div class="item">
+
+              <div class="row">
+                
+                <div class="col-md-6 masthead-text animated fadeInLeftBig">
+                  <h1 class="masthead-title">Don't feel limited to color schemes provided.</h1>
+
+                  <p class="masthead-">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisi ut aliquip ex ea commodo consequat.
+                  </p>
+
+                  <br>
+
+                  <div class="masthead-actions">
+                    <a href="/features" class="btn btn-transparent btn-jumbo">
+                    Learn More
+                    </a>
+
+                    <a href="/register" class="btn btn-primary btn-jumbo">
+                    Create an Account
+                    </a>
+                  </div> <!-- /.masthead-actions -->
+                </div> <!-- /.masthead-text -->
+
+                <div class="col-md-6 masthead-img animated fadeInRightBig">
+                  <form class="form masthead-form well">
+
+                    <h3 class="text-center">Start Your Free Trial!</h3>
+
+                    <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, earum.</p>
+
+                    <br>
+
+                    <div class="form-group">
+                      <!-- <label class="" for="full_name">Full Name</label> -->
+                      <input type="text" id="full_name" placeholder="Your Name" class="form-control">
+                    </div> <!-- /.form-group -->
+
+                    <div class="form-group">
+                      <!-- <label class="" for="email_address">Email Address</label> -->
+                      <input type="email" id="email_address" placeholder="Your Email" class="form-control">
+                    </div> <!-- /.form-group -->
+
+                    <div class="form-group">
+                      <!-- <label class="" for="organization">Organization</label> -->
+                      <input type="text" id="organization" placeholder="Organization Name" class="form-control">
+                    </div> <!-- /.form-group -->
+
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-secondary btn-jumbo btn-block">Get Started Today!</button>
+                    </div> <!-- /.form-group -->
+
+                  </form>     
+                </div> <!-- /.masthead-img -->
+
+              </div> <!-- /.row -->
+
+            </div> <!-- /.item -->
+
+            <div class="item">
+
+              <div class="row">
+                
+                <div class="col-md-6 masthead-text animated fadeInUpBig">
+                  <h1 class="masthead-title">Don't feel limited to color schemes provided.</h1>
+
+                  <p class="masthead-">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisi ut aliquip ex ea commodo consequat.
+                  </p>
+
+                  <br>
+
+                  <div class="masthead-actions">
+                    <a href="/features" class="btn btn-transparent btn-jumbo">
+                    Learn More
+                    </a>
+
+                    <a href="/register" class="btn btn-primary btn-jumbo">
+                    Create an Account
+                    </a>
+                  </div> <!-- /.masthead-actions -->
+                </div> <!-- /.masthead-text -->
+
+                <div class="col-md-6 masthead-img animated pulse">
+                  <%= image_tag('landing/masthead/ipad.png',class: "img-responsive") %>
+                </div> <!-- /.masthead-img -->
+
+              </div> <!-- /.row -->
+
+            </div> <!-- /.item -->
+
+            <div class="item">
+
+              <div class="row">
+
+                <div class="col-md-6 masthead-text animated fadeInDownBig">
+                  <h1 class="masthead-title">Don't feel limited to color schemes provided.</h1>
+
+                  <p class="masthead-">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisi ut aliquip ex ea commodo consequat.
+                  </p>
+
+                  <br>
+
+                  <div class="masthead-actions">
+                    <a href="./page-features.html" class="btn btn-transparent btn-jumbo">
+                    Learn More
+                    </a>
+
+                    <a href="../admin/account-signup.html" class="btn btn-primary btn-jumbo">
+                    Create an Account
+                    </a>
+                  </div> <!-- /.masthead-actions -->
+                </div> <!-- /.masthead-text -->
+
+                <div class="col-md-6 masthead-img animated fadeInUpBig">
+                  <iframe src="http://player.vimeo.com/video/57175742?title=0&amp;byline=0&amp;portrait=0&amp;color=e2007a" style="width: 85%; height: 325px;"></iframe>
+    
+                </div> <!-- /.masthead-img -->
+
+              </div> <!-- /.row -->
+
+            </div> <!-- /.item -->
+
+          </div>  <!-- /.carousel-inner -->
+          <!-- Carousel nav -->
+
+          <div class="carousel-controls">
+            <a class="carousel-control left" href="#masthead-carousel" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#masthead-carousel" data-slide="next">&rsaquo;</a>
+          </div>
+            
+        </div> <!-- /.masthead-carousel -->
+
+        </div>
+
+    </div> <!-- /.masthead -->
 
 
-	<!-- ==== HEADERWRAP ==== -->
-    <div id="headerwrap" id="home" name="home">
-		<header class="clearfix">
-  		 		<h1><span class="fa fa-shield"></span></h1>
-  		 		<p>A Bootstrap 3 One Page Theme.</p>
-  		 		<p>Exclusive for BlackTie.co.</p>
-  		</header>	    
-    </div><!-- /headerwrap -->
 
-    <% if false %>
-	<!-- ==== GREYWRAP ==== -->
-	<div id="greywrap">
-		<div class="row">
-			<div class="col-lg-4 callout">
-				<span class="fa fa-stack"></span>
-				<h2>Bootstrap 3</h2>
-				<p>Shield Theme is powered by Bootstrap 3. The incredible Mobile First Framework is the best option to run your website. </p>
-			</div><!-- col-lg-4 -->
-				
-			<div class="col-lg-4 callout">
-				<span class="fa fa-eye"></span>
-				<h2>Retina Ready</h2>
-				<p>You can use this theme with your iPhone, iPad or MacBook Pro. This theme is retina ready and that is awesome. </p>
-			</div><!-- col-lg-4 -->	
-			
-			<div class="col-lg-4 callout">
-				<span class="fa fa-heart"></span>
-				<h2>Crafted with Love</h2>
-				<p>We don't make sites, we craft themes with love & passion. That is our most valued secret. We only do thing that we love.   </p>
-			</div><!-- col-lg-4 -->	
-		</div><!-- row -->
-	</div><!-- greywrap -->
-	<% end %>
-	<!-- ==== ABOUT ==== -->
-	<div class="container" id="about" name="about">
-		<div class="row white">
-		<br>
-			<h1 class="centered">A LITTLE ABOUT OUR AGENCY</h1>
-			<hr>
-			
-			<div class="col-lg-6">
-				<p>We believe ideas come from everyone, everywhere. In fact, at BlackTie, everyone within our agency walls is a designer in their own right. And there are a few principles we believe—and we believe everyone should believe—about our design craft. These truths drive us, motivate us, and ultimately help us redefine the power of design. We’re big believers in doing right by our neighbors. After all, we grew up in the Twin Cities and we believe this place has much to offer. So we do what we can to support the community we love.</p>
-			</div><!-- col-lg-6 -->
-			
-			<div class="col-lg-6">
-				<p>Over the past four years, we’ve provided more than $1 million in combined cash and pro bono support to Way to Grow, an early childhood education and nonprofit organization. Other community giving involvement throughout our agency history includes pro bono work for more than 13 organizations, direct giving, a scholarship program through the Minneapolis College of Art & Design, board memberships, and ongoing participation in the Keystone Club, which gives five percent of our company’s earnings back to the community each year.</p>
-			</div><!-- col-lg-6 -->
-		</div><!-- row -->
-	</div><!-- container -->
-	
-	<!-- ==== SECTION DIVIDER1 -->
-	<section class="section-divider textdivider divider1">
-		<div class="container">
-			<h1>DESIGN EXPAND BOUNDARIES</h1>
-			<hr>
-			<p>To achieve real change, we have to expand boundaries. Because the Wild West of what-could-be is unexplored but rife with opportunity.</p>
-		</div><!-- container -->
-	</section><!-- section -->
-	
-	
-	<!-- ==== SERVICES ==== -->
-	<div class="container" id="features" name="features">
-		<br>
-		<br>
-		<div class="row">
-			<h2 class="centered">ONE BRAND, ONE VOICE.</h2>
-			<hr>
-			<br>
-			<div class="col-lg-offset-2 col-lg-8">
-				<p>Employees and consumers. Two halves of a brand’s entirety, the whole of a brand’s audience. Sometimes these two halves have very different viewpoints, creating a weak spot in the brand story. Weakness tarnishes credibility. Brands that aren’t credible aren’t viable.
-				</p>
-				<p>We squash weakness by designing the whole brand story. It’s crafted around the truism held by employees and consumers to create an experience that connects from the inside out.</p>
-				<p>By being true to the brand we represent, we elevate the audiences’ relationship to it. Like becomes love becomes a passion. Passion becomes advocacy. And we see the brand blossom from within, creating a whole story the audience embraces. That’s when the brand can truly flex its muscles.</p>
-			</div><!-- col-lg -->
-		</div><!-- row -->
-		
-		<div class="row">
-			<h2 class="centered">MOBILE FIRST THINKING, ALWAYS.</h2>
-			<hr>
-			<br>
-			<div class="col-lg-offset-2 col-lg-8">
-				<img class="img-responsive" src="assets/iphone.png" alt="">
-			</div><!-- col -->
-		</div><!-- row -->
-	</div><!-- container -->
-		
+    <div class="content">
 
-	<!-- ==== SECTION DIVIDER2 -->
-	<section class="section-divider textdivider divider2">
-		<div class="container">
-			<h1>DESIGN IS AN INTERACTION</h1>
-			<hr>
-			<p>To develop a deeper and more meaningful connection with consumers, we believe design must invite them to take part in the conversation.</p>
-		</div><!-- container -->
-	</section><!-- section -->
+      <div class="container">
 
-	<!-- ==== TEAM MEMBERS ==== -->
-	<div class="container" id="pricing" name="pricing">
-	<br>
-		<div class="row white centered">
-				<br>
-				<h2>Our Pricing Options</h2>
-				<hr><br><br>
-					<div class="col-xs-12 col-md-3">
-						<div class="panel panel-primary">
-							<div class="panel-heading">
-								<h3 class="panel-title">Starter</h3>
-							</div>
-							<div class="panel-body">
-								<div class="the-price">
-									<h2>$9<span class="subscript">/mo</span></h2>
-									<small>1 month FREE Trial</small>
-								</div>
-								<table class="table">
-									<tbody><tr>
-										<td>1 Account</td>
-									</tr>
-									<tr>
-										<td>1 Project</td>
-									</tr>
-									<tr>
-										<td>50K API Access</td>
-									</tr>
-									<tr>
-										<td>100MB Storage</td>
-									</tr>
-									<tr>
-										<td>Custom Cloud Services</td>
-									</tr>
-									<tr>
-										<td>Weekly Reports</td>
-									</tr>
-								</tbody></table>
-							</div>
-							<div class="panel-footer">
-								<a role="button" class="btn btn-danger" href="#">Sign Up</a>
-							</div>
-						</div>
-					</div>
+        <h4 class="content-title">
+          <span>Why Choose MVP Ready?</span>
+        </h4>
 
-					<div class="col-xs-12 col-md-3">
-						<div class="panel panel-primary">
-							<div class="panel-heading">
-								<h3 class="panel-title">Standard</h3>
-							</div>
-							<div class="panel-body">
-								<div class="the-price">
-									<h2>$19<span class="subscript">/mo</span></h2>
-									<small>1 month FREE Trial</small>
-								</div>
-								<table class="table">
-									<tbody><tr>
-										<td>2 Accounts</td>
-									</tr>
-									<tr>
-										<td>5 Projects</td>
-									</tr>
-									<tr>
-										<td>100K API Access</td>
-									</tr>
-									<tr>
-										<td>200MB Storage</td>
-									</tr>
-									<tr>
-										<td>Custom Cloud Services</td>
-									</tr>
-									<tr>
-										<td>Weekly Reports</td>
-									</tr>
-								</tbody></table>
-							</div>
-							<div class="panel-footer">
-								<a role="button" class="btn btn-danger" href="#">Sign Up</a>
-							</div>
-						</div>
-					</div>
+        <br>
 
-					<div class="col-xs-12 col-md-3">
-						<div class="panel panel-primary">
-							<div class="panel-heading">
-								<h3 class="panel-title">Premium</h3>
-							</div>
-							<div class="panel-body">
-							<div class="the-price">
-								<h2>$39<span class="subscript">/mo</span></h2>
-								<small>1 month FREE Trial</small>
-							</div>
-							<table class="table">
-								<tbody><tr>
-									<td>5 Accounts</td>
-								</tr>
-								<tr>
-									<td>20 Projects</td>
-								</tr>
-								<tr>
-									<td>300K API Access</td>
-								</tr>
-								<tr>
-									<td>500MB Storage</td>
-								</tr>
-								<tr>
-									<td>Custom Cloud Services</td>
-								</tr>
-								<tr>
-									<td>Weekly Reports</td>
-								</tr>
-							</tbody></table>
-							</div>
-							<div class="panel-footer">
-								<a role="button" class="btn btn-danger" href="#">Sign Up</a>
-							</div>
-						</div>
-					</div>
+        <div class="row">
 
-					<div class="col-xs-12 col-md-3">
-						<div class="panel panel-primary">
-							<div class="panel-heading">
-								<h3 class="panel-title">Enterprise</h3>
-							</div>
-							<div class="panel-body">
-								<div class="the-price">
-									<h2>$59<span class="subscript">/mo</span></h2>
-									<small>1 month FREE Trial</small>
-								</div>
-								<table class="table">
-									<tbody><tr>
-										<td>10 Accounts</td>
-									</tr>
-									<tr>
-										<td>50 Projects</td>
-									</tr>
-									<tr>
-										<td>500K API Access</td>
-									</tr>
-									<tr>
-										<td>1GB Storage</td>
-									</tr>
-									<tr>
-										<td>Custom Cloud Services</td>
-									</tr>
-									<tr>
-										<td>Weekly Reports</td>
-									</tr>
-								</tbody></table>
-							</div>
-							<div class="panel-footer">
-								<a role="button" class="btn btn-danger" href="#">Sign Up</a>
-							</div>
-						</div>
-				</div><!-- /row -->
-				<br>
-			</div>
-				<br>
-				<br>
-				<br>
-		<% if false %>
-		
-		<div class="row white centered">
-			<h1 class="centered">MEET OUR AWESOME TEAM</h1>
-			<hr>
-			<br>
-			<br>
-			<div class="col-lg-3 centered">
-				<img class="img img-circle" src="assets/team01.jpg" height="120px" width="120px" alt="">
-				<br>
-				<h4><b>Mike Arney</b></h4>
-				<a href="#" class="fa fa-twitter"></a>
-				<a href="#" class="fa fa-facebook"></a>
-				<a href="#" class="fa fa-flickr"></a>
-				<p>Mike combines an expert technical knowledge with a real eye for design. Working with clients from a wide range of industries, he fully understands client objectives when working on a project, large or small.</p>
-			</div><!-- col-lg-3 -->
-			
-			<div class="col-lg-3 centered">
-				<img class="img img-circle" src="assets/team02.jpg" height="120px" width="120px" alt="">
-				<br>
-				<h4><b>Tim Davies</b></h4>
-				<a href="#" class="fa fa-twitter"></a>
-				<a href="#" class="fa fa-facebook"></a>
-				<a href="#" class="fa fa-flickr"></a>
-				<p>Tim is an experienced marcoms practitioner and manages projects from inception to delivery. He understands the synergy between great design and commercial effectiveness which shines through on every project.</p>
-			</div><!-- col-lg-3 -->
-			
-			<div class="col-lg-3 centered">
-				<img class="img img-circle" src="assets/team03.jpg" height="120px" width="120px" alt="">
-				<br>
-				<h4><b>Michele Lampa</b></h4>
-				<a href="#" class="fa fa-twitter"></a>
-				<a href="#" class="fa fa-facebook"></a>
-				<a href="#" class="fa fa-flickr"></a>
-				<p>Be a creative director is a hard task, but Michele loves what she does. Her combination of knowledge and expertise is an important pillar in our agency.</p>
-			</div><!-- col-lg-3 -->
-			
-			<div class="col-lg-3 centered">
-				<img class="img img-circle" src="assets/team04.jpg" height="120px" width="120px" alt="">
-				<br>
-				<h4><b>Jaye Smith</b></h4>
-				<a href="#" class="fa fa-twitter"></a>
-				<a href="#" class="fa fa-facebook"></a>
-				<a href="#" class="fa fa-flickr"></a>
-				<p>Jaye began making websites when animated logos and scrolling text were cool, but has since found a love for simplicity, creating websites that are a pleasure to browse. Monkey Island Fan.</p>
-			</div><!-- col-lg-3 -->
-			
-		</div><!-- row -->
-		<% end %>
-	</div><!-- container -->
+          <div class="mini-feature">
+            <i class="fa fa-globe mini-feature-icon text-secondary"></i>
 
-	<% if false %>
-	<!-- ==== GREYWRAP ==== -->
-	<div id="greywrap">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 centered">
-					<img class="img-responsive" src="assets/macbook.png" align="">
-				</div>
-				<div class="col-lg-4">
-					<h2>We Are Hiring!</h2>
-					<p>Do you want to be one of use? Sure you want, because we are an awesome team!. Here we work hard every day to craft pixel perfect sites.</p>
-					<p><a class="btn btn-success">Contact Us</a></p>
-				</div>					
-			</div><!-- row -->
-		</div>
-		<br>
-		<br>
-	</div><!-- greywrap -->
-	<% end %>
+            <div class="mini-feature-text">
+              <h5 class="mini-feature-title">Wide Browser Support</h5>            
+              <p>Our themes are designed to display well on most modern devices, including desktops, tablets, and mobile devices. </p>
+            </div>
+          </div> <!-- /.mini-feature -->
 
-	<!-- ==== SECTION DIVIDER3 -->
-	<section class="section-divider textdivider divider3">
-		<div class="container">
-			<h1>DESIGN SOLVE PROBLEMS</h1>
-			<hr>
-			<p>From the purely practical to the richly philosophical, design is the solution to a host of challenges.</p>
-		</div><!-- container -->
-	</section><!-- section -->
-	
-	<% if false %>
-	<!-- ==== PORTFOLIO ==== -->
-	<div class="container" id="portfolio" name="portfolio">
-	<br>
-		<div class="row">
-			<br>
-			<h1 class="centered">WE CREATE COOL STUFF</h1>
-			<hr>
-			<br>
-			<br>
-		</div><!-- /row -->
-		<div class="container">
-		<div class="row">	
-		
-			<!-- PORTFOLIO IMAGE 1 -->
-			<div class="col-md-4 ">
-		    	<div class="grid mask">
-					<figure>
-						<img class="img-responsive" src="assets/folio01.jpg" alt="">
-						<figcaption>
-							<h5>DASHBOARD</h5>
-							<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-lg">Take a Look</a>
-						</figcaption><!-- /figcaption -->
-					</figure><!-- /figure -->
-		    	</div><!-- /grid-mask -->
-			</div><!-- /col -->
-			
-			
-					 <!-- MODAL SHOW THE PORTFOLIO IMAGE. In this demo, all links point to this modal. You should create
-					      a modal for each of your projects. -->
-					      
-					  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					    <div class="modal-dialog">
-					      <div class="modal-content">
-					        <div class="modal-header">
-					          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					          <h4 class="modal-title">Project Title</h4>
-					        </div>
-					        <div class="modal-body">
-					          <p><img class="img-responsive" src="assets/folio01.jpg" alt=""></p>
-					          <p>This project was crafted for Some Name corp. Detail here a little about your job requirements and the tools used. Tell about the challenges faced and what you and your team did to solve it.</p>
-					          <p><b><a href="#">Visit Site</a></b></p>
-					        </div>
-					        <div class="modal-footer">
-					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					        </div>
-					      </div><!-- /.modal-content -->
-					    </div><!-- /.modal-dialog -->
-					  </div><!-- /.modal -->
-			
-			
-			<!-- PORTFOLIO IMAGE 2 -->
-			<div class="col-md-4">
-		    	<div class="grid mask">
-					<figure>
-						<img class="img-responsive" src="assets/folio02.jpg" alt="">
-						<figcaption>
-							<h5>UI DESIGN</h5>
-							<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-lg">Take a Look</a>
-						</figcaption><!-- /figcaption -->
-					</figure><!-- /figure -->
-		    	</div><!-- /grid-mask -->
-			</div><!-- /col -->
-			
-			<!-- PORTFOLIO IMAGE 3 -->
-			<div class="col-md-4">
-		    	<div class="grid mask">
-					<figure>
-						<img class="img-responsive" src="assets/folio03.jpg" alt="">
-						<figcaption>
-							<h5>ANDROID PAGE</h5>
-							<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-lg">Take a Look</a>
-						</figcaption><!-- /figcaption -->
-					</figure><!-- /figure -->
-		    	</div><!-- /grid-mask -->
-			</div><!-- /col -->
-		</div><!-- /row -->
+          <div class="mini-feature">
+            <i class="fa fa-dashboard mini-feature-icon text-secondary"></i>
 
-			<!-- PORTFOLIO IMAGE 4 -->
-		<div class="row">	
-			<div class="col-md-4 ">
-		    	<div class="grid mask">
-					<figure>
-						<img class="img-responsive" src="assets/folio04.jpg" alt="">
-						<figcaption>
-							<h5>PROFILE</h5>
-							<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-lg">Take a Look</a>
-						</figcaption><!-- /figcaption -->
-					</figure><!-- /figure -->
-		    	</div><!-- /grid-mask -->
-			</div><!-- /col -->
-			
-			<!-- PORTFOLIO IMAGE 5 -->
-			<div class="col-md-4">
-		    	<div class="grid mask">
-					<figure>
-						<img class="img-responsive" src="assets/folio05.jpg" alt="">
-						<figcaption>
-							<h5>TWITTER STATUS</h5>
-							<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-lg">Take a Look</a>
-						</figcaption><!-- /figcaption -->
-					</figure><!-- /figure -->
-		    	</div><!-- /grid-mask -->
-			</div><!-- /col -->
-			
-			<!-- PORTFOLIO IMAGE 6 -->
-			<div class="col-md-4">
-		    	<div class="grid mask">
-					<figure>
-						<img class="img-responsive" src="assets/folio06.jpg" alt="">
-						<figcaption>
-							<h5>PHONE MOCKUP</h5>
-							<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-lg">Take a Look</a>
-						</figcaption><!-- /figcaption -->
-					</figure><!-- /figure -->
-		    	</div><!-- /grid-mask -->
-			</div><!-- /col -->
-		</div><!-- /row -->
-		<br>
-		<br>
-	</div><!-- /row -->
-</div><!-- /container -->
+            <div class="mini-feature-text">
+              <h5 class="mini-feature-title">Dashboard Layouts</h5>
 
-	<!-- ==== SECTION DIVIDER4 ==== -->
-	<section class="section-divider textdivider divider4">
-		<div class="container">
-			<h1>DESIGN CREATES EMOTIONAL CONNECTION</h1>
-			<hr>
-			<p>There’s more to design than meets the eye. It’s when it meets the heart that design creates a meaningful, lasting connection with the audience.</p>
-		</div><!-- container -->
-	</section><!-- section -->
-	
-	<!-- ==== BLOG ==== -->
-	<div class="container" id="blog" name="blog">
-	<br>
-		<div class="row">
-			<br>
-			<h1 class="centered">WE ARE STORYTELLERS</h1>
-			<hr>
-			<br>
-			<br>
-		</div><!-- /row -->
-		
-		<div class="row">
-			<div class="col-lg-6 blog-bg">
-				<div class="col-lg-4 centered">
-				<br>
-					<p><img class="img img-circle" src="assets/team04.jpg" width="60px" height="60px"></p>
-					<h4>Jaye Smith</h4>
-					<h5>Published Aug 30.</h5>
-				</div>
-				<div class="col-lg-8 blog-content">
-					<h2>We Define Success</h2>
-					<p>Armed with insight, we embark on designing the right brand experience that engages the audience. It encompasses both the strategic direction and creative execution that solves a business problem and brings the brand to life.</p>
-					<p>In the create phase, the big idea is unleashed to the world through different media touchpoints. This is when we watch the audience fall in love all over again with our client’s brand.</p>
-					<p><a href="#" class="fa fa-link"> Read More</a></p>
-					<br>
-				</div>
-			</div><!-- /col -->
-			
-			<div class="col-lg-6 blog-bg">
-				<div class="col-lg-4 centered">
-				<br>
-					<p><img class="img img-circle" src="assets/team03.jpg" width="60px" height="60px"></p>
-					<h4>Michele Lampa</h4>
-					<h5>Published Aug 28.</h5>
-				</div>
-				<div class="col-lg-8 blog-content">
-					<h2>A Beautiful Story</h2>
-					<p>Armed with insight, we embark on designing the right brand experience that engages the audience. It encompasses both the strategic direction and creative execution that solves a business problem and brings the brand to life.</p>
-					<p>In the create phase, the big idea is unleashed to the world through different media touchpoints. This is when we watch the audience fall in love all over again with our client’s brand.</p>
-					<p><a href="#" class="fa fa-link"> Read More</a></p>
-					<br>
-				</div>
-			</div><!-- /col -->
-		</div><!-- /row -->
-		<br>
-		<br>
-	</div><!-- /container -->
+              <p>Our themes are designed to display well on most modern devices, including desktops, tablets, and mobile devices. </p>
+            </div>
+          </div> <!-- /.mini-feature -->
 
-	
-	<!-- ==== SECTION DIVIDER6 ==== -->
-	<section class="section-divider textdivider divider6">
-		<div class="container">
-			<h1>CRAFTED IN NEW YORK, USA.</h1>
-			<hr>
-			<p>Some Address 987,</p>
-			<p>+34 9884 4893</p>
-			<p><a class="fa fa-twitter" href="#"></a> | <a class="fa fa-facebook" href="#"></a></p>
-		</div><!-- container -->
-	</section><!-- section -->
-	<% end %>
-	<div id="contactwrap">
-		<div class="container" id="contact" name="contact">
-			<div class="row">
-			<br>
-				<h1 class="centered">1 - NEED ANY HELP?</h1>
-				<hr>
-				<br>
-				<br>
-				<div class="col-lg-4">
-					<h3>Contact Information</h3>
-					<br>
-					<p><span class="fa fa-home"></span> &nbsp;Some Address 987, NY<br/>
-						<span class="fa fa-phone"></span> &nbsp; +34 9884 4893 <br/>
-						<span class="fa fa-mobile"></span> &nbsp; &nbsp;+34 59855 9853 <br/>
-						<span class="fa fa-envelope"></span> <a href="#"> &nbsp;agency@blacktie.co</a> <br/>
-						<span class="fa fa-twitter"></span> <a href="#"> &nbsp;@blacktie_co </a> <br/>
-						<span class="fa fa-facebook"></span> <a href="#"> &nbsp; &nbsp;BlackTie Agency </a> <br/>
-					</p>
-				</div><!-- col -->
-				
-				<div class="col-lg-4">
-					<h3>Newsletter</h3>
-					<br>
-					<p>Register to our newsletter and be updated with the latests information regarding our services, offers and much more.</p>
-					<p>
-						<form class="form-horizontal" role="form">
-						  <div class="form-group">
-						    <label for="inputEmail1" class="col-lg-4 control-label"></label>
-						    <div class="col-lg-10">
-						      <input type="email" class="form-control" id="inputEmail1" placeholder="Email">
-						    </div>
-						  </div>
-						  <div class="form-group">
-						    <label for="text1" class="col-lg-4 control-label"></label>
-						    <div class="col-lg-10">
-						      <input type="text" class="form-control" id="text1" placeholder="Your Name">
-						    </div>
-						  </div>
-						  <div class="form-group">
-						    <div class="col-lg-10">
-						      <button type="submit" class="btn btn-success">Sign in</button>
-						    </div>
-						  </div>
-					   </form><!-- form -->
-					</p>
-				</div><!-- col -->
-				
-				<div class="col-lg-4">
-					<h3>Support Us</h3>
-					<br>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-				</div><!-- col -->
+          <div class="mini-feature">
+            <i class="fa fa-html5 mini-feature-icon text-secondary"></i>
 
-			</div><!-- row -->
-			<br>
-			<br>
-			<br>
-		
-		</div><!-- container -->
-	</div>
+            <div class="mini-feature-text">
+              <h5 class="mini-feature-title">HTML5 &amp; CSS3</h5>
 
-	<div id="contactwrap">
-		<div class="container" id="contact" name="contact">
-			<div class="row">
-			<br>
-				<h1 class="centered">2 - NEED ANY HELP?</h1>
-				<hr>
-				<br>
-				<br>
-				<div class="col-lg-3">
-					<h3>Contact Information</h3>
-					<br>
-					<p><span class="fa fa-home"></span> &nbsp;Some Address 987, NY<br/>
-						<span class="fa fa-phone"></span> &nbsp; +34 9884 4893 <br/>
-						<span class="fa fa-mobile"></span> &nbsp; &nbsp;+34 59855 9853 <br/>
-						<span class="fa fa-envelope"></span> <a href="#"> &nbsp;agency@blacktie.co</a> <br/>
-						<span class="fa fa-twitter"></span> <a href="#"> &nbsp;@blacktie_co </a> <br/>
-						<span class="fa fa-facebook"></span> <a href="#"> &nbsp; &nbsp;BlackTie Agency </a> <br/>
-					</p>
-				</div><!-- col -->
-				
-				<div class="col-lg-3">
-					<h3>Company</h3>
-					<br>
-					<ul class="list-unstyled">
-						<li><%= link_to "Philosophy",'' %></li>
-						<li><%= link_to "Team",'' %></li>
-						<li><%= link_to "Careers",'' %></li>
-						<li><%= link_to "Privacy Policy",'' %></li>
-						<li><%= link_to "Terms of service",'' %></li>
-						<li><%= link_to "Sitemap",'' %></li>
-					</ul>
-				</div><!-- col -->
-				
-				<div class="col-lg-3">
-					<h3>Reach Out</h3>
-					<br>
-					<ul class="list-unstyled">
-						<li><%= link_to "Affiliate Program",'' %></li>
-						<li><%= link_to "Service Status",'' %></li>
-						<li><%= link_to "Contact Us",'' %></li>
-						<li><%= link_to "Documentation ",'' %></li>
-						<li><%= link_to "Follow on Twitter",'' %></li>
-					</ul>
-				</div><!-- col -->
+              <p>Built using HTML5 and CSS3, our themes can be integrated with multiple platforms including Ruby On Rails, PHP, Django, and many others.</p>
+            </div>
+          </div> <!-- /.mini-feature -->
 
-				<div class="col-lg-3">
-					<h3>Learn More</h3>
-					<br>
-					<ul class="list-unstyled">
-						<li><%= link_to "API",'' %></li>
-						<li><%= link_to "Developer Platform",'' %></li>
-						<li><%= link_to "Blog",'' %></li>
-						<li><%= link_to "Dev Blog",'' %></li>
-						<li><%= link_to "Press ",'' %></li>
-					</ul>
-				</div><!-- col -->
+        </div> <!-- /.row -->
 
-			</div><!-- row -->
-			<br>
-			<br>
-			<br>
-		</div><!-- container -->
-	</div>
+        <div class="row">
 
-	<div id="footerwrap">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10">
-					<p>Copyright &copy;2014 Helpdesk. All Rights Reserved.</p>
-				</div>
-				<div class="col-lg-2">
-					<p><a href="#">Terms</a> | <a href="#">Privacy</a> | <a href="#">Legal</a></p>
-				</div>
-			</div>
-		</div>
-	</div>
+          <div class="mini-feature">
+            <i class="fa fa-globe mini-feature-icon text-secondary"></i>
+
+            <div class="mini-feature-text">
+              <h5 class="mini-feature-title">Wide Browser Support</h5>            
+              <p>Our themes are designed to display well on most modern devices, including desktops, tablets, and mobile devices. </p>
+            </div>
+          </div> <!-- /.mini-feature -->
+
+          <div class="mini-feature">
+            <i class="fa fa-dashboard mini-feature-icon text-secondary"></i>
+
+            <div class="mini-feature-text">
+              <h5 class="mini-feature-title">Dashboard Layouts</h5>
+
+              <p>Our themes are designed to display well on most modern devices, including desktops, tablets, and mobile devices. </p>
+            </div>
+          </div> <!-- /.mini-feature -->
+
+          <div class="mini-feature">
+            <i class="fa fa-html5 mini-feature-icon text-secondary"></i>
+
+            <div class="mini-feature-text">
+              <h5 class="mini-feature-title">HTML5 &amp; CSS3</h5>
+
+              <p>Built using HTML5 and CSS3, our themes can be integrated with multiple platforms including Ruby On Rails, PHP, Django, and many others.</p>
+            </div>
+          </div> <!-- /.mini-feature -->
+
+        </div> <!-- /.row -->
+
+
+        <div class="row-divider"></div> <!-- /.row-divider -->
+
+
+        <div class="row">
+
+          <div class="col-sm-6 col-sm-push-6">
+            
+            <h4 class="content-title">
+              <span>About MVPReady</span>
+            </h4>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, autem, quos, dicta, tempora omnis beatae aspernatur repellat aperiam fugit enim animi temporibus magnam tempore quae impedit velit voluptatum consequuntur cupiditate.</p>
+
+            <br>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <ul class="icons-list">
+                  <li>
+                    <i class="icon-li fa fa-check text-primary"></i>
+                    Custom Header Images
+                  </li>
+                  <li>
+                    <i class="icon-li fa fa-check text-primary"></i>
+                    Unlimited Portfolios & Blogs
+                  </li>
+                  <li>
+                    <i class="icon-li fa fa-check text-primary"></i>
+                    Millions Of Page Combinations
+                  </li>
+                </ul>
+              </div>
+
+              <div class="col-sm-6">
+                <ul class="icons-list">
+                  <li>
+                    <i class="icon-li fa fa-check text-primary"></i>
+                    Custom Header Images
+                  </li>
+                  <li>
+                    <i class="icon-li fa fa-check text-primary"></i>
+                    Unlimited Portfolios & Blogs
+                  </li>
+                  <li>
+                    <i class="icon-li fa fa-check text-primary"></i>
+                    Millions Of Page Combinations
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <br>
+
+            <a href="javascript:;" class="btn btn-default">Get MVP Ready Today</a>
+
+            <br><br><br>
+
+          </div> <!-- /.col -->
+
+
+          
+          <div class="col-sm-6 col-sm-pull-6 text-center">
+
+            <br><br>
+            <%= image_tag('landing/devices/macbook.png',class: "img-responsive") %>
+            
+          </div> <!-- /.col -->
+
+        </div> <!-- /.row -->
+
+
+        
+        <div class="row-divider"></div> <!-- /.row-divider -->
+
+
+
+        <div class="row">
+          
+          <div class="col-sm-6">
+
+            <h4 class="content-title">
+              <span>Latest News</span>
+            </h4>
+
+            <div class="recent-news">
+            
+              <div class="recent-news-item clearfix"><div class="recent-news-item-date">13<span>Jan</span></div>
+                <div class="recent-news-item-description">
+                  <h5 class="recent-news-item-title"><a href="http://inovado.mintithemes.com/this-is-a-standard-post/" title="This is a Standard Post">This is a Standard Post</a></h5>
+                  <span class="recent-news-item-comments">7 Comments</span>
+                  <div class="recent-news-item-excerpt">Praesent augue arcu, ornare ut tincidunt eu, mattis a libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames... <a href="http://inovado.mintithemes.com/this-is-a-standard-post/" class="recent-news-item-more">Read More →</a></div>
+                </div>
+              </div> <!-- /.recent-news-item -->
+
+              <div class="recent-news-item clearfix"><div class="recent-news-item-date">04<span>Jan</span></div>
+                <div class="recent-news-item-description">
+                  <h5 class="recent-news-item-title"><a href="http://inovado.mintithemes.com/this-is-a-standard-post/" title="This is a Standard Post">This is a Standard Post</a></h5>
+                  <span class="recent-news-item-comments">2 Comments</span>
+                  <div class="recent-news-item-excerpt">Praesent augue arcu, ornare ut tincidunt eu, mattis a libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames... <a href="http://inovado.mintithemes.com/this-is-a-standard-post/" class="recent-news-item-more">Read More →</a></div>
+                </div>
+              </div> <!-- /.recent-news-item -->
+
+            </div> <!-- /.recent-news -->
+
+            <br class="visible-xs">
+
+          </div> <!-- /.col -->
+
+
+
+          <div class="col-sm-6">
+              
+            <h4 class="content-title">
+              <span>Testimonials</span>
+
+              <a class="btn btn-default btn-sm carousel-prev" href="#clients-carousel" data-slide="prev">&lsaquo;</a>
+              <a class="btn btn-default btn-sm carousel-next" href="#clients-carousel" data-slide="next">&rsaquo;</a>
+            </h4>
+
+            <div id="clients-carousel" class="carousel slide" data-interval="0">
+              <div class="carousel-inner">
+
+                <div class="item active">
+
+                  <div class="testimonial">
+
+                    <p class="testimonial-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, sed, nulla, provident porro quaerat aperiam eum tempore fugiat dicta obcaecati itaque adipisci perspiciatis unde voluptatibus architecto vitae reiciendis distinctio incidunt! Tempore quae impedit velit voluptatum consequuntur cupiditate.
+                    </p>
+
+                    <div class="testimonials-arrow"></div>
+
+                    <div class="testimonial-author">
+                      <div class="testimonial-image">
+                        <%= image_tag('landing/avatars/avatar-1-lg.jpg') %>
+                      </div>
+
+
+                      <div class="testimonial-author-info">
+                        <h5><a href="#">Rod Howard</a></h5> Jumpstart Themes
+                      </div>
+                    </div>
+                  </div> <!-- /.testimonial -->
+
+                </div> <!-- /.item -->
+
+                <div class="item">
+
+                  <div class="testimonial">
+
+                    <p class="testimonial-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, sed, nulla, provident porro quaerat aperiam eum tempore fugiat dicta obcaecati itaque adipisci perspiciatis unde voluptatibus architecto vitae reiciendis distinctio incidunt! Tempore quae impedit velit voluptatum consequuntur cupiditate.
+                    </p>
+
+                    <div class="testimonials-arrow"></div>
+
+                    <div class="testimonial-author">
+                      <div class="testimonial-image">
+                        <%= image_tag('landing/avatars/avatar-2-lg.jpg') %>
+                      </div>
+
+                      <div class="testimonial-author-info">
+                        <h5><a href="#">Nikita Williams</a></h5> Nikita Chanel
+                      </div>
+                    </div>
+                  </div> <!-- /.testimonial -->
+
+                </div> <!-- /.item -->
+
+              </div> <!-- /.carousel-inner -->
+
+            </div> <!-- /.carousel -->
+
+          </div> <!-- /.col -->
+
+        </div> <!-- /.row -->
+
+
+        
+        <div class="row-divider"></div> <!-- /.row-divider -->
+
+
+        <div class="carousel-container">
+        <div class="row">
+
+          <div class="col-sm-12">
+
+            <h4 class="content-title">
+              <span>See Our Clients</span>
+
+              <a class="btn btn-default btn-sm carousel-prev" href="#" data-slide="prev">&lsaquo;</a>
+              <a class="btn btn-default btn-sm carousel-next" href="#" data-slide="next">&rsaquo;</a>
+            </h4>
+
+            <ul class="clients-list">
+              <li>
+                <%= image_tag('landing/clients/logo1-grayscale.png',class: "img-responsive") %>
+              </li>
+              <li>
+                <%= image_tag('landing/clients/logo2-grayscale.png',class: "img-responsive") %>
+              </li>
+              <li>
+                <%= image_tag('landing/clients/logo3-grayscale.png',class: "img-responsive") %>
+              </li>
+              <li>
+                <%= image_tag('landing/clients/logo4-grayscale.png',class: "img-responsive") %>
+              </li>
+              <li>
+                <%= image_tag('landing/clients/logo5-grayscale.png',class: "img-responsive") %>
+              </li>
+              <li>
+                <%= image_tag('landing/clients/logo6-grayscale.png',class: "img-responsive") %>
+              </li>
+            </ul>
+
+            
+            
+          </div> <!-- /.col -->          
+
+        </div> <!-- /.row -->
+        </div> <!-- /.carousel-container -->
+
+
+        
+
+      </div> <!-- /.container -->   
+
+    </div> <!-- /.content -->

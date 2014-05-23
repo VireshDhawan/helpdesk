@@ -60,7 +60,6 @@ class Ticket < ActiveRecord::Base
 		self.save
 		recipients = self.company.agents.select {|a| a.notification.unassigned_tickets?}.map(&:email)
 		Mailer.delay(queue: "helpdesk_notification_queue").unassigned_tickets_notification(self,recipients) unless recipients.blank?
-		end
 	end
 
 	def add_to_archive

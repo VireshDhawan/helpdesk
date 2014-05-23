@@ -1,7 +1,5 @@
 class Agents::RegistrationsController < Devise::RegistrationsController
 
-	layout "admin_panel",except: [:new,:create]
-
 	before_filter :configure_permitted_parameters
  
 	protected

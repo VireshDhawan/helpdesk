@@ -1,15 +1,21 @@
-<h2>Forgot your password?</h2>
+<div class="account-wrapper">
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
+    <div class="account-body">
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-  </div>
+      <h2>Password Reset</h2>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
-<% end %>
+      <h5>We'll email you instructions on how to reset your password.</h5>
 
-<%= render "superadmins/shared/links" %>
+		<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post,class: "form account-form" }) do |f| %>
+			<%= f.error_notification %>
+		    <%= f.input :email, required: true, autofocus: true, label: false, input_html: {class: "form-control"},placeholder: "Email" %>
+		    <%= button_tag(type: 'submit', class: "btn btn-secondary btn-block btn-lg") do %>
+			    Reset Password &nbsp; <i class="fa fa-refresh"></i></i>
+			<% end %>
+			<br>
+			<%= render "superadmins/shared/links" %>
+		<% end %>
+
+    </div> <!-- /.account-body -->
+
+  </div> <!-- /.account-wrapper -->

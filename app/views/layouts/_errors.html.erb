@@ -2,19 +2,19 @@
 <%= content_tag(:div, flash[:alert], :class => "alert alert-dismissable alert-danger") if flash[:alert] %>
 <% if flash[:success] %>
 <div class="alert alert-dismissable alert-success">
-  <button type="button" class="close" data-dismiss="alert">×</button>
+  <a aria-hidden="true" href="#" data-dismiss="alert" class="close">×</a>
   <%= flash[:success] %>
 </div>
 <% end %>
 <% if flash[:warning] %>
 <div class="alert alert-dismissable alert-warning">
-  <button type="button" class="close" data-dismiss="alert">×</button>
+  <a aria-hidden="true" href="#" data-dismiss="alert" class="close">×</a>
   <%= flash[:warning] %>
 </div>
 <% end %>
 <% if flash[:error] || @error_messages %>
 <div class="alert alert-dismissable alert-danger">
-  <button type="button" class="close" data-dismiss="alert">×</button>
+  <a aria-hidden="true" href="#" data-dismiss="alert" class="close">×</a>
   <%= flash[:error] if flash[:error] %>
   <% if @error_messages %>
     <% @error_messages.each do |msg| %>
