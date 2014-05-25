@@ -8,6 +8,7 @@ class SubscriptionsController < ApplicationController
 
 	def index
 		@subscription = current_agent.company.subscription
+		@plans = Plan.all
 	end
 
 	def new
@@ -33,16 +34,18 @@ class SubscriptionsController < ApplicationController
 		end
 	end
 
-	def edit
-		@subscription = Subscription.find(params[:id])
-	end
-
 	def update
 		@subscription = Subscription.find(params[:id])
 		if @subscription.company == current_agent.company
-			unless params[:billing][:billing_period].blank?
+			unless params[:billing].blank?
 				if @subscription.update_attributes(params[:billing])
 					flash[:success] = "Billing Period was updated successfully!"
+					redirect_to :back
+				end
+			end
+			unless params[:plan].blank?
+				if @subscription.update_attributes(params[:plan])
+					flash[:success] = "Plan was updated successfully!"
 					redirect_to :back
 				end
 			end

@@ -4,4 +4,8 @@ module SubscriptionsHelper
 		current_agent.allow_subscription_management ? true : false
 	end
 
+	def plan_limit(value)
+		(value == -1) ? "Unlimited" : value
+	end
+
 end
