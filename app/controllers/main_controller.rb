@@ -13,7 +13,7 @@ class MainController < ApplicationController
 	end
 
 	def pricing
-		
+		@plans = Plan.all
 	end
 
 	def login

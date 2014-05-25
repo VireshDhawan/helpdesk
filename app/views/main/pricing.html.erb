@@ -36,96 +36,48 @@
 
     		<div class="row">
 
-		        <div class="col-sm-12 col-md-10 col-md-offset-1">
+          <% @plans.each_with_index do |plan,i| %>
+            <% if i==0 %>
+            <div class="col-sm-2 col-sm-offset-1">
+            <% else %>
+            <div class="col-sm-2">
+            <% end %>
 
-		          <div class="row">
+              <div class="pricing-plan">
 
-		            <div class="col-sm-4">
+                <% if plan.name == "Enterprise" %>
+                <div class="pricing-plan-ribbon-secondary ui-tooltip" title="Best Value!">
+                  <i class="fa fa-star"></i>
+                </div>
+                <% end %>
 
-		              <div class="pricing-plan">
+                <div class="pricing-header">
+                  <h3 class="pricing-plan-title"><%= plan.name %></h3>                
+                  <!--<p class="pricing-plan-label">For Individuals</p>-->
+                </div>
 
-		                <div class="pricing-header">
-		                  <h3 class="pricing-plan-title">Starter</h3>				    		
-		                  <p class="pricing-plan-label">For Individuals</p>   
-		                </div>
+                <div class="pricing-plan-price">
+                  <span class="pricing-plan-amount">$<%= plan.price %></span> / month
+                </div>
 
-		                <div class="pricing-plan-price">
-		                  <span class="pricing-plan-amount">$9</span> / month
-		                </div>
+                <ul class="pricing-plan-details">           
+                  <li><strong><%= plan_limit(plan.emails) %></strong> Emails</li>
+                  <li><strong><%= plan_limit(plan.tickets) %></strong> Tickets</li>    
+                  <li><strong><%= plan_limit(plan.agents) %></strong> Agents</li> 
+                  <li><strong><%= plan_limit(plan.groups) %></strong> Groups</li>                     
+                </ul>
+                <a href="javascript:;" class="btn btn-danger btn-block">Choose Plan</a>
+                <% if false %>
+                  <%= simple_form_for :plan, url: subscription_path(@subscription.id), html: {method: :put } do |f| %>
+                    <%= f.input :plan_id, required: true, :as => :hidden, input_html: {:value => plan.id} %>
+                    <%= f.button :submit, "Upgrade" , class: "btn btn-primary btn-block" %>
+                  <% end %>
+                <% end %>
 
-		                <ul class="pricing-plan-details">	    			
-		                  <li><strong>10 GB</strong> Disk Space</li>
-		                  <li><strong>5</strong> Sub Domains</li>	   
-		                  <li><strong>10</strong> MySQL Databases</li>	
-		                  <li><strong>1</strong> User</li>	    	 	    				
-		                </ul>
+              </div> <!-- /.pricing-plan -->
 
-		                <a href="../admin/account-signup.html" class="btn btn-primary">Choose Plan</a>
-
-		              </div> <!-- /.pricing-plan -->
-
-		            </div> <!-- /.col -->
-
-
-		            <div class="col-sm-4">
-
-		              <div class="pricing-plan">
-
-		                <div class="pricing-header">				    		
-		                  <h3 class="pricing-plan-title">Basic</h3>					    		
-		                  <p class="pricing-plan-label">For blogs &amp; small business</p>  				    		
-		                </div>
-
-		                <div class="pricing-plan-price">
-		                  <span class="pricing-plan-amount">$24</span> / month
-		                </div>
-
-		                <ul class="pricing-plan-details">	    			
-		                  <li><strong>20 GB</strong> Disk Space</li>
-		                  <li><strong>10</strong> Sub Domains</li>	   
-		                  <li><strong>50</strong> MySQL Databases</li>	
-		                  <li><strong>Unlimited</strong> Users</li>	  	 	    				
-		                </ul>
-
-		                <a href="../admin/account-signup.html" class="btn btn-primary">Choose Plan</a>
-
-		              </div> <!-- /.pricing-plan -->
-
-		            </div> <!-- /.col -->
-
-
-		            <div class="col-sm-4">
-		              <div class="pricing-plan">
-
-		                <div class="pricing-plan-ribbon-secondary ui-tooltip" title="" data-original-title="Best Value!">
-		                  <i class="fa fa-star"></i>
-		                </div>
-
-		                <div class="pricing-header">
-		                  <h3 class="pricing-plan-title">Pro</h3>				    		
-		                  <p class="pricing-plan-label">For consultants</p>   
-		                </div>
-
-		                <div class="pricing-plan-price">
-		                  <span class="pricing-plan-amount">$49</span> / month
-		                </div>
-
-		                <ul class="pricing-plan-details">	    			
-		                  <li><span class="pricing-plan-help" title="" data-content="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus." data-original-title="What's a user?"><strong>40 GB</strong> Disk Space</span></li>
-		                  <li><span class="pricing-plan-help" title="" data-content="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus." data-original-title="What's a project?"><strong>20</strong> Sub Domains</span></li>	   
-		                  <li><span class="pricing-plan-help" title="" data-content="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus." data-original-title="What's storage for?"><strong>80</strong> MySQL Databases</span></li>	
-		                  <li><span class="pricing-plan-help" title="" data-content="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus." data-original-title="What's storage for?"><strong>Unlimited</strong> Users</span></li>   	  	 	    				
-		                </ul>
-
-		                <a href="../admin/account-signup.html" class="btn btn-primary">Choose Plan</a>
-
-		              </div> <!-- /.pricing-plan -->
-
-		            </div> <!-- /.col -->
-
-		          </div> <!-- /.row -->
-
-		        </div> <!-- /.col -->
+            </div> <!-- /.col -->
+          <% end %>
 
 		      </div> <!-- /.row -->
 
