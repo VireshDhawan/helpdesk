@@ -1,0 +1,48 @@
+<div class="mainnav">
+
+    <div class="container">
+
+      <a class="mainnav-toggle" data-toggle="collapse" data-target=".mainnav-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-bars"></i>
+      </a>
+
+      <nav class="collapse mainnav-collapse" role="navigation">
+
+        <!-- search form -->
+        <form class="mainnav-form pull-right" role="search">
+          <input type="text" class="form-control input-md mainnav-search-query" placeholder="Search">
+          <button class="btn btn-sm mainnav-form-btn"><i class="fa fa-search"></i></button>
+        </form>
+
+        <ul class="mainnav-menu">
+          <li class="active">
+            <%= link_to reports_index_path do %>
+              <i class="fa fa-dashboard"></i> 
+              &nbsp;&nbsp;Overview
+            <% end %>
+          </li>
+          <li>
+            <%= link_to reports_agents_path do %>
+              <i class="fa fa-user"></i> 
+              &nbsp;&nbsp;Agents
+            <% end %>
+          </li>
+          <li>
+            <%= link_to reports_groups_path do %>
+              <i class="fa fa-users"></i> 
+              &nbsp;&nbsp;Groups
+            <% end %>
+          </li>
+          <li>
+            <%= link_to reports_labels_path do %>
+              <i class="fa fa-tag"></i> 
+              &nbsp;&nbsp;Labels
+            <% end %>
+          </li>
+        </ul>
+
+      </nav>
+
+    </div> <!-- /.container -->
+  </div> <!-- /.mainnav -->

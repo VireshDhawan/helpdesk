@@ -27,7 +27,7 @@ Helpdesk::Application.routes.draw do
   end
   
   resources :companies, :except => [:show, :index]
-  resources :subscriptions, :except => [:show, :index, :destroy],:path => "subscription"
+  resources :subscriptions, :except => [:show, :destroy]
   resources :plans, :except => [:destroy], :path => "plans"
   resources :tickets, :path => "tickets"
   resources :labels, :except => [:show], :path => "labels"

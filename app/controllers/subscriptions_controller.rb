@@ -4,10 +4,15 @@ class SubscriptionsController < ApplicationController
 	before_filter :authorize_admin #check if user is admin
 	before_filter :authorize_subscription_privilages
 
-layout "admin_panel",except: [:new,:create]
+	layout "admin_panel",except: [:new,:create]
+
+	def index
+		@subscription = current_agent.company.subscription
+	end
 
 	def new
 		@subscription = Subscription.new
+		render :layout => "accounts"
 	end
 
 	def create
@@ -35,6 +40,19 @@ layout "admin_panel",except: [:new,:create]
 	def update
 		@subscription = Subscription.find(params[:id])
 		if @subscription.company == current_agent.company
+			unless params[:billing][:billing_period].blank?
+				if @subscription.update_attributes(params[:billing])
+					flash[:success] = "Billing Period was updated successfully!"
+					redirect_to :back
+				end
+			end
+		end
+	end
+
+=begin
+	def update
+		@subscription = Subscription.find(params[:id])
+		if @subscription.company == current_agent.company
 			if @subscription.update_attributes(params[:subscription])
 				flash[:success] = "Subscription details were updated successfully!"
 				#redirect_to dashboard/current_page
@@ -49,6 +67,7 @@ layout "admin_panel",except: [:new,:create]
       		render :action => "edit"
 		end
 	end
+=end	
 
 	protected
 

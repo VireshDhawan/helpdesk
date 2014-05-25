@@ -1,22 +1,38 @@
-<div class="row">
-	<h1>Notifications</h1>
-	<hr>
-</div>
-<div class="row">
+<div class="content">
+
 	<div class="container">
-		<br>
-		<%= simple_form_for @notification , html: { :class => "form-horizontal" } do |f| %>
-			<%= f.error_notification %>
-			<%= f.input :unassigned_tickets, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me of new unassigned tickets" %>
-			<%= f.input :assigned_tickets, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me if a ticket is assigned to me" %>
-			<%= f.input :assigned_group, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me if a ticket is assigned to one of my groups" %>
-			<%= f.input :reply_all, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me on new reply of all tickets" %>
-			<%= f.input :reply_on_my_tickets, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me on new customer reply if I have participated in the ticket" %>
-			<%= f.input :reply_on_my_group_tickets, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me of a reply if a ticket is assigned to one of my groups" %>
-			<%= f.input :all_comments, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me of all comments" %>
-			<%= f.input :comments_on_my_tickets, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me of a comment if a ticket is assigned to me" %>
-			<%= f.input :comments_on_my_group_tickets, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me of a comment if a ticket is assigned to one of my groups" %><br>
-			<div class="col-sm-3"><%= f.button :submit, "Update Preferences",class: "btn btn-info" %></div>
-		<% end %>
+
+		<div class="portlet">
+
+			<h4 class="portlet-title">
+			  <u>Notifications</u>
+			  <%= link_to "Back",:back,class: "pull-right" %>
+			</h4>
+			<br>
+
+	        <div class="portlet-body">
+	        	<div class="row">
+	        		<div class="col-sm-12 col-md-8 col-md-offset-2"><br>
+	        			<%= simple_form_for @notification , html: { :class => "form-horizontal" }, :wrapper => :normal do |f| %>
+							<%= f.error_notification %>
+							<%= f.input :unassigned_tickets, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me of new unassigned tickets" %>
+							<%= f.input :assigned_tickets, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me if a ticket is assigned to me" %>
+							<%= f.input :assigned_group, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me if a ticket is assigned to one of my groups" %>
+							<%= f.input :reply_all, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me on new reply of all tickets" %>
+							<%= f.input :reply_on_my_tickets, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me on new customer reply if I have participated in the ticket" %>
+							<%= f.input :reply_on_my_group_tickets, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me of a reply if a ticket is assigned to one of my groups" %>
+							<%= f.input :all_comments, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me of all comments" %>
+							<%= f.input :comments_on_my_tickets, as: :boolean, checked_value: true, unchecked_value: false,inline_label: true, label: false, inline_label: "Notify me of a comment if a ticket is assigned to me" %>
+							<%= f.input :comments_on_my_group_tickets, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Notify me of a comment if a ticket is assigned to one of my groups" %><br>
+							<div class="form-group">
+			                  <div class="col-md-7 col-md-push-3">
+							<%= f.button :submit, "Update Preferences",class: "btn btn-info" %>
+								</div> <!-- /.col -->
+			                </div>
+						<% end %>
+	        		</div>
+	        	</div>
+	        </div> <!-- /.portlet-body -->
+	    </div> <!-- /.portlet -->
 	</div>
 </div>

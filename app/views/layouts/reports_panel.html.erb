@@ -3,23 +3,17 @@
 <head>
   <title>Helpdesk</title>
   <%= include_gon %>
-  <%= stylesheet_link_tag    "application", media: "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    "reports", media: "all" %>
+  <%= javascript_include_tag "reports" %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
-  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic|Raleway:400,300,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,800,800italic|Oswald:400,300,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<%= render 'layouts/control_panel_header' %>
+	<%= render 'layouts/control_panel_header_main' %>
+	<%= render 'layouts/reports_navigation' %>
 	<%= render 'layouts/errors' %>
-	<div class="row" id="reports_cp">
-		<div class="col-sm-2" id="reports_sidebar">
-			<%= render 'layouts/reports_sidebar' %>
-		</div>
-		<div class="col-sm-10">
-			<%= yield %>
-		</div>
-	</div>
-	<%= render 'layouts/control_panel_footer' %>
+	<%= yield %>
+	<%= render 'layouts/small_footer' %>
 </body>
 </html>

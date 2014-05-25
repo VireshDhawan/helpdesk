@@ -32,6 +32,7 @@ class CompaniesController < ApplicationController
 
   def edit
     @company = Company.find(params[:id])
+    render :layout => "admin_panel"
   end
 
   def update
