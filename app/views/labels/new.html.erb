@@ -1,14 +1,29 @@
-<div class="row">
-	<h1>Add a New Label</h1>
-	<hr>
-</div>
-<div class="row">
+<div class="content">
+
 	<div class="container">
-		<br>
-		<%= simple_form_for @label , html: { :class => "form-horizontal" } do |f| %>
-			<%= f.error_notification %>
-			<%= f.input :name %>
-			<div class="col-sm-3 col-sm-offset-2 form_button"><%= f.button :submit, "Add Label",class: "btn btn-info" %></div>
-		<% end %>
+
+		<div class="portlet">
+
+			<h4 class="portlet-title">
+			  <u>Add a New Label</u>
+			  <%= link_to "Back",:back,class: "pull-right" %>
+			</h4>
+			<br>
+
+	        <div class="portlet-body">
+	        	<div class="row">
+	        		<div class="col-sm-12 col-md-8 col-md-offset-2"><br>
+	        			<%= simple_form_for @label , html: { :class => "form-horizontal" }, :wrapper => :normal do |f| %>
+							<%= f.input :name,input_html: {class: "form-control"} %>
+							<div class="form-group">
+			                  <div class="col-md-7 col-md-push-3">
+							<%= f.button :submit, "Add Label",class: "btn btn-info" %>
+								</div> <!-- /.col -->
+			                </div>
+						<% end %>
+	        		</div>
+	        	</div>
+	        </div> <!-- /.portlet-body -->
+	    </div> <!-- /.portlet -->
 	</div>
 </div>

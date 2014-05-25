@@ -1,34 +1,53 @@
-<div class="row">
-	<h1>Edit Forwarding Address</h1>
-	<hr>
-</div>
-<div class="row">
+<div class="content">
+
 	<div class="container">
-		<br>
-		<%= simple_form_for @forwarding_address , html: { :class => "form-horizontal" } do |f| %>
-			<%= f.error_notification %>
-			<%= f.input :from, label: "Forward mails from" %>
-			<%= f.input :alias_name,label: "Name in replies to customer" %>
-			<div class="col-md-offset-3">
-				<b>OR</b><br>
-			<%= f.input :use_agents_name, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Use Agents Name" %>
-			</div>
-			<div class="col-md-offset-1" ><a href="#" id="optional_settings_link">Optional Settings</a></div><br>
-			<div id="optional_settings">
-				<%= f.input :bcc_to, label: "Bcc all agent replies to" %>
-				<div class="col-md-offset-3">
-				<%= f.input :spam_filter, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Spam Filter on All Incoming Emails" %>
-				</div><br>
-			</div>
-			<div class="col-sm-3 col-sm-offset-2 form_button"><%= f.button :submit, "Generate Forward.",class: "btn btn-info" %></div>
-		<% end %>
+
+		<div class="portlet">
+
+			<h4 class="portlet-title">
+			  <u>Generate a New Forwarding Address</u>
+			  <%= link_to "Back",:back,class: "pull-right" %>
+			</h4>
+			<br>
+			<div class="portlet-body">
+	        	<div class="row">
+	        		<div class="col-sm-12 col-md-8 col-md-offset-2"><br>
+						<%= simple_form_for @forwarding_address , html: { :class => "form-horizontal"}, :wrapper => :normal  do |f| %>
+							<%= f.error_notification %>
+							<%= f.input :from, label: "Forward mails from",input_html: {class: "form-control"} %>
+							<%= f.input :alias_name,label: "Name in replies to customer",input_html: {class: "form-control"} %>
+							<div class="col-md-offset-3">
+								<b>OR</b><br><br>
+							<%= f.input :use_agents_name, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Use Agents Name" %>
+							</div>
+							<div class="form-group">
+			                  <div class="col-md-7 col-md-push-3">
+								<a href='#' id="optional_settings_link">Optional Settings</a>
+								</div> <!-- /.col -->
+			                </div>
+							<div id="optional_settings">
+								<%= f.input :bcc_to, label: "Bcc all agent replies to",input_html: {class: "form-control"} %>
+								<div class="col-md-offset-3">
+								<%= f.input :spam_filter, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Spam Filter on All Incoming Emails" %>
+								</div><br>
+							</div>
+							<div class="form-group">
+			                  <div class="col-md-7 col-md-push-3">
+								<%= f.button :submit, "Edit Forward",class: "btn btn-info btn-block"%>
+			                  </div> <!-- /.col -->
+			                </div>
+						<% end %>
+	        		</div>
+	        	</div>
+	        </div> <!-- /.portlet-body -->
+	    </div> <!-- /.portlet -->
 	</div>
 </div>
 <script type="text/javascript">
 	$(document).ready(function() {
         $('#optional_settings_link').click(function(e) {
-        		e.preventDefault();
-                $('#optional_settings').slideToggle("fast");
+    		e.preventDefault();
+            $('#optional_settings').slideToggle("fast");
         });
     });
 </script>

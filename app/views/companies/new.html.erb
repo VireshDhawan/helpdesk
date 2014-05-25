@@ -1,14 +1,16 @@
-<div class="row" class="no_layout_heading">
-	<h1 >Company Settings</h1>
-	<hr>
-</div>
-<div class="row">
-	<div class="container">
-		<br>
-		<%= simple_form_for @company , html: { :class => "form-horizontal" } do |f| %>
+<div class="account-wrapper">
+
+    <div class="account-body">
+
+      <h3>Company Name</h3>
+      <h5>Tell us about your company!</h5>
+
+      	<%= simple_form_for @company , html: { :class => "form account-form" } do |f| %>
 		  <%= f.error_notification %>
-		    <%= f.input :name, required: true, autofocus: true %>
-		  <div class="col-sm-3 col-sm-offset-1 form_button"><%= f.button :submit, "Update",class: "btn btn-info" %></div>
+		    <%= f.input :name, required: true, autofocus: true, label: false, input_html: {class: "form-control"},placeholder: "Name" %>
+		  <%= button_tag(type: 'submit', class: "btn btn-primary btn-block btn-lg") do %>
+			    Update &nbsp; <i class="fa fa-play-circle"></i>
+			<% end %>
 		<% end %>
-	</div>
+    </div> <!-- /.account-body -->
 </div>

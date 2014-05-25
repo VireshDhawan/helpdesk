@@ -1,14 +1,30 @@
-<div class="row">
-	<h1>Company Settings</h1>
-	<hr>
-</div>
-<div class="row">
+<div class="content">
+
 	<div class="container">
-		<br>
-			<%= simple_form_for @company , html: { :class => "form-horizontal" } do |f| %>
-			  <%= f.error_notification %>
-			    <%= f.input :name, required: true, autofocus: true %>
-			  <div class="col-sm-3 col-sm-offset-1 form_button"><%= f.button :submit, "Update",class: "btn btn-info" %></div>
-			<% end %>
+
+		<div class="portlet">
+
+			<h4 class="portlet-title">
+			  <u>Company Settings</u>
+			  <%= link_to "Back",:back,class: "pull-right" %>
+			</h4>
+			<br>
+
+	        <div class="portlet-body">
+	        	<div class="row">
+	        		<div class="col-sm-12 col-md-8 col-md-offset-2"><br>
+	        			<%= simple_form_for @company , html: { :class => "form-horizontal" }, :wrapper => :normal do |f| %>
+						  <%= f.error_notification %>
+						    <%= f.input :name, required: true, autofocus: true,input_html: {class: "form-control"} %>
+						    <div class="form-group">
+			                  <div class="col-md-7 col-md-push-3">
+							<%= f.button :submit, "Update",class: "btn btn-info" %>
+								</div> <!-- /.col -->
+			                </div>
+						<% end %>
+	        		</div>
+	        	</div>
+	        </div> <!-- /.portlet-body -->
+	    </div> <!-- /.portlet -->
 	</div>
 </div>

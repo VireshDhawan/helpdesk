@@ -2,23 +2,17 @@
 <html>
 <head>
   <title>Helpdesk</title>
-  <%= stylesheet_link_tag    "application", media: "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    "admin_panel", media: "all" %>
+  <%= javascript_include_tag "admin_panel" %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,800,800italic|Oswald:400,300,700' rel='stylesheet' type='text/css'>
 </head>
-<body>
-	<%= render 'layouts/control_panel_header' %>
+<body class=" ">
+	<%= render 'layouts/control_panel_header_main' %>
+	<%= render 'layouts/admin_panel_navigation' %>
 	<%= render 'layouts/errors' %>
-	<div class="row" id="admins_cp_sidebar">
-		<div class="col-sm-2">
-			<%= render 'layouts/admin_sidebar' %>
-		</div>
-		<div class="col-sm-10" id="admins_cp_body">
-			<%= yield %>
-		</div>
-	</div>
-	<%= render 'layouts/control_panel_footer' %>
+	<%= yield %>
+	<%= render 'layouts/small_footer' %>
 </body>
 </html>

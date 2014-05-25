@@ -1,38 +1,102 @@
-<div class="row">
-	<h1>Email Setup</h1>
-	<p>To use your own email addresses (like support@your_company.com, billing@your_company.com), you need to create forwarding addresses and forward emails to them. <%= link_to "Learn More »",'' %></p>
-	<hr>
-</div>
-<div class="row">
-	<br>
-	<%= link_to "Add a New Forwarding Address", new_forwarding_address_path,class: "btn btn-danger" %>
-	<br><br>
-	<hr>
-</div>
-<div class="row">
-	<h3>Current Forwarding Addresses</h3><br>
-	<% if @forwarding_addresses %>
-	<table class="table table-stripped">
-		<tr>
-			<th>*</th>
-			<th>From</th>
-			<th>To</th>
-			<th>Alias Name<br>(Name in customer replies)</th>
-			<th>Edit</th>
-			<th>Delete</th>
-		</tr>
-		<% @forwarding_addresses.each_with_index do |address, i| %>
-		<tr>
-			<td><%= i+1 %></td>
-			<td><%= address.from %></td>
-			<td><%= address.to %></td>
-			<td><%= address.alias_name %></td>
-			<td><%= link_to '', edit_forwarding_address_path(address.id),class: "fa fa-pencil" %> </td>
-			<td><%= link_to '',forwarding_address_path(address.id),:method => :delete, :data => { :confirm => 'Are you sure?' },class: "fa fa-trash-o" %> </td>
-		</tr>
-		<% end %>
-	</table>
-	<% else %>
-		<p>No addresses created yet!</p>
-	<% end %>
-</div>
+<div class="content">
+
+	<div class="container">
+
+	  <div class="layout layout-stack-sm layout-main-left">
+
+	    <div class="col-sm-7 col-md-9 layout-main">
+
+			<div class="portlet">
+
+				<h4 class="portlet-title">
+				  <u>Email Setup</u>
+				</h4>
+				<p>To use your own email addresses (like support@your_company.com, billing@your_company.com), you need to create forwarding addresses and forward emails to them. <%= link_to "Learn More »",'' %></p>
+				<br>
+
+			</div>
+
+			<div class="portlet">
+
+				<h4 class="portlet-title">
+	              <u>Current Forwarding Addresses</u>
+	            </h4>
+
+		        <div class="portlet-body">
+		          <table class="table table-striped table-bordered table-hover">
+		            <thead>
+		              <tr>
+						<th>From</th>
+						<th>To</th>
+						<th>Alias Name<br>(Name in customer replies)</th>
+						<th>Edit</th>
+						<th>Delete</th>
+		              </tr>
+		            </thead>
+		            <tbody>
+					<% @forwarding_addresses.each do |address, i| %>		            	
+		              <tr >
+						<td><%= address.from %></td>
+						<td><%= address.to %></td>
+						<td><%= address.alias_name %></td>
+						<td><%= link_to '', edit_forwarding_address_path(address.id),class: "fa fa-pencil" %> </td>
+						<td><%= link_to '',forwarding_address_path(address.id),:method => :delete, :data => { :confirm => 'Are you sure?' },class: "fa fa-trash-o text-danger" %> </td>
+		              </tr>
+		            <% end %>
+		            </tbody>
+		          </table>
+
+		        </div> <!-- /.portlet-body -->
+
+		      </div> <!-- /.portlet -->
+
+	  	</div>
+
+		  	<div class="col-sm-5 col-md-3 layout-sidebar">
+
+				<div class="portlet">
+					<%= link_to "New Forward", new_forwarding_address_path,class: "btn btn-primary btn-jumbo btn-block" %>
+					<br>
+				</div> <!-- /.portlet -->
+
+				<h4>Recent Activity</h4>
+
+	          <div class="well">
+	            
+	            <ul class="icons-list text-md">
+	              <li>
+	                <i class="icon-li fa fa-comments-o text-success"></i>
+	                <strong>New Sale!</strong>
+	                <br>
+	                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+	              </li>
+	              <li>
+	                <i class="icon-li fa fa-check-square text-secondary"></i>
+	                <strong>New Action!</strong>
+	                <br>
+	                Vestibulum iaculis felis eu eros pellentesque placerat.
+	              </li>
+	              <li>
+	                <i class="icon-li fa fa-truck text-tertiary"></i>
+	                <strong>New Product!</strong>
+	                <br>
+	                Curabitur cursus nisl et mauris imperdiet porttitor.
+	              </li>
+	              <li>
+	                <i class="icon-li fa fa-comments-o text-primary"></i>
+	                <strong>New Comment!</strong>
+	                <br>
+	                Vestibulum iaculis felis eu eros pellentesque placerat.
+	              </li>
+	              <li>
+	                <i class="icon-li fa fa-comments-o text-primary"></i>
+	                <strong>New Comment!</strong>
+	                <br>
+	                Curabitur cursus nisl et mauris imperdiet porttitor.
+	              </li>
+	            </ul>
+	          </div> <!-- /.well -->
+	        </div> <!-- col-5 -->
+		</div> <!-- /.layout -->
+	</div> <!-- /.container -->
+</div> <!-- /.content -->

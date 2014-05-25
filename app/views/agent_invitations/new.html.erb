@@ -1,37 +1,53 @@
-<div class="row">
-	<h1>Invite an Agent</h1>
-	<hr>
-</div>
-<div class="row">
+<div class="content">
+
 	<div class="container">
-		<br>
 
-		<%= simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post,class: "form-horizontal"} do |f| %>
-		<%= devise_error_messages! %>
-		<% resource.class.invite_key_fields.each do |field| -%>
-		  <%= f.input field,required: true %>
-		<% end -%>
-		<%= f.input :role, collection: [["Select one",nil],["Admin",true],["Agent",false]], required: true,include_blank: false,selected: "Select one" %>
-		<div class="col-md-offset-2">
-			<div id="admin_privilages">
-			<%= f.input :allow_billing_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage billing preferences" %>
-			<%= f.input :allow_company_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage company preferences" %>
-			<%= f.input :allow_subscription_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage plans and subscriptions" %>
-			<%= f.input :allow_groups_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage groups" %>
-			</div>
-			<div id="agent_privilages">
-			<%= f.input :allow_to_invite, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false , inline_label: "allow to invite agents" %>
-			<%= f.input :allow_agent_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage agents" %>
-			<%= f.input :allow_reporting, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to view and manage reports" %>
-			</div>
-		</div>
-		<br>
-		<%= f.input :company_id, required: true, :as => :hidden, input_html: {:value => current_agent.company.id} %>
+		<div class="portlet">
 
-		<div class="col-sm-3 col-sm-offset-1 form_button"><%= f.submit t("devise.invitations.new.submit_button"),class: "btn btn-info" %></div>
-		<% end %>
+			<h4 class="portlet-title">
+			  <u>Invite an Agent</u>
+			  <%= link_to "Back",:back,class: "pull-right" %>
+			</h4>
+			<br>
+
+	        <div class="portlet-body">
+	        	<div class="row">
+	        		<div class="col-sm-12 col-md-8 col-md-offset-2"><br>
+	        			<%= simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post,class: "form-horizontal"}, :wrapper => :normal do |f| %>
+						<%= devise_error_messages! %>
+						<% resource.class.invite_key_fields.each do |field| -%>
+						  <%= f.input field,required: true %>
+						<% end -%>
+						<%= f.input :role, collection: [["Select one",nil],["Admin",true],["Agent",false]], required: true,include_blank: false,selected: "Select one" %>
+						<div class="col-md-offset-2">
+							<div id="admin_privilages">
+							<%= f.input :allow_billing_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage billing preferences" %>
+							<%= f.input :allow_company_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage company preferences" %>
+							<%= f.input :allow_subscription_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage plans and subscriptions" %>
+							<%= f.input :allow_groups_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage groups" %>
+							</div>
+							<div id="agent_privilages">
+							<%= f.input :allow_to_invite, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false , inline_label: "allow to invite agents" %>
+							<%= f.input :allow_agent_management, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to manage agents" %>
+							<%= f.input :allow_reporting, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "allow to view and manage reports" %>
+							</div>
+						</div>
+						<br>
+						<%= f.input :company_id, required: true, :as => :hidden, input_html: {:value => current_agent.company.id} %>
+
+						<div class="form-group">
+			                  <div class="col-md-7 col-md-push-3">
+							<%= f.button :submit, t("devise.invitations.new.submit_button"),class: "btn btn-info" %>
+							</div> <!-- /.col -->
+		                </div>
+						<% end %>
+	        		</div>
+	        	</div>
+	        </div> <!-- /.portlet-body -->
+	    </div> <!-- /.portlet -->
 	</div>
 </div>
+
 <script type="text/javascript">
 	$('input[type="checkbox"]').checkbox({
 	    buttonStyle: 'btn-link',

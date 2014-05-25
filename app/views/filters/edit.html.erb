@@ -1,27 +1,43 @@
-<div class="row">
-	<h1>Edit Filter</h1>
-	<p>Filters can help you automate ticket routing, adding a label and other tasks. &nbsp; <%= link_to "Learn More »", '' %></p>
-	<hr>
-</div>
-<div class="row">
+<div class="content">
+
 	<div class="container">
-		<br>
-		<%= simple_form_for @filter , html: { :class => "form-horizontal" } do |f| %>
-			<%= f.error_notification %>
-			<%= f.input :from_email %>
-			<%= f.input :delivered_to %>
-			<%= f.input :subject_with_keywords %>
-			<%= f.input :body_with_keywords %>
-			<div class="col-md-offset-3">
-			<%= f.input :archive, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Add to archive" %>
-			<%= f.input :trash, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Move to trash" %>
-			<%= f.input :spam, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Mark spam" %>
-			</div>
-			<%= f.input :label_id, label: "Add Label", collection: filter_labels, as: :select %>
-			<%= f.input :agent_id, label: "Assign to Agent", collection: filter_agents, as: :select %>
-			<%= f.input :group_id, label: "Assign to Group", collection: filter_groups, as: :select %>
-			<%= f.input :company_id, as: :hidden, input_html:{ value: current_agent.company.id } %>
-			<div class="col-sm-3 col-sm-offset-2 form_button"><%= f.button :submit, "Create Filter",class: "btn btn-info" %></div>
-		<% end %>
+
+		<div class="portlet">
+
+			<h4 class="portlet-title">
+			  <u>Edit Filter</u>
+			  <%= link_to "Back",:back,class: "pull-right" %>
+			</h4>
+			<p>Filters can help you automate ticket routing, adding a label and other tasks. &nbsp; <%= link_to "Learn More »", '' %></p>
+			<br>
+
+	        <div class="portlet-body">
+	        	<div class="row">
+	        		<div class="col-sm-12 col-md-8 col-md-offset-2"><br>
+	        			<%= simple_form_for @filter , html: { :class => "form-horizontal" }, :wrapper => :normal do |f| %>
+							<%= f.error_notification %>
+							<%= f.input :from_email,input_html: {class: "form-control"} %>
+							<%= f.input :delivered_to,input_html: {class: "form-control"} %>
+							<%= f.input :subject_with_keywords,input_html: {class: "form-control"} %>
+							<%= f.input :body_with_keywords,input_html: {class: "form-control"} %>
+							<div class="col-md-offset-3">
+							<%= f.input :archive, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Add to archive" %>
+							<%= f.input :trash, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Move to trash" %>
+							<%= f.input :spam, as: :boolean, checked_value: true, unchecked_value: false, inline_label: true, label: false, inline_label: "Mark spam" %>
+							</div>
+							<%= f.input :label_id, label: "Add Labels", collection: filter_labels, as: :select %>
+							<%= f.input :agent_id, label: "Assign to Agent", collection: filter_agents, as: :select %>
+							<%= f.input :group_id, label: "Assign to Group", collection: filter_groups, as: :select %>
+							<%= f.input :company_id, as: :hidden, input_html:{ value: current_agent.company.id } %>
+							<div class="form-group">
+			                  <div class="col-md-7 col-md-push-3">
+							<%= f.button :submit, "Create Filter",class: "btn btn-info" %>
+								</div> <!-- /.col -->
+			                </div>
+						<% end %>
+	        		</div>
+	        	</div>
+	        </div> <!-- /.portlet-body -->
+	    </div> <!-- /.portlet -->
 	</div>
 </div>
