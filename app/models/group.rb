@@ -9,5 +9,5 @@ class Group < ActiveRecord::Base
 
 	validates_presence_of :name,:company_id
 	validates_uniqueness_of :name,scope: [:company_id], :case_sensitive => false, message: "Group with the given name already exists."
-	
+		
 end

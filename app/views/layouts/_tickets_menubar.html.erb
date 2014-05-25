@@ -1,15 +1,23 @@
-<div class="row">
-	<div class="navbar-main">
-		<div class="navbar navbar-default">
-			<ul class="nav nav-pills">
-				<li><%= link_to '',:back,class: "fa fa-caret-square-o-left" %></li>
-				<li><%= link_to "Archive",''%></li>
+<div class="navbar navbar-default ticket-menubar col-md-12" role="banner">
+	<div class="container">
+
+		<div class="navbar-header">
+	        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".ticket-menu">
+	          <span class="sr-only">Toggle navigation</span>
+	          <h5>Tickets Menu &nbsp; &nbsp; <i class="fa fa-bars"></i></h5>
+	        </button>
+	    </div>
+
+		<nav class="collapse navbar-collapse ticket-menu" role="navigation">
+			<ul class="nav navbar-nav navbar-left">
+				<li><%= link_to "Archive",'' %></li>
 				<li class="dropdown">
-					<%= link_to '#',:"role" => "button", :"data-toggle"=>"dropdown" do %>
-			          Assign <b class="caret"></b>
+					<%= link_to 'javascript:;', :"data-toggle"=>"dropdown", class: "dropdown-toggle" do %>
+			          <span class="navbar-profile-avatar" style="border:none;">Assign</span>
+			          <i class="fa fa-caret-down"></i>
 			        <% end %>
-			        <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
-				          <li>
+			        <ul class="dropdown-menu" role="menu">
+				      <li>
 			          	<%= link_to '',:"tabindex" => "-1",:"role" => "menuitem",class: "smoothScroll" do %>
 			          	To an Agent
 			          	<% end %>
@@ -27,10 +35,9 @@
 			          </li>
 			        </ul>
 				</li>
-				<li><%= link_to "Spam",''%></li>
-				<li><%= link_to "Trash",''%></li>
-				<li><%= link_to "New Ticket",new_ticket_path,class: "btn btn-success pull-right" %></li>
+				<li><%= link_to "Spam",'' %></li>
+				<li><%= link_to "Trash",'' %></li>
 			</ul>
-		</div>
+		</nav>
 	</div>
 </div>

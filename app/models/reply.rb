@@ -3,7 +3,7 @@ class Reply < ActiveRecord::Base
 	belongs_to :ticket
 	belongs_to :agent
 
-	after_create :new_reply_notify
+#	after_create :new_reply_notify
 
 	attr_accessible :content,:agent_id,:ticket_id
 	validates :content, presence: true

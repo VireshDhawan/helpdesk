@@ -1,0 +1,66 @@
+// Place all the styles related to the tickets controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body{
+	overflow-x: hidden;
+}
+.full{
+	h4,p{
+		padding-left:5px;
+	}
+}
+.help-inline{
+	color:red;
+}
+
+.links_nav > .list-group-item{
+	margin-bottom:2px;
+	padding: 11px 15px;
+}
+
+#tickets_portlet{
+	margin-bottom:2em;
+	h4{
+		padding-left:5px;
+	}
+}
+.fa{
+	line-height: 2 !important;
+}
+
+.ticket-menubar{
+	background-color: #F5F5F5;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+    a {
+    	color:#555555 !important;
+    }
+}
+
+.sticky {
+    position:fixed;
+    top:0;
+    z-index: 9999;
+}
+
+.menu-padding {
+    padding-top:0px;
+}
+
+.ticket_table{
+	a{
+		color:#555555;
+	}
+	a:hover{text-decoration:none;}
+	tr:hover{
+		cursor: pointer;
+	}
+}
+#unanswered {
+	margin-top:100px;	
+}
+#tickets_sidebar{
+	.badge{margin-top:7px;}
+}

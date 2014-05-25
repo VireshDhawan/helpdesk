@@ -22,6 +22,11 @@ class Agent < ActiveRecord::Base
 
   validates :role, inclusion: { in: [true,false], message: "can't be blank" }
 
+  # scope for group tickets for a agent
+  def all_group_tickets
+    groups.map { |g| g.tickets }.flatten
+  end
+
   def password_required?
     super if confirmed?
   end
@@ -38,8 +43,8 @@ class Agent < ActiveRecord::Base
     self.role ? true : false
   end
 
-  def self.get_full_name(first,last)
-    full_name = "#{first} #{last}"
+  def get_full_name
+    "#{self.first_name} #{self.last_name}"
   end
 
 end

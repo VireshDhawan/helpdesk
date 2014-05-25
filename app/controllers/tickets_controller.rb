@@ -7,8 +7,25 @@ class TicketsController < ApplicationController
 
   def index
     if params[:type] == "unassigned"
+      # Unassigned
       @tickets = current_agent.company.tickets.in_category("Unassigned")
-    elsif
+    elsif params[:type] == "agent"
+      # Agent
+      @tickets = current_agent.tickets
+    elsif params[:type] == "trash"
+      # Trash
+      @tickets = current_agent.company.tickets.in_category("Trash")
+    elsif params[:type] == "archived"
+      # Archived
+      @tickets = current_agent.company.tickets.in_category("Archived")  
+    elsif params[:type] == "groups"
+      # Groups
+      @tickets = current_agent.all_group_tickets
+    elsif params[:type] == "spam"
+      # Spam
+      @tickets = current_agent.company.tickets.in_category("Spam")
+    else
+      # All
       @tickets = current_agent.company.tickets
     end
   end

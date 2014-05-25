@@ -2,23 +2,32 @@
 <html>
 <head>
   <title>Helpdesk</title>
-  <%= stylesheet_link_tag    "application", media: "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    "tickets", media: "all" %>
+  <%= javascript_include_tag "tickets" %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
-  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic|Raleway:400,300,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,800,800italic|Oswald:400,300,700' rel='stylesheet' type='text/css'>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 	<%= render 'layouts/control_panel_header_main' %>
+	<%= render 'layouts/tickets_header' %>
 	<%= render 'layouts/errors' %>
-	<div class="row" id="tickets_cp">
-		<div class="col-sm-2" id="tickets_sidebar">
-			<%= render 'layouts/tickets_sidebar' %>
-		</div>
-		<div class="col-sm-10">
-			<%= render 'layouts/tickets_menubar' %>
-			<%= yield %>
-		</div>
-	</div>
+	<div class="content">
+
+    	<div class="container-fluid">
+
+    		<div class="row">
+
+				<%= render 'layouts/tickets_sidebar' %>
+				
+				<%= yield %>
+
+			</div> <!-- /.row --><br><br>
+
+		</div> <!-- /.container-fluid -->
+
+	</div> <!-- .content -->
+	<%= render 'layouts/small_footer' %>
 </body>
 </html>

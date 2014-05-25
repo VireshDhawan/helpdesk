@@ -3,7 +3,7 @@ class Comment < ActiveRecord::Base
 	belongs_to :ticket
 	belongs_to :agent
 
-	after_create :new_comment_notify
+#	after_create :new_comment_notify
 	
 	attr_accessible :content,:agent_id,:ticket_id
 	validates :content, presence: true

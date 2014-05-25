@@ -1,21 +1,61 @@
-<div class="left_nav">
-	<div class="navbar-main">
-		<div class="navbar navbar-default">
-			<ul class="nav nav-pills nav-stacked">
-				<li class="nav-header"><h3>Tickets</h3></li><hr>
-				<li><%= link_to "All",tickets_path %></li>
-				<li><%= link_to "Unassigned",tickets_path(type: "unassigned") %></li>
-				<li><%= link_to "My",tickets_path(type: "agent") %></li>
-				<li><%= link_to "Groups",tickets_path(type: "groups") %></li>
-				<li><%= link_to "Drafts",tickets_path(type: "drafts") %></li>
-				<li><%= link_to "Archived",tickets_path(type: "archived") %></li>
-				<li><%= link_to "Spam",tickets_path(type: "spam") %></li>
-				<li><%= link_to "Trash",tickets_path(type: "trash") %></li>
-				<hr>
-				<li class="nav-header">Labels</li>
-				<li><%= link_to "label 1",'' %></li>
-				<li><%= link_to "label 2",'' %></li>
-			</ul>
-		</div>
+<div class="col-md-2 col-sm-5">
+
+    <div class="portlet" id="tickets_portlet">
+		<h4 class="portlet-title">
+		  <u>Tickets</u>
+		</h4>
 	</div>
-</div>
+
+  <div class="list-group links_nav" id="tickets_sidebar">
+  	<%= link_to tickets_path(type: "unassigned"),class: "list-group-item" do %>
+      <i class="fa fa-dollar kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;Unassigned
+      <span class="badge">3</span>
+  	<% end %>
+    <%= link_to tickets_path,class: "list-group-item" do %>
+      <i class="fa fa-ticket kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;All
+      <span class="badge">3</span>
+    <% end %>
+  	<%= link_to tickets_path(type: "agent"),class: "list-group-item" do %>
+      <i class="fa fa-user kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;My
+      <span class="badge">3</span>
+  	<% end %>
+  	<%= link_to tickets_path(type: "groups"),class: "list-group-item" do %>
+      <i class="fa fa-users kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;Groups
+      <span class="badge">3</span>
+  	<% end %>
+  	<%= link_to tickets_path(type: "drafts"),class: "list-group-item" do %>
+      <i class="fa fa-pencil-square-o kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;Drafts
+      <span class="badge">3</span>
+  	<% end %>
+  	<%= link_to tickets_path(type: "archived"),class: "list-group-item" do %>
+      <i class="fa fa-database kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;Archived
+      <span class="badge">3</span>
+  	<% end %>
+  	<%= link_to tickets_path(type: "spam"),class: "list-group-item" do %>
+      <i class="fa fa-exclamation-circle kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;Spam
+      <span class="badge">3</span>
+  	<% end %>
+  	<%= link_to tickets_path(type: "trash"),class: "list-group-item" do %>
+      <i class="fa fa-recycle kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;Trash
+      <span class="badge">3</span>
+  	<% end %>
+  </div> <!-- /.list-group -->
+
+  	<div class="portlet" id="tickets_portlet">
+		<h4 class="portlet-title">
+		  <u>Labels</u>
+		</h4>
+	</div>
+
+	<div class="list-group links_nav">
+		<%= link_to '',class: "list-group-item" do %>
+	      <i class="fa fa-tag kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;Label 1
+	      <span class="badge">3</span>
+	  	<% end %>
+	  	<%= link_to '',class: "list-group-item" do %>
+	      <i class="fa fa-tag kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;Label 2
+	      <span class="badge">3</span>
+	  	<% end %>
+	</div>
+
+</div> <!-- /.col -->
