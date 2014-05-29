@@ -46,7 +46,7 @@
         "link": function(locale, options) {
             var size = (options && options.size) ? ' btn-'+options.size : '';
             return "<li>" +
-              "<div class='bootstrap-wysihtml5-insert-link-modal modal fade'>" +
+              "<div class='bootstrap-wysihtml5-insert-link-modal modal modal-styled fade'>" +
               "<div class='modal-dialog'>" +
                 "<div class='modal-content'>" +
                 "<div class='modal-header'>" +
@@ -72,7 +72,7 @@
         "image": function(locale, options) {
             var size = (options && options.size) ? ' btn-'+options.size : '';
             return "<li>" +
-              "<div class='bootstrap-wysihtml5-insert-image-modal modal fade'>" +
+              "<div class='bootstrap-wysihtml5-insert-image-modal modal modal-styled fade'>" +
               "<div class='modal-dialog'>" +
                 "<div class='modal-content'>" +
                 "<div class='modal-header'>" +

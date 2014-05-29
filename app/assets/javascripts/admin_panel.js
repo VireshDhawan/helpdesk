@@ -15,3 +15,4 @@
 //= require_tree ./admin_panel
 //= require wysihtml5
 //= require bootstrap-wysihtml5
+//= require universal

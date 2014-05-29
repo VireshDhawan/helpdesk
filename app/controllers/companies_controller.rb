@@ -26,7 +26,7 @@ class CompaniesController < ApplicationController
       redirect_to new_subscription_path
     else
       flash[:error] = "Something went wrong. Please review the problems below."
-      render :action => "new"
+      render :action => "new",:layout => "accounts"
     end
   end
 

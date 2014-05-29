@@ -16,3 +16,4 @@
 //= require wysihtml5
 //= require bootstrap-wysihtml5
 //= require_tree ./landing
+//= require universal

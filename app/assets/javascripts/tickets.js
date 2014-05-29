@@ -15,3 +15,4 @@
 //= require_tree ./tickets
 //= require wysihtml5
 //= require bootstrap-wysihtml5
+//= require universal

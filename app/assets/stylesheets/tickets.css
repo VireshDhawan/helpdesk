@@ -11,4 +11,5 @@
  *= require_self
  *= require_tree ./tickets
  *= require bootstrap-wysihtml
+ *= require custom
  */

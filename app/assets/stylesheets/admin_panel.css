@@ -12,8 +12,5 @@
  *= require_self
  *= require_tree ./admin_panel
  *= require bootstrap-wysihtml
+ *= require custom
  */
-
-.help-inline{
-	color:red;
-}
