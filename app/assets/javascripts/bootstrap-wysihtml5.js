@@ -25,7 +25,7 @@
             return "<li>" +
               "<div class='btn-group'>" +
                 "<a class='btn" + size + "' data-wysihtml5-command='bold' title='CTRL+B' tabindex='-1'>" + "B" + "</a>" +
-                "<a class='btn" + size + "' data-wysihtml5-command='italic' title='CTRL+I' tabindex='-1'><i><b>" + "I" + "</b></i></a>" +
+                "<a class='btn" + size + "' data-wysihtml5-command='italic' title='CTRL+I' tabindex='-1'><i><b>" + "<i class='fa fa-italic'></i>" + "</b></i></a>" +
                 "<a class='btn" + size + "' data-wysihtml5-command='underline' title='CTRL+U' tabindex='-1'><b>" + "U" + "</b></a>" +
               "</div>" +
             "</li>";

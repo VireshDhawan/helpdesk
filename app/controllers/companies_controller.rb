@@ -7,12 +7,12 @@ class CompaniesController < ApplicationController
   helper_method :authorize_company_privilages
 
   layout "admin_panel",except: [:new,:create]
-  layout "accounts",only: [:new,:create]
 
   @@domain = "sandbox43590170d39542e8a97603c1fcd840d1.mailgun.org"
   
   def new
     @company = Company.new
+    render :layout => "accounts"
   end
 
   def create
@@ -32,7 +32,6 @@ class CompaniesController < ApplicationController
 
   def edit
     @company = Company.find(params[:id])
-    render :layout => "admin_panel"
   end
 
   def update

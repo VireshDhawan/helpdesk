@@ -32,7 +32,7 @@ module Helpdesk
     # Layout for devise controllers
     config.to_prepare do
       Devise::SessionsController.layout "accounts"
-      Devise::RegistrationsController.layout proc{ |controller| agent_signed_in? ? "application" : "accounts" }
+      Devise::RegistrationsController.layout proc{ |controller| agent_signed_in? ? "admin_panel" : "accounts" }
       Devise::ConfirmationsController.layout "accounts"
       Devise::UnlocksController.layout "accounts"
       Devise::PasswordsController.layout "accounts"        
