@@ -9,12 +9,18 @@
 	    </div>
 
 		<nav class="collapse navbar-collapse ticket-menu" role="navigation">
-			<ul class="nav navbar-nav navbar-left">
+			<ul class="nav nav-pills navbar-left">
+				<% if action_name == "show" %>
+				<li>
+					<%= link_to tickets_path do %>
+						<i class="fa fa-arrow-left"></i>
+					<% end %>
+				</li>
+				<% end %>
 				<li><%= link_to "Archive",'' %></li>
 				<li class="dropdown">
 					<%= link_to 'javascript:;', :"data-toggle"=>"dropdown", class: "dropdown-toggle" do %>
 			          <span class="navbar-profile-avatar" style="border:none;">Assign</span>
-			          <i class="fa fa-caret-down"></i>
 			        <% end %>
 			        <ul class="dropdown-menu" role="menu">
 				      <li>

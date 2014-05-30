@@ -52,6 +52,9 @@ class TicketsController < ApplicationController
 
   def show
     @ticket = current_agent.company.tickets.find(params[:id])
+    @replies = @ticket.replies.order("created_at DESC")
+    @reply = @ticket.replies.new
+    @comment = @ticket.comments.new
   end
 
   def edit

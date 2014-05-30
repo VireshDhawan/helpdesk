@@ -36,6 +36,8 @@ Helpdesk::Application.routes.draw do
   resources :snippets,:except => [:show]
   resources :notifications,:except => [:show,:index,:new,:create,:destroy]
   resources :forwarding_addresses,:except => [:show]
+  resources :replies,:only => [:create]
+  resources :comments,:only => [:create]
 
   get '/admin',  to: "admin#index"
   post '/messages', to: "tickets#messages"

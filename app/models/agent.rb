@@ -12,6 +12,8 @@ class Agent < ActiveRecord::Base
   has_many :groups, :through => :groups_agents
   has_many :snippets, as: :snippetable
   has_one :notification
+  has_many :replies
+  has_many :comments
 
 	attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :first_name,:last_name,:role,:signature,:api_token,
@@ -43,7 +45,7 @@ class Agent < ActiveRecord::Base
     self.role ? true : false
   end
 
-  def get_full_name
+  def full_name
     "#{self.first_name} #{self.last_name}"
   end
 

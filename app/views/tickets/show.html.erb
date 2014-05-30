@@ -1,213 +1,120 @@
-<div class="col-md-6 col-sm-7 ticket-body">
+<div class="col-md-7 col-sm-7 ticket-body">
 
   <%= render 'layouts/tickets_menubar' %>
-  
-  <h3>Nikita Williams</h3>
 
-  <h5 class="text-muted">Visual, UI, UX Designer</h5>
+  <h3><%= @ticket.subject %></h3>
+
+  <p><i class="icon-li fa fa-envelope"></i>&nbsp;<%= @ticket.customer_email %></p>
 
   <hr>
 
-  <p>
-    <a href="javascript:;" class="btn btn-primary">Follow Nikita</a>
-    &nbsp;&nbsp;
-    <a href="javascript:;" class="btn btn-secondary">Send Message</a>
+  <p class="ticket_status">
+    <% ticket_status(@ticket).try(:each) do |status| %>
+      <span class="label label-primary"><%= status %></span> 
+    <% end %>
   </p>
 
   <hr>
-  
-  <ul class="icons-list">
-    <li><i class="icon-li fa fa-envelope"></i> support@jumpstartthemes.com</li>
-    <li><i class="icon-li fa fa-globe"></i> jumstartthemes.com</li>
-    <li><i class="icon-li fa fa-map-marker"></i> Las Vegas, NV</li>
-  </ul>    
-
   <br>
 
-  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec.</p>
+  <p><%= raw @ticket.message %></p>
 
   <hr>
 
 
   <br><br>
 
-  <h4 class="content-title"><u>Activity Feed</u></h4>
+  <h4 class="content-title"><u>Ticket Activity</u></h4>
 
     <div class="share-widget clearfix">
 
-      <textarea class="form-control share-widget-textarea" rows="3" placeholder="Share what you've been up to..." tabindex="1"></textarea>
+      <ul id="myTab1" class="nav nav-tabs">
+        <li class="active">
+          <a href="#reply" data-toggle="tab">Reply</a>
+        </li>
 
-      <div class="share-widget-actions">
-        <div class="share-widget-types pull-left">
-          <a href="javascript:;" class="fa fa-picture-o ui-tooltip" title="Post an Image"><i></i></a>
-          <a href="javascript:;" class="fa fa-video-camera ui-tooltip" title="Upload a Video"><i></i></a>
-          <a href="javascript:;" class="fa fa-lightbulb-o ui-tooltip" title="Post an Idea"><i></i></a>
-          <a href="javascript:;" class="fa fa-question-circle ui-tooltip" title="Ask a Question"><i></i></a>
-        </div>	
+        <li class="">
+          <a href="#comment" data-toggle="tab">Comment</a>
+        </li>
+      </ul>
 
-      <div class="pull-right">
-        <a class="btn btn-primary btn-sm" tabindex="2">Post</a>
-      </div>
 
-      </div> <!-- /.share-widget-actions -->
+      <div id="myTab1Content" class="tab-content">
+
+        <div class="tab-pane fade active in" id="reply">
+
+          <%= simple_form_for @reply ,url: replies_path, html: {method: :post} do |f| %>
+            <%= f.error_notification %>
+            <%= f.input :content, as: :text, placeholder: "Share what you've been up to...",label: false, input_html: {class: "share-widget-textarea form-control",:rows => 5} %>
+            <%= f.input :ticket_id,as: :hidden,input_html: {value: @ticket.id} %>
+            <div class="share-widget-actions">
+              <div class="share-widget-types pull-left">
+                <a href="javascript:;" class="fa fa-picture-o ui-tooltip" title="Post an Image"><i></i></a>
+                <a href="javascript:;" class="fa fa-question-circle ui-tooltip" title="Ask a Question"><i></i></a>
+              </div>
+
+              <div class="pull-right">
+                <%= f.button :submit, "Reply",class: "btn btn-primary btn-sm" %>
+              </div>
+            </div> <!-- /.share-widget-actions -->
+          <% end %>
+
+        </div> <!-- /.tab-pane -->
+
+        <div class="tab-pane fade" id="comment">
+
+          <%= simple_form_for @comment ,url: comments_path, html: {method: :post} do |f| %>
+            <%= f.error_notification %>
+            <%= f.input :content, as: :text, placeholder: "Share what you've been up to...",label: false, input_html: {class: "share-widget-textarea form-control",:rows => 5} %>
+            <%= f.input :ticket_id,as: :hidden,input_html: {value: @ticket.id} %>
+          <div class="share-widget-actions">
+            <div class="share-widget-types pull-left">
+              <a href="javascript:;" class="fa fa-picture-o ui-tooltip" title="Post an Image"><i></i></a>
+              <a href="javascript:;" class="fa fa-question-circle ui-tooltip" title="Ask a Question"><i></i></a>
+            </div>
+
+            <div class="pull-right">
+              <%= f.button :submit, "Comment",class: "btn btn-primary btn-sm" %>
+            </div>
+
+          </div> <!-- /.share-widget-actions -->
+          <% end %>
+
+        </div> <!-- /.tab-pane -->
+
+      </div> <!-- /.tab-content -->
 
     </div> <!-- /.share-widget -->
 
     <br><br>
 
-    <div class="feed-item feed-item-idea">
-
+    <% @replies.try(:each) do |reply| %>
+    <div class="feed-item <%= feed_icon(reply) %>">
       <div class="feed-icon">
-        <i class="fa fa-lightbulb-o"></i>
+        <i class="fa fa-user"></i>
       </div> <!-- /.feed-icon -->
 
       <div class="feed-subject">
-        <p><a href="javascript:;">Nikita Williams</a> shared an idea: <a href="javascript:;">Create an Awesome Idea</a></p>
+        <p>
+          <a href="javascript:;"><%= reply.replier_name %></a> posted a <strong>reply</strong>
+        </p>
       </div> <!-- /.feed-subject -->
 
       <div class="feed-content">
         <ul class="icons-list">
           <li>
             <i class="icon-li fa fa-quote-left"></i>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.
+            <%= reply.content %>
           </li>
         </ul>
       </div> <!-- /.feed-content -->
 
       <div class="feed-actions">
-        <a href="javascript:;" class="pull-left"><i class="fa fa-thumbs-up"></i> 123</a> 
-        <a href="javascript:;" class="pull-left"><i class="fa fa-comment-o"></i> 29</a>
-
-        <a href="javascript:;" class="pull-right"><i class="fa fa-clock-o"></i> 2 days ago</a>
+        <p class="pull-right text-muted"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(reply.created_at) %></p>
       </div> <!-- /.feed-actions -->
 
     </div> <!-- /.feed-item -->
-
-
-
-    <div class="feed-item feed-item-image">
-
-      <div class="feed-icon">
-        <i class="fa fa-picture-o"></i>
-      </div> <!-- /.feed-icon -->
-
-      <div class="feed-subject">
-        <p><a href="javascript:;">Nikita Williams</a> posted the <strong>4 files</strong>: <a href="javascript:;">Annual Reports</a></p>
-      </div> <!-- /.feed-subject -->
-
-      <div class="feed-content">
-        <div class="thumbnail" style="width: 375px">
-          <img src="./img/mockup.png" style="width: 100%;" alt="Gallery Image">
-        </div> <!-- /.thumbnail -->
-      </div> <!-- /.feed-content -->
-
-      <div class="feed-actions">
-        <a href="javascript:;" class="pull-left"><i class="fa fa-thumbs-up"></i> 123</a> 
-        <a href="javascript:;" class="pull-left"><i class="fa fa-comment-o"></i> 29</a>
-
-        <a href="javascript:;" class="pull-right"><i class="fa fa-clock-o"></i> 2 days ago</a>
-      </div> <!-- /.feed-actions -->
-
-    </div> <!-- /.feed-item -->
-
-
-
-    <div class="feed-item feed-item-file">
-
-      <div class="feed-icon">
-        <i class="fa fa-cloud-upload"></i>
-      </div> <!-- /.feed-icon -->
-
-      <div class="feed-subject">
-        <p><a href="javascript:;">Nikita Williams</a> posted the <strong>4 files</strong>: <a href="javascript:;">Annual Reports</a></p>
-      </div> <!-- /.feed-subject -->
-
-      <div class="feed-content">
-        <ul class="icons-list">
-          <li>
-            <i class="icon-li fa fa-file-text-o"></i>
-            <a href="javascript:;">Annual Report 2007</a> - annual_report_2007.pdf
-          </li>
-
-          <li>
-            <i class="icon-li fa fa-file-text-o"></i>
-            <a href="javascript:;">Annual Report 2008</a> - annual_report_2007.pdf
-          </li>
-
-          <li>
-            <i class="icon-li fa fa-file-text-o"></i>
-            <a href="javascript:;">Annual Report 2009</a> - annual_report_2007.pdf
-          </li>
-
-          <li>
-            <i class="icon-li fa fa-file-text-o"></i>
-            <a href="javascript:;">Annual Report 2010</a> - annual_report_2007.pdf
-          </li>
-        </ul>
-      </div> <!-- /.feed-content -->
-
-      <div class="feed-actions">
-        <a href="javascript:;" class="pull-left"><i class="fa fa-thumbs-up"></i> 123</a> 
-        <a href="javascript:;" class="pull-left"><i class="fa fa-comment-o"></i> 29</a>
-
-        <a href="javascript:;" class="pull-right"><i class="fa fa-clock-o"></i> 2 days ago</a>
-      </div> <!-- /.feed-actions -->
-
-    </div> <!-- /.feed-item -->
-
-
-
-    <div class="feed-item feed-item-bookmark">
-
-      <div class="feed-icon">
-        <i class="fa fa-bookmark"></i>
-      </div> <!-- /.feed-icon -->
-
-      <div class="feed-subject">
-        <p><a href="javascript:;">Nikita Williams</a> bookmarked a page on Delicious: <a href="javascript:;">Jumpstart Themes</a></p>
-      </div> <!-- /.feed-subject -->
-
-      <div class="feed-content">
-      </div> <!-- /.feed-content -->
-
-      <div class="feed-actions">
-        <a href="javascript:;" class="pull-left"><i class="fa fa-thumbs-up"></i> 123</a> 
-        <a href="javascript:;" class="pull-left"><i class="fa fa-comment-o"></i> 29</a>
-
-        <a href="javascript:;" class="pull-right"><i class="fa fa-clock-o"></i> 2 days ago</a>
-      </div> <!-- /.feed-actions -->
-
-    </div> <!-- /.feed-item -->
-
-
-
-    <div class="feed-item feed-item-question">
-
-      <div class="feed-icon">
-        <i class="fa fa-question"></i>
-      </div> <!-- /.feed-icon -->
-
-      <div class="feed-subject">
-        <p><a href="javascript:;">Nikita Williams</a> posted the question: <a href="javascript:;">Who can I call to get a new parking pass for the Rowan Building?</a></p>
-      </div> <!-- /.feed-subject -->
-
-      <div class="feed-content">
-        <ul class="icons-list">
-          <li>
-            <i class="icon-li fa fa-quote-left"></i>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.
-          </li>
-        </ul>
-      </div> <!-- /.feed-content -->
-
-      <div class="feed-actions">
-        <a href="javascript:;" class="pull-left"><i class="fa fa-thumbs-up"></i> 123</a> 
-        <a href="javascript:;" class="pull-left"><i class="fa fa-comment-o"></i> 29</a>
-
-        <a href="javascript:;" class="pull-right"><i class="fa fa-clock-o"></i> 2 days ago</a>
-      </div> <!-- /.feed-actions -->
-
-    </div> <!-- /.feed-item -->
+    <% end %>
 
     <br class="visible-xs">            
     <br class="visible-xs">

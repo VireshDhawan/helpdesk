@@ -24,13 +24,13 @@
                     <span class="label" style="background-color:#<%= raw "D74B4B".to_s %>"><%= labels.name %></span>
                   <% end %>
                 <% end %>
-                <b><%= ticket.subject %></b> - <%= raw ticket.message %>
+                <b><%= ticket.subject %></b> - <%= truncate(strip_tags(ticket.message),:length => 60) %>
               <% end %>
             </td>
             <td>
               <!-- Assigned User -->
               <% unless ticket.agent.blank? %>
-                <i class="fa fa-male kv-icon kv-icon-primary info_tooltip" data-toggle="tooltip" data-placement="top" title="<%= ticket.agent.get_full_name %>"></i>
+                <i class="fa fa-male kv-icon kv-icon-primary info_tooltip" data-toggle="tooltip" data-placement="top" title="<%= ticket.agent.full_name %>"></i>
               <% end %>
               <!-- Assigned Group -->
               <% unless ticket.group.blank? %>

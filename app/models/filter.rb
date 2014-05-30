@@ -24,8 +24,8 @@ class Filter < ActiveRecord::Base
 	def self.get_matching_filter(company,ticket)
 		#if from email
 		company.filters.select{|f| (
-			f.from_email == ticket.customer_email ||
-			f.delivered_to == ticket.reply_to
+			f.from_email == ticket.customer_email
+			f.delivered_to == ticket.reply_email
 			# and subject with keywords
 			# and body with keywords
 			)

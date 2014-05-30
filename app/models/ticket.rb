@@ -19,12 +19,16 @@ class Ticket < ActiveRecord::Base
 		select{ |t| t.ticket_category == type }
 	end
 
-	def status
-		if self.answered?
-			"Answered"
-		else
-			"Unanswered"
-		end
+	def status?
+		self.answered? ? "Answered" : "Unanswered"
+	end
+
+	def assigned?
+		self.agent ? self.agent.full_name : nil
+	end
+
+	def category
+		self.ticket_category ? self.ticket_category.name : nil
 	end
 
 	def add_labels(labels)

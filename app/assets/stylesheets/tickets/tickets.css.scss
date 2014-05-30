@@ -42,16 +42,36 @@ body{
     	color:white !important;
     	}
     }
+    .nav-pills{
+    	margin-bottom: 0;
+    	li{
+    		margin:10px 10px;
+    		a{background-color:#C7C7C7;}
+    	}
+    	.dropdown-menu > li {
+    	 	a {
+    	    	color:#FFFFFF;
+    	    	background-color:white !important;
+    	    }
+    	    a:hover{
+    	    	background-color:#D74B4B !important;
+    	    }
+    	}
+    	.fa-arrow-left{line-height:1 !important;}
+    }
 }
 
 .sticky {
     position:fixed;
     top:0;
     z-index: 9999;
+    .container{
+    	margin-left: 0;
+    }
 }
 
 .menu-padding {
-    padding-top:0px;
+    padding-top:20px;
 }
 
 .ticket_table{
@@ -68,4 +88,16 @@ body{
 }
 #tickets_sidebar{
 	.badge{margin-top:7px;}
+}
+.fa-1\.5x{
+	font-size:1.15em;
+}
+.fa-0\.5x{
+	font-size:0.9em;
+}
+.ticket_status{
+    font-size: 17px;
+}
+.icons-list > li > .icon-li {
+    top: -0.75em;
 }

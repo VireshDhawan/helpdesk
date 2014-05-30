@@ -1630,6 +1630,12 @@ fieldset[disabled] .btn-twitter.active {
 .feed-item-question .feed-icon {
   background-color: #428bca;
 }
+.feed-item-agent .feed-icon {
+  background-color: #428bca;
+}
+.feed-item-customer .feed-icon {
+  background-color: #5CB85C;
+}
 /* !Progress Stats */
 /* ----------------------------------------------- */
 .progress-stat {
