@@ -6,6 +6,7 @@ class ReportsController < ApplicationController
 	def index
 		date1 = Date.today - 30.days
 		date2 = Date.today
+		
 		company = current_agent.company
 
 		#tickets count grouped by date and count
