@@ -29,7 +29,6 @@ Helpdesk::Application.routes.draw do
   resources :companies, :except => [:show, :index]
   resources :subscriptions, :except => [:show, :destroy]
   resources :plans, :except => [:destroy], :path => "plans"
-  resources :tickets, :path => "tickets"
   resources :labels, :except => [:show], :path => "labels"
   resources :groups,:except => [:show], :path => "groups"
   resources :filters,:except => [:show]
@@ -38,9 +37,14 @@ Helpdesk::Application.routes.draw do
   resources :forwarding_addresses,:except => [:show]
   resources :replies,:only => [:create]
   resources :comments,:only => [:create]
+  resources :tickets, :path => "tickets" do
+    collection do
+      match '/messages', to: "tickets#messages", via: [:post,:get]
+      match '/assign', to: "tickets#assign", via: [:post]
+    end
+  end
 
   get '/admin',  to: "admin#index"
-  post '/messages', to: "tickets#messages"
 
   scope '/reports' do
     ReportsController.action_methods.each do |action|

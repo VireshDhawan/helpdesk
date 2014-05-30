@@ -6,7 +6,7 @@ class Reply < ActiveRecord::Base
 #	after_create :new_reply_notify
 	before_create :set_replier_name
 
-	attr_accessible :content,:agent_id,:ticket_id,:replier_name
+	attr_accessible :content,:agent_id,:ticket_id,:replier_name,:company_id
 	validates :content, presence: true
 
 	def new_reply_notify
@@ -33,6 +33,13 @@ class Reply < ActiveRecord::Base
 		else
 			self.replier_name = self.agent.full_name
 		end
+	end
+
+	# To find count of tickets grouped by category,date
+	def self.in_date_range_for_replies(date1,date2,company)
+		hash = company.replies.where("created_at >= ? AND created_at <=?", date1,date2).order('DATE(created_at) DESC').group("DATE(created_at)").count
+		hash = Hash[hash.map{|k,v| [DateTime.parse(k.to_s).strftime("%Q"),v]}]
+		hash.to_a
 	end
 
 end

@@ -17,7 +17,6 @@ gem 'uglifier', '>= 1.3.0'
 #Other gems
 gem "font-awesome-rails"
 gem 'simple_form'
-#gem 'country_select' Gem for Country select in forms if required.
 gem 'protected_attributes'
 gem 'rest-client'
 gem 'multimap'

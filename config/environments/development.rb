@@ -11,6 +11,7 @@ Helpdesk::Application.configure do
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
+  
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
@@ -29,4 +30,5 @@ Helpdesk::Application.configure do
 
   #default url option for devise
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
 end

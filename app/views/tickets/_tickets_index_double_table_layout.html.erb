@@ -1,0 +1,111 @@
+<div class="portlet pre-scrollable double_table">
+
+  <h4 class="portlet-title">
+    <u>Unanswered</u>
+  </h4>
+
+  <div class="portlet-body">
+    <% if @unanswered_tickets %>
+    <table class="table ticket_table">
+      <tbody role="alert" aria-live="polite" aria-relevant="all">
+        <% @unanswered_tickets.each do |ticket| %>
+        <tr data-link="<%= ticket_path(ticket.id) %>">
+          <td><%= 1 %></td>
+          <td><i class="fa fa-star-o"></i></td>
+          <td><%= link_to ticket.customer_name,ticket_path(ticket.id) %> </td>
+          <td>
+            <%= link_to ticket_path(ticket.id) do %>
+              <% unless ticket.labels.blank? %>
+                <% tickets.labels.each do |labels| %>
+                  <span class="label" style="background-color:#<%= raw "D74B4B".to_s %>"><%= labels.name %></span>
+                <% end %>
+              <% end %>
+              <b><%= ticket.subject %></b> - <%= truncate(strip_tags(ticket.message),:length => 60) %>
+            <% end %>
+          </td>
+          <td>
+            <!-- Assigned User -->
+            <% unless ticket.agent.blank? %>
+              <i class="fa fa-male kv-icon kv-icon-primary info_tooltip" data-toggle="tooltip" data-placement="top" title="<%= ticket.agent.full_name %>"></i>
+            <% end %>
+            <!-- Assigned Group -->
+            <% unless ticket.group.blank? %>
+              <i class="fa fa-users kv-icon kv-icon-success info_tooltip" data-toggle="tooltip" data-placement="top" title="<%= ticket.group.name %>"></i>
+            <% end %>
+            <!-- No. of Comments -->
+            <% unless ticket.comments.blank? %>
+              <i class="fa fa-comments-o kv-icon kv-icon-secondary info_tooltip" data-toggle="tooltip" data-placement="top" title="<%= ticket.comments.count %> comments"></i>
+            <% end %>
+            <!-- No. of Replies -->
+            <% unless ticket.replies.blank? %>
+              <i class="fa fa-reply-all kv-icon kv-icon-secondary info_tooltip" data-toggle="tooltip" data-placement="top" title="<%= ticket.replies.count %> replies"></i>
+            <% end %>
+          </td>
+          <td><%= ticket.created_at.strftime("%b %d") %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% else %>
+      <p>No tickets</p>
+    <% end %>
+
+  </div> <!-- /.portlet-body -->
+
+</div> <!-- /.portlet -->
+
+<div class="portlet pre-scrollable double_table">
+
+  <h4 class="portlet-title">
+    <u>Answered</u>
+  </h4>
+
+  <div class="portlet-body">
+    <% if @answered_tickets %>
+    <table class="table ticket_table">
+      <tbody role="alert" aria-live="polite" aria-relevant="all">
+        <% @answered_tickets.each do |ticket| %>
+        <tr data-link="<%= ticket_path(ticket.id) %>">
+          <td><%= 1 %></td>
+          <td><i class="fa fa-star-o"></i></td>
+          <td><%= link_to ticket.customer_name,ticket_path(ticket.id) %> </td>
+          <td>
+            <%= link_to ticket_path(ticket.id) do %>
+              <% unless ticket.labels.blank? %>
+                <% tickets.labels.each do |labels| %>
+                  <span class="label" style="background-color:#<%= raw "D74B4B".to_s %>"><%= labels.name %></span>
+                <% end %>
+              <% end %>
+              <b><%= ticket.subject %></b> - <%= truncate(strip_tags(ticket.message),:length => 60) %>
+            <% end %>
+          </td>
+          <td>
+            <!-- Assigned User -->
+            <% unless ticket.agent.blank? %>
+              <i class="fa fa-male kv-icon kv-icon-primary info_tooltip" data-toggle="tooltip" data-placement="top" title="<%= ticket.agent.full_name %>"></i>
+            <% end %>
+            <!-- Assigned Group -->
+            <% unless ticket.group.blank? %>
+              <i class="fa fa-users kv-icon kv-icon-success info_tooltip" data-toggle="tooltip" data-placement="top" title="<%= ticket.group.name %>"></i>
+            <% end %>
+            <!-- No. of Comments -->
+            <% unless ticket.comments.blank? %>
+              <i class="fa fa-comments-o kv-icon kv-icon-secondary info_tooltip" data-toggle="tooltip" data-placement="top" title="<%= ticket.comments.count %> comments"></i>
+            <% end %>
+            <!-- No. of Replies -->
+            <% unless ticket.replies.blank? %>
+              <i class="fa fa-reply-all kv-icon kv-icon-secondary info_tooltip" data-toggle="tooltip" data-placement="top" title="<%= ticket.replies.count %> replies"></i>
+            <% end %>
+          </td>
+          <td><%= ticket.created_at.strftime("%b %d") %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% else %>
+      <p>No tickets</p>
+    <% end %>
+
+  </div> <!-- /.portlet-body -->
+
+</div> <!-- /.portlet -->

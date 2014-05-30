@@ -13,6 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree ./tickets
+//= require universal
 //= require wysihtml5
 //= require bootstrap-wysihtml5
-//= require universal

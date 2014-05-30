@@ -4,8 +4,18 @@ class ReportsController < ApplicationController
 	layout "reports_panel"
 
 	def index
-		# tickets graph
-		gon.date_range = last_7_days
+		date1 = Date.today - 30.days
+		date2 = Date.today
+		company = current_agent.company
+
+		#tickets count grouped by date and count
+		gon.tickets_count = Ticket.in_date_range_with_count(date1,date2,nil,company)
+
+		# archived tickets grouped by date and count
+		gon.archived_tickets = Ticket.in_date_range_with_count(date1,date2,"Archived",company)
+
+		# replies grouped by date and count
+		gon.replies_count = Reply.in_date_range_for_replies(date1,date2,company)
 	end
 
 	def agents

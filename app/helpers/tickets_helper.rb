@@ -11,4 +11,12 @@ module TicketsHelper
 		reply.agent.blank? ? "feed-item-customer" : "feed-item-agent"
 	end
 
+	def table_layout(type)
+		if ["spam","trash","all","archived"].include?(type)
+			return true
+		else
+			return false
+		end
+	end
+
 end

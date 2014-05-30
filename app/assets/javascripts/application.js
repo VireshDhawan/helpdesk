@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require_tree ./landing
+//= require universal
 //= highcharts
 //= require wysihtml5
 //= require bootstrap-wysihtml5
-//= require_tree ./landing
-//= require universal

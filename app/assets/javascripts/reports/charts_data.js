@@ -33,7 +33,7 @@ $(function () {
             valueSuffix: ' min'
         },
         legend: {
-        	enabled: false,
+        	enabled: false
         },
         series: [{
         	type:"line",
@@ -70,7 +70,7 @@ $(function () {
             valueSuffix: ' min'
         },
         legend: {
-        	enabled: false,
+        	enabled: false
         },
         series: [{
         	type:"line",
@@ -90,8 +90,7 @@ $(function () {
             x: -20 //center
         },
         xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            type: "datetime"
         },
         yAxis: {
             title: {
@@ -107,11 +106,11 @@ $(function () {
             valueSuffix: ' min'
         },
         legend: {
-        	enabled: false,
+        	enabled: false
         },
         series: [{
         	type:"line",
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+            data: gon.archived_tickets
         }]
     });
 });
@@ -127,8 +126,7 @@ $(function () {
             x: -20 //center
         },
         xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            type: 'datetime'
         },
         yAxis: {
             title: {
@@ -144,11 +142,11 @@ $(function () {
             valueSuffix: ' min'
         },
         legend: {
-        	enabled: false,
+        	enabled: false
         },
         series: [{
         	type:"line",
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+            data: gon.replies_count
         }]
     });
 });
@@ -166,12 +164,12 @@ $(function () {
             x: -20 //center
         },
         xAxis: {
-            categories: gon.date_range,
             labels: {
                 style: {
                     fontSize:'15px'
                 }
-            }
+            },
+            type: "datetime"
         },
         yAxis: {
             title: {
@@ -187,13 +185,11 @@ $(function () {
             valueSuffix: ' min'
         },
         legend: {
-        	enabled: false,
+        	enabled: false
         },
         series: [{
         	type:"line",
-            data: [7.0, 6.9, 13.9, 9.6,9.6, 13.9, 9.6]
+            data: gon.tickets_count
         }]
     });
 });
-
-

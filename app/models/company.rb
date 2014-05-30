@@ -8,6 +8,7 @@ class Company < ActiveRecord::Base
 	has_one :subscription, :dependent => :destroy
 	has_many :snippets, as: :snippetable
 	has_many :forwarding_addresses
+	has_many :replies
 
 	attr_accessible :name,:email
 

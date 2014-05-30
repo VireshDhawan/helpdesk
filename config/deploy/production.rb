@@ -7,7 +7,9 @@ Helpdesk::Application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = true
+
 end
+
 # Simple Role Syntax
 # ==================
 # Supports bulk-adding hosts to roles, the primary

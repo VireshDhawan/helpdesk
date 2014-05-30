@@ -5,6 +5,8 @@ class RepliesController < ApplicationController
 	def create
 		@reply = current_agent.replies.create(params[:reply])
 		if @reply.save
+			ticket = current_agent.company.tickets.find(params[:reply][:ticket_id])
+			ticket.mark_answered
 			flash[:success] = "Your reply was posted successfully!"
 			redirect_to :back
 		else

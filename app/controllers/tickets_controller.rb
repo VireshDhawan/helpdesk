@@ -8,25 +8,38 @@ class TicketsController < ApplicationController
   def index
     if params[:type] == "unassigned"
       # Unassigned
-      @tickets = current_agent.company.tickets.in_category("Unassigned")
-    elsif params[:type] == "agent"
+      tickets = current_agent.company.tickets.in_category("Unassigned")
+      @answered_tickets = tickets.select {|t| t.answered?}
+      @unanswered_tickets = tickets.select {|t| !t.answered?}
+      @type = params[:type]
+    elsif params[:type] == "my"
       # Agent
-      @tickets = current_agent.tickets
+      tickets = current_agent.tickets
+      @answered_tickets = tickets.select {|t| t.answered?}
+      @unanswered_tickets = tickets.select {|t| !t.answered?}
+      @type = params[:type]
+    elsif params[:type] == "groups"
+      # Groups
+      tickets = current_agent.all_group_tickets
+      @answered_tickets = tickets.select {|t| t.answered?}
+      @unanswered_tickets = tickets.select {|t| !t.answered?}
+      @type = params[:type]
     elsif params[:type] == "trash"
       # Trash
       @tickets = current_agent.company.tickets.in_category("Trash")
+      @type = params[:type]
     elsif params[:type] == "archived"
       # Archived
-      @tickets = current_agent.company.tickets.in_category("Archived")  
-    elsif params[:type] == "groups"
-      # Groups
-      @tickets = current_agent.all_group_tickets
+      @tickets = current_agent.company.tickets.in_category("Archived")
+      @type = params[:type]
     elsif params[:type] == "spam"
       # Spam
       @tickets = current_agent.company.tickets.in_category("Spam")
+      @type = params[:type]
     else
       # All
       @tickets = current_agent.company.tickets
+      @type = "all"
     end
   end
 
@@ -133,6 +146,11 @@ class TicketsController < ApplicationController
 
     #avoid rendering template for post  
     render :nothing => true
+  end
+
+  # Misc methods to assing, spam, trash tickets
+  def assign
+    
   end
 
 end
