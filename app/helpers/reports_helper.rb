@@ -1,17 +1,13 @@
 module ReportsHelper
 
-	def last_30_day
-		30.days.ago..Date.today
-	end
-
-	def last_month
-		prev_month = Date.today.prev_month
-	end
-
-	def last_7_days
-		date1 = Date.today
-		date2 = date1 - 1.week
-		date_range = (date2..date1).to_a
+	def select_options(action_name)
+		if action_name == "agents"
+			return Agent.get_list(current_agent.company)
+		elsif action_name == "groups"
+			return Group.get_list(current_agent.company)
+		elsif action_name == "labels"
+			return Label.get_list(current_agent.company)
+		end
 	end
 
 end

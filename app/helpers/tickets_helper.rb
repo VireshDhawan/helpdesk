@@ -19,4 +19,32 @@ module TicketsHelper
 		end
 	end
 
+	def unassigned_count
+		current_agent.company.tickets.in_category("Unassigned").count
+	end
+
+	def all_count
+		current_agent.company.tickets.count
+	end
+
+	def agent_count
+		current_agent.tickets.count
+	end
+
+	def archived_count
+		current_agent.company.tickets.in_category("Archived").count
+	end
+
+	def spam_count
+		current_agent.company.tickets.in_category("Spam").count
+	end
+
+	def trash_count
+		current_agent.company.tickets.in_category("Trash").count
+	end
+
+	def group_count
+		current_agent.company.tickets.in_category("Groups").count
+	end
+
 end

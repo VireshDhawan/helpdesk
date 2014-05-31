@@ -1,7 +1,6 @@
 class Agents::RegistrationsController < Devise::RegistrationsController
 
 	before_filter :configure_permitted_parameters
-	#layout 'admin_panel', only: [:edit,:update]
  
 	protected
 	 

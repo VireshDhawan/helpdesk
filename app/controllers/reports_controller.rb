@@ -3,10 +3,11 @@ class ReportsController < ApplicationController
 	before_filter :authenticate_agent!, :authorize_reporting
 	layout "reports_panel"
 
+	protect_from_forgery with: :exception
+
 	def index
 		date1 = Date.today - 30.days
 		date2 = Date.today
-		
 		company = current_agent.company
 
 		#tickets count grouped by date and count
@@ -31,21 +32,25 @@ class ReportsController < ApplicationController
 		
 	end
 
-	private
+	def charts
+		dates = params[:daterange].split(" - ")
+		date1 = Date.parse dates[0]
+		date2 = Date.parse dates[1]
+		company = current_agent.company
+		@tickets_count = Ticket.in_date_range_with_count(date1,date2,nil,company)
+		gon.tickets_count = Ticket.in_date_range_with_count(date1,date2,nil,company)
 
-	def last_7_days
-		date1 = Date.today
-		date2 = date1 - 1.week
-		date_range = (date2..date1).to_a.map {|d| d.strftime "%d %b" }
-	end
+		# archived tickets grouped by date and count
+		@archived_tickets = Ticket.in_date_range_with_count(date1,date2,"Archived",company)
+		gon.archived_tickets = Ticket.in_date_range_with_count(date1,date2,"Archived",company)
 
-	def last_7_days_data
-		date = Date.today - 1.week
-		tickets = current_agent.company.tickets.where("date(created_at) > ?", 7.days.ago)
-	end
+		# replies grouped by date and count
+		@replies_count = Reply.in_date_range_for_replies(date1,date2,company)
+		gon.replies_count = Reply.in_date_range_for_replies(date1,date2,company)
 
-	def yesterday
-		day = Date.today - 1
+		respond_to do |format|
+	      format.js
+	    end	
 	end
 
 end

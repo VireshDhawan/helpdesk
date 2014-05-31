@@ -7,4 +7,9 @@ class Label < ActiveRecord::Base
 
 	validates :name, presence: true, uniqueness: {scope: :company_id, case_insensitive: false, message: "label with the name already exists."}
 
+
+	def self.get_list(company)
+		company.labels.collect{ |l| [l.name, l.id] }
+	end
+
 end

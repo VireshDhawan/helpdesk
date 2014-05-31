@@ -48,7 +48,7 @@ Helpdesk::Application.routes.draw do
 
   scope '/reports' do
     ReportsController.action_methods.each do |action|
-      match "/#{action}", to: "reports##{action}", via: [:get, :post], as: "reports_#{action}"
+      match "/#{action}", to: "reports##{action}", via: [:get, :put], as: "reports_#{action}"
     end
   end
 

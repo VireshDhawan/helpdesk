@@ -49,4 +49,8 @@ class Agent < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
 
+  def self.get_list(company)
+    company.agents.collect{ |a| [a.full_name, a.id] }
+  end
+
 end

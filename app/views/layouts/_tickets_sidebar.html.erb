@@ -9,35 +9,37 @@
   <div class="list-group links_nav" id="tickets_sidebar">
   	<%= link_to tickets_path(type: "unassigned"),class: "list-group-item" do %>
       <i class="fa fa-dollar kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;Unassigned
-      <span class="badge">3</span>
+      <span class="badge"><%= unassigned_count %></span>
   	<% end %>
     <%= link_to tickets_path,class: "list-group-item" do %>
       <i class="fa fa-ticket kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;All
-      <span class="badge">3</span>
+      <span class="badge"><%= all_count %></span>
     <% end %>
   	<%= link_to tickets_path(type: "my"),class: "list-group-item" do %>
       <i class="fa fa-user kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;My
-      <span class="badge">3</span>
+      <span class="badge"><%= agent_count %></span>
   	<% end %>
   	<%= link_to tickets_path(type: "groups"),class: "list-group-item" do %>
       <i class="fa fa-users kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;Groups
-      <span class="badge">3</span>
+      <span class="badge"><%= group_count %></span>
   	<% end %>
+    <% if false %>
   	<%= link_to tickets_path(type: "drafts"),class: "list-group-item" do %>
       <i class="fa fa-pencil-square-o kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;Drafts
       <span class="badge">3</span>
   	<% end %>
+    <% end %>
   	<%= link_to tickets_path(type: "archived"),class: "list-group-item" do %>
       <i class="fa fa-database kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;Archived
-      <span class="badge">3</span>
+      <span class="badge"><%= archived_count %></span>
   	<% end %>
   	<%= link_to tickets_path(type: "spam"),class: "list-group-item" do %>
       <i class="fa fa-exclamation-circle kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;Spam
-      <span class="badge">3</span>
+      <span class="badge"><%= spam_count %></span>
   	<% end %>
   	<%= link_to tickets_path(type: "trash"),class: "list-group-item" do %>
       <i class="fa fa-recycle kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;Trash
-      <span class="badge">3</span>
+      <span class="badge"><%= trash_count %></span>
   	<% end %>
   </div> <!-- /.list-group -->
 

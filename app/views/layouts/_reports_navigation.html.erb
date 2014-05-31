@@ -9,11 +9,17 @@
 
       <nav class="collapse mainnav-collapse" role="navigation">
 
-        <!-- search form -->
-        <form class="mainnav-form pull-right" role="search">
-          <input type="text" class="form-control input-md mainnav-search-query" placeholder="Search">
-          <button class="btn btn-sm mainnav-form-btn"><i class="fa fa-search"></i></button>
-        </form>
+        <div id="reportrange" class="mainnav-form pull-right">
+          <i class="fa fa-calendar fa-lg"></i>
+          <span><%= "#{(Date.today - 30.days).to_formatted_s(:long)} - #{(Date.today).to_formatted_s(:long)}" %></span><b class="caret"></b>
+        </div>
+
+        <% unless action_name == "index" %>
+        <div class="mainnav-form pull-right select_cat">
+          <%= select_tag action_name, options_for_select(select_options(action_name)),prompt: "Select #{action_name.singularize.capitalize}",class: "selectpicker", :"data-live-search" => true %>
+        </div>
+        <% end %>
+
 
         <ul class="mainnav-menu">
           <li class="active">
@@ -45,4 +51,27 @@
       </nav>
 
     </div> <!-- /.container -->
-  </div> <!-- /.mainnav -->
+
+</div> <!-- /.mainnav -->
+<script type="text/javascript">
+  $('#reportrange').daterangepicker(
+      {
+        ranges: {
+           'Today': [moment(), moment()],
+           'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+           'Last 7 Days': [moment().subtract('days', 6), moment()],
+           'Last 30 Days': [moment().subtract('days', 29), moment()],
+           'This Month': [moment().startOf('month'), moment().endOf('month')],
+           'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+        },
+        startDate: moment().subtract('days', 29),
+        endDate: moment()
+      },
+      function(start, end) {
+          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+      }
+  );
+
+  $('.selectpicker').selectpicker();
+
+</script>

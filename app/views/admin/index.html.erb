@@ -1,6 +1,6 @@
 <div class="content">
 
-    <div class="container">
+    <div class="container admin_index">
 
       <h3 class="content-title"><u>Dashboard</u></h3>
       <p>Get started with the most common settings. You can find the comprehensive list of settings in the left navigation bar. If you need help in setting up, please &nbsp; <%= link_to "Contact Support »", '' %></p>
@@ -13,30 +13,22 @@
 
 	          <div class="well">
 	            <h4>Forwarding Addresses</h4>
-	            <p>Your  monthly charge for the <strong>$9.00</strong> is paid on the 11th of each month.</p>
-
+	            <hr>
+	            <div class="row count">
+	            	<%= link_to forwarding_addresses_path do %>
+	            		<%= @forwarding_addresses %>
+	            		<i class="fa fa-envelope fa-x"></i>
+	            	<% end %>
+	            </div>
 	            <br>
-
-	            <h5>Card Details</h5>
-
-	              <table class="table">
-	                <tbody>
-	                  <tr>
-	                    <th>Card Type</th>
-	                    <td>Visa</td>
-	                  </tr>
-
-	                  <tr>
-	                    <th>Card Number</th>
-	                    <td>************9349 &nbsp;<small>(<a href="javascript:;">change card</a>)</small></td>
-	                  </tr>
-
-	                  <tr>
-	                    <th>Valid Until</th>
-	                    <td>07/16</td>
-	                  </tr>
-	                </tbody>
-	              </table>
+	            <table class="table keyvalue-table">
+                  <tbody>
+                    <tr>
+                      <td class="kv-key"><i class="fa fa-envelope kv-icon kv-icon-primary"></i>
+                      	<%= link_to 'Set up new forwarding address',new_forwarding_address_path %></td>
+                    </tr>
+                  </tbody>
+                </table>
 
 	          </div> <!-- /.well -->
 
@@ -46,30 +38,22 @@
 
 	          <div class="well">
 	            <h4>Agents</h4>
-	            <p>Your  monthly charge for the <strong>$9.00</strong> is paid on the 11th of each month.</p>
-
+	            <hr>
+	            <div class="row count">
+	            	<%= link_to agents_path do %>
+	            		<%= @agents %>
+	            		<i class="fa fa-user fa-x"></i>
+	            	<% end %>
+	            </div>
 	            <br>
-
-	            <h5>Card Details</h5>
-
-	              <table class="table">
-	                <tbody>
-	                  <tr>
-	                    <th>Card Type</th>
-	                    <td>Visa</td>
-	                  </tr>
-
-	                  <tr>
-	                    <th>Card Number</th>
-	                    <td>************9349 &nbsp;<small>(<a href="javascript:;">change card</a>)</small></td>
-	                  </tr>
-
-	                  <tr>
-	                    <th>Valid Until</th>
-	                    <td>07/16</td>
-	                  </tr>
-	                </tbody>
-	              </table>
+	            <table class="table keyvalue-table">
+                  <tbody>
+                    <tr>
+                      <td class="kv-key"><i class="fa fa-user kv-icon kv-icon-primary"></i>
+                      	<%= link_to 'Invite more team members',new_agent_invitation_path %></td>
+                    </tr>
+                  </tbody>
+                </table>
 
 	          </div> <!-- /.well -->
 
@@ -79,30 +63,22 @@
 
 	          <div class="well">
 	            <h4>Groups</h4>
-	            <p>Your  monthly charge for the <strong>$9.00</strong> is paid on the 11th of each month.</p>
-
+	            <hr>
+	            <div class="row count">
+	            	<%= link_to groups_path do %>
+	            		<%= @groups %>
+	            		<i class="fa fa-users fa-x"></i>
+	            	<% end %>
+	            </div>
 	            <br>
-
-	            <h5>Card Details</h5>
-
-	              <table class="table">
-	                <tbody>
-	                  <tr>
-	                    <th>Card Type</th>
-	                    <td>Visa</td>
-	                  </tr>
-
-	                  <tr>
-	                    <th>Card Number</th>
-	                    <td>************9349 &nbsp;<small>(<a href="javascript:;">change card</a>)</small></td>
-	                  </tr>
-
-	                  <tr>
-	                    <th>Valid Until</th>
-	                    <td>07/16</td>
-	                  </tr>
-	                </tbody>
-	              </table>
+	            <table class="table keyvalue-table">
+                  <tbody>
+                    <tr>
+                      <td class="kv-key"><i class="fa fa-users kv-icon kv-icon-primary"></i>
+                      	<%= link_to 'Set up new Groups',new_group_path %></td>
+                    </tr>
+                  </tbody>
+                </table>
 
 	          </div> <!-- /.well -->
 
@@ -115,30 +91,22 @@
 
 	          <div class="well">
 	            <h4>Filters</h4>
-	            <p>Your  monthly charge for the <strong>$9.00</strong> is paid on the 11th of each month.</p>
-
+	            <hr>
+	            <div class="row count">
+	            	<%= link_to filters_path do %>
+	            		<%= @filters %>
+	            		<i class="fa fa-filter fa-x"></i>
+	            	<% end %>
+	            </div>
 	            <br>
-
-	            <h5>Card Details</h5>
-
-	              <table class="table">
-	                <tbody>
-	                  <tr>
-	                    <th>Card Type</th>
-	                    <td>Visa</td>
-	                  </tr>
-
-	                  <tr>
-	                    <th>Card Number</th>
-	                    <td>************9349 &nbsp;<small>(<a href="javascript:;">change card</a>)</small></td>
-	                  </tr>
-
-	                  <tr>
-	                    <th>Valid Until</th>
-	                    <td>07/16</td>
-	                  </tr>
-	                </tbody>
-	              </table>
+	            <table class="table keyvalue-table">
+                  <tbody>
+                    <tr>
+                      <td class="kv-key"><i class="fa fa-filter kv-icon kv-icon-primary"></i>
+                      	<%= link_to 'Set up new Filters',new_filter_path %></td>
+                    </tr>
+                  </tbody>
+                </table>
 
 	          </div> <!-- /.well -->
 
@@ -148,30 +116,22 @@
 
 	          <div class="well">
 	            <h4>Snippets</h4>
-	            <p>Your  monthly charge for the <strong>$9.00</strong> is paid on the 11th of each month.</p>
-
+	            <hr>
+	            <div class="row count">
+	            	<%= link_to snippets_path do %>
+	            		<%= @snippets %>
+	            		<i class="fa fa-file-text fa-x"></i>
+	            	<% end %>
+	            </div>
 	            <br>
-
-	            <h5>Card Details</h5>
-
-	              <table class="table">
-	                <tbody>
-	                  <tr>
-	                    <th>Card Type</th>
-	                    <td>Visa</td>
-	                  </tr>
-
-	                  <tr>
-	                    <th>Card Number</th>
-	                    <td>************9349 &nbsp;<small>(<a href="javascript:;">change card</a>)</small></td>
-	                  </tr>
-
-	                  <tr>
-	                    <th>Valid Until</th>
-	                    <td>07/16</td>
-	                  </tr>
-	                </tbody>
-	              </table>
+	            <table class="table keyvalue-table">
+                  <tbody>
+                    <tr>
+                      <td class="kv-key"><i class="fa fa-file-text kv-icon kv-icon-primary"></i>
+                      	<%= link_to 'Set up new Snippets',new_snippet_path %></td>
+                    </tr>
+                  </tbody>
+                </table>
 
 	          </div> <!-- /.well -->
 
@@ -181,30 +141,22 @@
 
 	          <div class="well">
 	            <h4>Labels</h4>
-	            <p>Your  monthly charge for the <strong>$9.00</strong> is paid on the 11th of each month.</p>
-
+	            <hr>
+	            <div class="row count">
+	            	<%= link_to labels_path do %>
+	            		<%= @labels %>
+	            		<i class="fa fa-tag fa-x"></i>
+	            	<% end %>
+	            </div>
 	            <br>
-
-	            <h5>Card Details</h5>
-
-	              <table class="table">
-	                <tbody>
-	                  <tr>
-	                    <th>Card Type</th>
-	                    <td>Visa</td>
-	                  </tr>
-
-	                  <tr>
-	                    <th>Card Number</th>
-	                    <td>************9349 &nbsp;<small>(<a href="javascript:;">change card</a>)</small></td>
-	                  </tr>
-
-	                  <tr>
-	                    <th>Valid Until</th>
-	                    <td>07/16</td>
-	                  </tr>
-	                </tbody>
-	              </table>
+	            <table class="table keyvalue-table">
+                  <tbody>
+                    <tr>
+                      <td class="kv-key"><i class="fa fa-tag kv-icon kv-icon-primary"></i>
+                      	<%= link_to 'Set up new Labels',new_label_path %></td>
+                    </tr>
+                  </tbody>
+                </table>
 
 	          </div> <!-- /.well -->
 

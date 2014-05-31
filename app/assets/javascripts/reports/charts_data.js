@@ -16,8 +16,12 @@ $(function () {
             x: -20 //center
         },
         xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            type: 'datetime',
+            dateTimeLabelFormats: { // don't display the dummy year
+                month: '%e. %b',
+                year: '%b'
+            },
+            pointInterval: 24 * 3600 * 1000 * 1000
         },
         yAxis: {
             title: {
@@ -30,14 +34,14 @@ $(function () {
             }]
         },
         tooltip: {
-            valueSuffix: ' min'
+            pointFormat: '{point.y}'
         },
         legend: {
         	enabled: false
         },
         series: [{
         	type:"line",
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+            data: gon.archived_tickets
         }]
     });
 });
@@ -53,8 +57,11 @@ $(function () {
             x: -20 //center
         },
         xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            type: 'datetime',
+            dateTimeLabelFormats: { // don't display the dummy year
+                month: '%e. %b',
+                year: '%b'
+            }
         },
         yAxis: {
             title: {
@@ -67,14 +74,14 @@ $(function () {
             }]
         },
         tooltip: {
-            valueSuffix: ' min'
+            pointFormat: '{point.y}'
         },
         legend: {
         	enabled: false
         },
         series: [{
         	type:"line",
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+            data: gon.archived_tickets
         }]
     });
 });
@@ -90,7 +97,11 @@ $(function () {
             x: -20 //center
         },
         xAxis: {
-            type: "datetime"
+            type: "datetime",
+            dateTimeLabelFormats: { // don't display the dummy year
+                month: '%e. %b',
+                year: '%b'
+            }
         },
         yAxis: {
             title: {
@@ -103,7 +114,7 @@ $(function () {
             }]
         },
         tooltip: {
-            valueSuffix: ' min'
+            pointFormat: '{point.y}'
         },
         legend: {
         	enabled: false
@@ -116,7 +127,7 @@ $(function () {
 });
 
 $(function () {
-	var replies = new Highcharts.Chart({
+    var replies = new Highcharts.Chart({
         chart: {
             renderTo: 'replies',
             type: 'line'
@@ -125,8 +136,16 @@ $(function () {
             text: 'Replies',
             x: -20 //center
         },
+        series: [{
+            type:"line",
+            data: gon.replies_count
+        }],
         xAxis: {
-            type: 'datetime'
+            type: 'datetime',
+            dateTimeLabelFormats: { // don't display the dummy year
+                month: '%e. %b',
+                year: '%b'
+            }
         },
         yAxis: {
             title: {
@@ -139,18 +158,13 @@ $(function () {
             }]
         },
         tooltip: {
-            valueSuffix: ' min'
+            pointFormat: '{point.y}'
         },
         legend: {
-        	enabled: false
-        },
-        series: [{
-        	type:"line",
-            data: gon.replies_count
-        }]
+            enabled: false
+        }
     });
 });
-
 // Tickets chart //
 
 $(function () {
@@ -169,7 +183,10 @@ $(function () {
                     fontSize:'15px'
                 }
             },
-            type: "datetime"
+            type: 'datetime',
+            dateTimeLabelFormats: {
+                month: '%b %e'
+            }
         },
         yAxis: {
             title: {
@@ -182,7 +199,7 @@ $(function () {
             }]
         },
         tooltip: {
-            valueSuffix: ' min'
+            pointFormat: '{point.y}'
         },
         legend: {
         	enabled: false

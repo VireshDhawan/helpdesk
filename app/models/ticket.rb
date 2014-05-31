@@ -23,12 +23,14 @@ class Ticket < ActiveRecord::Base
 	def self.in_date_range_with_count(date1,date2,category,company)
 		unless category.blank?
 			type = TicketCategory.find_by(name: category)
-			hash = company.tickets.where("created_at >= ? AND created_at <=? AND ticket_category_id = ?", date1,date2,type.id).order('DATE(created_at) DESC').group("DATE(created_at)").count
+			hash = company.tickets.where("created_at >= ? AND created_at <=? AND ticket_category_id = ?", date1,date2,type.id).group("DATE(created_at)").count
 		else
-			hash = company.tickets.where("created_at >= ? AND created_at <=?", date1,date2).order('DATE(created_at) DESC').group("DATE(created_at)").count
+			hash = company.tickets.where("created_at >= ? AND created_at <=?", date1,date2).group("DATE(created_at)").count
 		end
-		hash = Hash[hash.map{|k,v| [DateTime.parse(k.to_s).strftime("%Q"),v]}]
-		hash.to_a
+		#hash1 = (date1..date2).map {|a| {DateTime.parse(a.to_s).strftime("%Q") => 0}}.reduce(Hash.new,:merge)
+		hash1 = Hash[(date1..date2).collect { |v| [DateTime.parse(v.to_s).strftime("%Q").to_i, 0] }]
+		hash = Hash[hash.map{|k,v| [DateTime.parse(k.to_s).strftime("%Q").to_i,v]}]
+		hash = hash1.merge(hash).to_a
 	end
 
 	def status?

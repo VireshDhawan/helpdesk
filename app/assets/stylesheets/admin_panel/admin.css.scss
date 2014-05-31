@@ -5,3 +5,30 @@
 #admin_privilages,#agent_privilages{
   display: none;
 }
+.admin_index{
+	.well{
+		padding-bottom:0 !important;
+		.count {
+			text-align:center;
+			font-size: 60px;
+			a {
+				color: #343A3D;
+			    display: block;
+			    line-height: 3.927rem;
+			    padding: 1rem 0;
+			    transition: background-color 0.3s ease-out 0s, text-shadow 0.1s linear 0s;
+			}
+			.fa-x {
+			   	font-size: 0.8em !important;
+			}
+		}
+		a:hover{
+			text-decoration: none;
+			color: #343A3D;
+		}
+	}
+	.keyvalue-table > tbody > tr > td {
+		border-top: 1px solid #DDDDDD;
+		border-bottom: none;
+	}
+}

@@ -38,8 +38,9 @@ class Reply < ActiveRecord::Base
 	# To find count of tickets grouped by category,date
 	def self.in_date_range_for_replies(date1,date2,company)
 		hash = company.replies.where("created_at >= ? AND created_at <=?", date1,date2).order('DATE(created_at) DESC').group("DATE(created_at)").count
-		hash = Hash[hash.map{|k,v| [DateTime.parse(k.to_s).strftime("%Q"),v]}]
-		hash.to_a
+		hash1 = Hash[(date1..date2).collect { |v| [DateTime.parse(v.to_s).strftime("%Q").to_i, 0] }]
+		hash = Hash[hash.map{|k,v| [DateTime.parse(k.to_s).strftime('%Q').to_i,v]}]
+		hash = hash1.merge(hash).to_a
 	end
 
 end

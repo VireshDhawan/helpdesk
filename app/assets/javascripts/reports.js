@@ -12,5 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require reports/bootstrap.min
+//= require reports/moment.min
+//= require reports/daterangepicker-bootstrap
 //= require_tree ./reports
 //= require universal
