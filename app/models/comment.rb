@@ -24,4 +24,8 @@ class Comment < ActiveRecord::Base
 		end
 	end
 
+	def class?
+		return "Comment"
+	end
+
 end

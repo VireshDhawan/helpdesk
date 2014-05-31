@@ -1636,6 +1636,9 @@ fieldset[disabled] .btn-twitter.active {
 .feed-item-customer .feed-icon {
   background-color: #5CB85C;
 }
+.feed-item-comment .feed-icon {
+  background-color: #d74b4b;
+}
 /* !Progress Stats */
 /* ----------------------------------------------- */
 .progress-stat {

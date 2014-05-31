@@ -37,7 +37,9 @@
 					<% @labels.each do |lab| %>
 		              <tr >
 						<td><%= lab.name %></td>
-						<td>Color</td>
+						<td>
+							<span class="label" style="background-color: <%= lab.color %>;font-size:10px;"><%= lab.color %></span>
+						</td>
 						<td><%= link_to '', edit_label_path(lab.id),class: "fa fa-pencil" %> </td>
 						<td><%= link_to '',label_path(lab.id),:method => :delete, :data => { :confirm => 'Are you sure?' },class: "fa fa-trash-o text-danger" %> </td>
 		              </tr>

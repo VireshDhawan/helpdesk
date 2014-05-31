@@ -7,7 +7,7 @@ module TicketsHelper
 		status << ticket.category unless ticket.category.blank?
 	end
 
-	def feed_icon(reply)
+	def reply_icon(reply)
 		reply.agent.blank? ? "feed-item-customer" : "feed-item-agent"
 	end
 
@@ -45,6 +45,10 @@ module TicketsHelper
 
 	def group_count
 		current_agent.company.tickets.in_category("Groups").count
+	end
+
+	def label_list
+		current_agent.company.labels
 	end
 
 end

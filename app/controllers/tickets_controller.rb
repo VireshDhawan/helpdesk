@@ -65,7 +65,7 @@ class TicketsController < ApplicationController
 
   def show
     @ticket = current_agent.company.tickets.find(params[:id])
-    @replies = @ticket.replies.order("created_at DESC")
+    @activities = (@ticket.replies + @ticket.comments).sort{|a,b| a.created_at <=> b.created_at }
     @reply = @ticket.replies.new
     @comment = @ticket.comments.new
   end

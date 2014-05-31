@@ -51,12 +51,12 @@ class Ticket < ActiveRecord::Base
 	end
 
 	def mark_answered
-		self.ticket.answered = true
+		self.answered = true
 		self.save
 	end
 
 	def mark_unanswered
-		self.ticket.answered = false
+		self.answered = false
 		self.save
 	end
 

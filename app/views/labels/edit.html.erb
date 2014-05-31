@@ -15,6 +15,7 @@
 	        		<div class="col-sm-12 col-md-8 col-md-offset-2"><br>
 	        			<%= simple_form_for @label , html: { :class => "form-horizontal" }, :wrapper => :normal do |f| %>
 							<%= f.input :name,input_html: {class: "form-control"} %>
+							<%= f.input :color,input_html: {class: "form-control"} %>
 							<div class="form-group">
 			                  <div class="col-md-7 col-md-push-3">
 							<%= f.button :submit, "Update Label",class: "btn btn-info" %>
@@ -27,3 +28,8 @@
 	    </div> <!-- /.portlet -->
 	</div>
 </div>
+<script type="text/javascript">
+	$('#label_color').colorpicker({
+		horizontal: true
+	});
+</script>

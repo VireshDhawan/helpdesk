@@ -88,32 +88,60 @@
 
     <br><br>
 
-    <% @replies.try(:each) do |reply| %>
-    <div class="feed-item <%= feed_icon(reply) %>">
-      <div class="feed-icon">
-        <i class="fa fa-user"></i>
-      </div> <!-- /.feed-icon -->
+    <% @activities.try(:each) do |activity| %>
+      <% if activity.class? == "Reply" %>
+        <div class="feed-item <%= reply_icon(activity) %>">
+          <div class="feed-icon">
+            <i class="fa fa-user"></i>
+          </div> <!-- /.feed-icon -->
 
-      <div class="feed-subject">
-        <p>
-          <a href="javascript:;"><%= reply.replier_name %></a> posted a <strong>reply</strong>
-        </p>
-      </div> <!-- /.feed-subject -->
+          <div class="feed-subject">
+            <p>
+              <a href="javascript:;"><%= activity.replier_name %></a> posted a <strong>reply</strong>
+            </p>
+          </div> <!-- /.feed-subject -->
 
-      <div class="feed-content">
-        <ul class="icons-list">
-          <li>
-            <i class="icon-li fa fa-quote-left"></i>
-            <%= reply.content %>
-          </li>
-        </ul>
-      </div> <!-- /.feed-content -->
+          <div class="feed-content">
+            <ul class="icons-list">
+              <li>
+                <i class="icon-li fa fa-quote-left"></i>
+                <%= activity.content %>
+              </li>
+            </ul>
+          </div> <!-- /.feed-content -->
 
-      <div class="feed-actions">
-        <p class="pull-right text-muted"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(reply.created_at) %></p>
-      </div> <!-- /.feed-actions -->
+          <div class="feed-actions">
+            <p class="pull-right text-muted"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(activity.created_at) %></p>
+          </div> <!-- /.feed-actions -->
 
-    </div> <!-- /.feed-item -->
+        </div> <!-- /.feed-item -->
+    <% else %>
+        <div class="feed-item feed-item-comment col-md-offset-2">
+          <div class="feed-icon">
+            <i class="fa fa-comments-o"></i>
+          </div> <!-- /.feed-icon -->
+
+          <div class="feed-subject">
+            <p>
+              <a href="javascript:;"><%= activity.agent.full_name %></a> posted a <strong>comment</strong>
+            </p>
+          </div> <!-- /.feed-subject -->
+
+          <div class="feed-content">
+            <ul class="icons-list">
+              <li>
+                <i class="icon-li fa fa-quote-left"></i>
+                <%= activity.content %>
+              </li>
+            </ul>
+          </div> <!-- /.feed-content -->
+
+          <div class="feed-actions">
+            <p class="pull-right text-muted"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(activity.created_at) %></p>
+          </div> <!-- /.feed-actions -->
+
+        </div> <!-- /.feed-item -->
+      <% end %>
     <% end %>
 
     <br class="visible-xs">            

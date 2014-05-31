@@ -43,4 +43,8 @@ class Reply < ActiveRecord::Base
 		hash = hash1.merge(hash).to_a
 	end
 
+	def class?
+		return "Reply"
+	end
+
 end

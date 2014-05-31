@@ -43,21 +43,23 @@
   	<% end %>
   </div> <!-- /.list-group -->
 
-  	<div class="portlet" id="tickets_portlet">
-		<h4 class="portlet-title">
-		  <u>Labels</u>
-		</h4>
-	</div>
+    <% unless label_list.blank? %>
 
-	<div class="list-group links_nav">
-		<%= link_to '',class: "list-group-item" do %>
-	      <i class="fa fa-tag kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;Label 1
-	      <span class="badge">3</span>
-	  	<% end %>
-	  	<%= link_to '',class: "list-group-item" do %>
-	      <i class="fa fa-tag kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;Label 2
-	      <span class="badge">3</span>
-	  	<% end %>
-	</div>
+      <div class="portlet" id="tickets_portlet">
+        <h4 class="portlet-title">
+          <u>Labels</u>
+        </h4>
+      </div>
+
+      <div class="list-group links_nav">
+        <% label_list.each do |lab| %>
+      		<%= link_to '',class: "list-group-item" do %>
+      	      <i class="fa fa-tag kv-icon kv-icon-secondary" style="background-color: <%= lab.color %>"></i> &nbsp;&nbsp;Label 1
+      	      <span class="badge"><%= lab.tickets.count %></span>
+      	  <% end %>
+        <% end %>
+      </div>
+
+    <% end %>
 
 </div> <!-- /.col -->
