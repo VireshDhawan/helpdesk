@@ -66,7 +66,7 @@ Helpdesk::Application.routes.draw do
   end
 
   MainController.action_methods.each do |action|
-    get "/#{action}", to: "main##{action}"
+    (action=="contact") ? (match "/#{action}", to: "main##{action}", via: [:get,:post]) : (get "/#{action}", to: "main##{action}")
   end
 
   root 'main#index'

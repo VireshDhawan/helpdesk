@@ -96,6 +96,5 @@ class MailgunTasks
 		  response = JSON.parse(response)
 		end
 
-
 	end
 end

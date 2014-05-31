@@ -84,4 +84,19 @@ class Mailer < ActionMailer::Base
 		response = JSON.parse(response)
 	end
 
+	def send_contact_mail(details)
+		data = Multimap.new
+		data[:from] = "#{details.name} <no-reply@helpdesk.com>"
+		#data[:to] = "helpdesk contact email address"
+		data[:to] = "xmpirate.m@gmail.com"
+		data["h:Reply-To"] = "#{details.email}"
+		data[:subject] = "#{details.subject}"
+		html_output = render_to_string(template: "mailer/send_contact_mail",locals: {details: details})
+		data[:html] = html_output.to_str
+		response = RestClient.post "https://api:#{@@private_key}"\
+		"@api.mailgun.net/v2/#{@@domain}/messages", data
+
+		response = JSON.parse(response)
+	end
+
 end
