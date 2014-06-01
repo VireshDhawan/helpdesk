@@ -2,7 +2,8 @@ class SuperadminInvitationsController < Devise::InvitationsController
 
 	prepend_before_filter :authorize_superadmin, only: [:new,:create,:destroy]
 	before_filter :authenticate_superadmin!
-	
+	layout "super_admin"
+		
 	private
 
 	def invite_resource

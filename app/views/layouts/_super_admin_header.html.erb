@@ -1,0 +1,43 @@
+<header class="navbar navbar-inverse" role="banner">
+
+    <div class="container">
+
+      <div class="navbar-header">
+        <a href="/" class="navbar-brand">
+          Helpdesk
+        </a>
+        
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-bars"></i>
+        </button>
+      </div> <!-- /.navbar-header -->
+
+
+      <nav class="collapse navbar-collapse" role="navigation">
+
+        <ul class="nav navbar-nav navbar-right mainnav-menu">
+
+          <% if superadmin_signed_in? %>
+
+          <li ><%= link_to "Sidekiq",'/sidekiq', class: "smoothScroll" %></li>
+
+          <li ><%= link_to "Invite Admins",new_superadmin_invitation_path, class: "smoothScroll" %></li>
+
+          <li ><%= link_to "Create Plan",new_plan_path, class: "smoothScroll" %></li>
+
+          <li><%= link_to "Sign Out",destroy_superadmin_session_path, :method => :delete, class: "smoothScroll" %></li>
+
+          <% else %>
+
+          <li><%= link_to "Admin Login",new_superadmin_session_path, class: "smoothScroll" %></li>
+
+          <% end %>
+
+        </ul>
+
+      </nav>
+
+    </div> <!-- /.container -->
+
+  </header>

@@ -4,13 +4,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
-# prepend_before_filter :require_company
-# prepend_before_filter :subscription_expired
-#  around_filter :catch_not_found
-
-  def after_update_path_for(resource)
-    admin_path
-  end
+  # prepend_before_filter :require_company
+  # prepend_before_filter :subscription_expired
+  # around_filter :catch_not_found
 
   protected
 
@@ -36,7 +32,7 @@ class ApplicationController < ActionController::Base
 
   def require_company
     if current_agent && current_agent.role && current_agent.company.nil?
-      flash[:error] = "You need to provide company details before you invite agents."
+      flash[:error] = "You need to provide company details."
       redirect_to new_company_path
     elsif current_agent && current_agent.company.nil?
       flash[:error] = "Your account is not yet activated. Contact your account administrator."
@@ -63,7 +59,7 @@ class ApplicationController < ActionController::Base
 
   def catch_not_found
     yield
-  rescue ActiveRecord::RecordNotFound
+    rescue ActiveRecord::RecordNotFound
     redirect_to :back, :flash => { :error => "Record not found."}
   end
 

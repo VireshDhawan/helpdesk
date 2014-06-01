@@ -3,6 +3,10 @@ class Agents::RegistrationsController < Devise::RegistrationsController
 	before_filter :configure_permitted_parameters
  
 	protected
+
+	def after_update_path_for(resource)
+      admin_path
+    end
 	 
 	# my custom fields are :name, :heard_how
 	def configure_permitted_parameters

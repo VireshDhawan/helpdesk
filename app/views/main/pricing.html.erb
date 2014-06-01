@@ -1,210 +1,211 @@
 <div class="masthead">
       
-      <div class="container">
+    <div class="container">
 
-        <h1 class="masthead-subtitle">
-          Pricing
-        </h1>
-        
+      <h1 class="masthead-subtitle">
+        Pricing
+      </h1>
+      
 
-      </div> <!-- /.container -->
+    </div> <!-- /.container -->
 
-    </div> <!-- /.masthead -->
+</div> <!-- /.masthead -->
 
 
-    <div class="content">
-    	
-    	<div class="container">
+<div class="content">
+	
+	<div class="container">
 
-        <div class="text-center">
-          <h2>Start your 14-day free trial today!</h2>
-          <h4>No sign-up fees. No credit card required. No long-term commitments.</h4>
+    <div class="text-center">
+      <h2>Start your 14-day free trial today!</h2>
+      <h4>No sign-up fees. No credit card required. No long-term commitments.</h4>
 
-          <br>
-          <br>
+      <br>
+      <br>
 
-    		<div class="row">
+		<div class="row">
 
-          <% @plans.each_with_index do |plan,i| %>
-            <% if i==0 %>
-            <div class="col-sm-2 col-sm-offset-1">
-            <% else %>
-            <div class="col-sm-2">
+      <% @plans.each_with_index do |plan,i| %>
+        <% if i==0 %>
+        <div class="col-sm-2 col-sm-offset-1">
+        <% else %>
+        <div class="col-sm-2">
+        <% end %>
+
+          <div class="pricing-plan">
+
+            <% if plan.name == "Enterprise" %>
+            <div class="pricing-plan-ribbon-secondary ui-tooltip" title="Best Value!">
+              <i class="fa fa-star"></i>
+            </div>
             <% end %>
 
-              <div class="pricing-plan">
+            <div class="pricing-header">
+              <h3 class="pricing-plan-title"><%= plan.name %></h3>                
+              <!--<p class="pricing-plan-label">For Individuals</p>-->
+            </div>
 
-                <% if plan.name == "Enterprise" %>
-                <div class="pricing-plan-ribbon-secondary ui-tooltip" title="Best Value!">
-                  <i class="fa fa-star"></i>
-                </div>
-                <% end %>
+            <div class="pricing-plan-price">
+              <span class="pricing-plan-amount">$<%= plan.price %></span> / month
+            </div>
 
-                <div class="pricing-header">
-                  <h3 class="pricing-plan-title"><%= plan.name %></h3>                
-                  <!--<p class="pricing-plan-label">For Individuals</p>-->
-                </div>
+            <ul class="pricing-plan-details">           
+              <li><strong><%= plan_limit(plan.emails) %></strong> Emails</li>
+              <li><strong><%= plan_limit(plan.tickets) %></strong> Tickets</li>    
+              <li><strong><%= plan_limit(plan.agents) %></strong> Agents</li> 
+              <li><strong><%= plan_limit(plan.groups) %></strong> Groups</li>                     
+            </ul>
+            <a href="javascript:;" class="btn btn-danger btn-block">Choose Plan</a>
+            <% if false %>
+              <%= simple_form_for :plan, url: subscription_path(@subscription.id), html: {method: :put } do |f| %>
+                <%= f.input :plan_id, required: true, :as => :hidden, input_html: {:value => plan.id} %>
+                <%= f.button :submit, "Upgrade" , class: "btn btn-primary btn-block" %>
+              <% end %>
+            <% end %>
 
-                <div class="pricing-plan-price">
-                  <span class="pricing-plan-amount">$<%= plan.price %></span> / month
-                </div>
+          </div> <!-- /.pricing-plan -->
 
-                <ul class="pricing-plan-details">           
-                  <li><strong><%= plan_limit(plan.emails) %></strong> Emails</li>
-                  <li><strong><%= plan_limit(plan.tickets) %></strong> Tickets</li>    
-                  <li><strong><%= plan_limit(plan.agents) %></strong> Agents</li> 
-                  <li><strong><%= plan_limit(plan.groups) %></strong> Groups</li>                     
-                </ul>
-                <a href="javascript:;" class="btn btn-danger btn-block">Choose Plan</a>
-                <% if false %>
-                  <%= simple_form_for :plan, url: subscription_path(@subscription.id), html: {method: :put } do |f| %>
-                    <%= f.input :plan_id, required: true, :as => :hidden, input_html: {:value => plan.id} %>
-                    <%= f.button :submit, "Upgrade" , class: "btn btn-primary btn-block" %>
-                  <% end %>
-                <% end %>
+        </div> <!-- /.col -->
+      <% end %>
 
-              </div> <!-- /.pricing-plan -->
+      </div> <!-- /.row -->
 
-            </div> <!-- /.col -->
-          <% end %>
+      <br>
 
-		      </div> <!-- /.row -->
+      <h4 class="text-center">
+        Need More?
+        <span>We offer larger plans for companies with even more contacts.</span>
+        <a href="javascript:;">Learn More &nbsp;<i class="fa fa-external-link"></i></a>
+      </h4>
 
-          <br>
+      <br><br><br><br>
 
-          <h4 class="text-center">
-            Need More?
-            <span>We offer larger plans for companies with even more contacts.</span>
-            <a href="javascript:;">Learn More &nbsp;<i class="fa fa-external-link"></i></a>
-          </h4>
-
-          <br><br><br><br>
-
-          <div class="row">
-                
-            <div class="col-md-12">
-              <h3 class="content-title">
-                <span>All Plans Come With</span>
-              </h3>
-            </div> <!-- /.row -->
-        
-          <div class="col-md-3 col-sm-6">
-            <ul class="icons-list">
-              <li>
-                <i class="icon-li fa fa-check-square"></i> 
-
-                Free Setup
-              </li>
-
-              <li>
-                <i class="icon-li fa fa-check-square"></i> 
-
-                SSL Protection
-              </li>
-
-              <li>
-                <i class="icon-li fa fa-check-square"></i> 
-
-                Unlimited Downloads
-              </li>
-
-              <li>
-                <i class="icon-li fa fa-check-square"></i> 
-
-                Unlimited Pushes
-              </li>
-            </ul>         
-          </div><!-- /.col -->
-
-          <div class="col-md-3 col-sm-6">
-            <ul class="icons-list">
-              
-              <li>
-              <i class="icon-li fa fa-check-square"></i> 
-
-                Over the Air Install and Update
-              </li>
-              
-              <li>
-              <i class="icon-li fa fa-check-square"></i> 
-
-                Realtime Dashboard
-              </li>
-              
-              <li>
-              <i class="icon-li fa fa-check-square"></i> 
-
-                Package History Archive
-              </li>
-              
-              <li>
-              <i class="icon-li fa fa-check-square"></i> 
-
-                Easy to Use Interface
-              </li>
-           </ul>    
-          </div><!-- /.col -->
-
-          <div class="col-md-3 col-sm-6">
-            <ul class="icons-list">
-              
-              <li>
-              <i class="icon-li fa fa-check-square"></i> 
-
-                Full Featured 
-              </li>
-              
-              <li>
-              <i class="icon-li fa fa-check-square"></i> 
-
-                Crash Reporting (with SDK)
-              </li>
-              
-              <li>
-              <i class="icon-li fa fa-check-square"></i> 
-
-                Custom Event Logging
-              </li>
-              
-              <li>
-              <i class="icon-li fa fa-check-square"></i> 
-
-                Commandline Tools
-              </li>
-            </ul>     
-          </div><!-- /.col -->
-
-          <div class="col-md-3 col-sm-6">
-            <ul class="icons-list">
-              
-              <li>
-              <i class="icon-li fa fa-check-square"></i> 
-
-                Over the Air Install and Update
-              </li>
-              
-              <li>
-              <i class="icon-li fa fa-check-square"></i> 
-
-                Realtime Dashboard
-              </li>
-              
-              <li>
-              <i class="icon-li fa fa-check-square"></i> 
-
-                Package History Archive
-              </li>
-              
-              <li>
-              <i class="icon-li fa fa-check-square"></i> 
-
-                Easy to Use Interface
-              </li>
-            </ul>   
-          </div><!-- /.col -->
-        
+      <div class="row">
+            
+        <div class="col-md-12">
+          <h3 class="content-title">
+            <span>All Plans Come With</span>
+          </h3>
         </div> <!-- /.row -->
-    		
-    	</div> <!-- /.container -->
+    
+      <div class="col-md-3 col-sm-6">
+        <ul class="icons-list">
+          <li>
+            <i class="icon-li fa fa-check-square"></i> 
 
-    </div> <!-- /.content -->
+            Free Setup
+          </li>
+
+          <li>
+            <i class="icon-li fa fa-check-square"></i> 
+
+            SSL Protection
+          </li>
+
+          <li>
+            <i class="icon-li fa fa-check-square"></i> 
+
+            Unlimited Downloads
+          </li>
+
+          <li>
+            <i class="icon-li fa fa-check-square"></i> 
+
+            Unlimited Pushes
+          </li>
+        </ul>         
+      </div><!-- /.col -->
+
+      <div class="col-md-3 col-sm-6">
+        <ul class="icons-list">
+          
+          <li>
+          <i class="icon-li fa fa-check-square"></i> 
+
+            Over the Air Install and Update
+          </li>
+          
+          <li>
+          <i class="icon-li fa fa-check-square"></i> 
+
+            Realtime Dashboard
+          </li>
+          
+          <li>
+          <i class="icon-li fa fa-check-square"></i> 
+
+            Package History Archive
+          </li>
+          
+          <li>
+          <i class="icon-li fa fa-check-square"></i> 
+
+            Easy to Use Interface
+          </li>
+       </ul>    
+      </div><!-- /.col -->
+
+      <div class="col-md-3 col-sm-6">
+        <ul class="icons-list">
+          
+          <li>
+          <i class="icon-li fa fa-check-square"></i> 
+
+            Full Featured 
+          </li>
+          
+          <li>
+          <i class="icon-li fa fa-check-square"></i> 
+
+            Crash Reporting (with SDK)
+          </li>
+          
+          <li>
+          <i class="icon-li fa fa-check-square"></i> 
+
+            Custom Event Logging
+          </li>
+          
+          <li>
+          <i class="icon-li fa fa-check-square"></i> 
+
+            Commandline Tools
+          </li>
+        </ul>     
+      </div><!-- /.col -->
+
+      <div class="col-md-3 col-sm-6">
+        <ul class="icons-list">
+          
+          <li>
+          <i class="icon-li fa fa-check-square"></i> 
+
+            Over the Air Install and Update
+          </li>
+          
+          <li>
+          <i class="icon-li fa fa-check-square"></i> 
+
+            Realtime Dashboard
+          </li>
+          
+          <li>
+          <i class="icon-li fa fa-check-square"></i> 
+
+            Package History Archive
+          </li>
+          
+          <li>
+          <i class="icon-li fa fa-check-square"></i> 
+
+            Easy to Use Interface
+          </li>
+        </ul>   
+      </div><!-- /.col -->
+    
+    </div> <!-- /.row -->
+    <br>
+		
+	</div> <!-- /.container -->
+
+</div> <!-- /.content -->

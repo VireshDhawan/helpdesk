@@ -3,6 +3,8 @@ class PlansController < ApplicationController
   before_filter :authorize_superadmin
   before_filter :authenticate_superadmin!
 
+  layout "super_admin"
+
   def index
     #list all the plans
     @plans = Plan.all
@@ -16,7 +18,7 @@ class PlansController < ApplicationController
     @plan = Plan.create(params[:plan])
     if @plan.save
       flash[:success] = "New plan was created successfully!"
-      #redirect_to @plan
+      redirect_to @plan
     else
       flash[:error] = "Something went wrong. Please review the problems below."
       render :action => "new"

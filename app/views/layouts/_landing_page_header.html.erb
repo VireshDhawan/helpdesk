@@ -65,8 +65,6 @@
           </li> -->
           <% if agent_signed_in? %>
 
-          <li><%= link_to "Invite Agents",new_agent_invitation_path, class: "smoothScroll" if current_agent.allow_to_invite %></li>
-
           <li><%= link_to "Sign Out",destroy_agent_session_path, :method => :delete, class: "smoothScroll" %></li>
 
           <% elsif superadmin_signed_in? %>

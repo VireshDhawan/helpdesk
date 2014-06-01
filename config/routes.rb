@@ -2,6 +2,28 @@ Helpdesk::Application.routes.draw do
 
   # The priority is based upon order of creation: first created -> highest priority.
 
+  # You can have the root of your site routed with "root"
+
+
+  authenticated :agent do
+    root to: "tickets#index", as: :agents_root
+  end
+
+  authenticated :superadmin do
+    # superadmin's root
+    root to: "super_admins#index", as: :super_admins_root
+    require 'sidekiq/web'
+    mount Sidekiq::Web => '/sidekiq'
+
+    scope '/super_admins' do
+      SuperAdminsController.action_methods.each do |action|
+        match "/#{action}", to: "super_admins##{action}", via: [:get, :put], as: "super_admins_#{action}"
+      end
+    end
+  end
+
+  root 'main#index'
+
   devise_for :superadmins,:controllers => {
     :confirmations => 'superadmin_confirmations',
     :invitations => 'superadmin_invitations'
@@ -52,24 +74,12 @@ Helpdesk::Application.routes.draw do
     end
   end
 
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  authenticated :agent do
-    root to: "tickets#index", as: :agents_root
-  end
-
-  authenticated :superadmin do
-    # superadmin's root
-    require 'sidekiq/web'
-    mount Sidekiq::Web => '/sidekiq'
-  end
-
   MainController.action_methods.each do |action|
     (action=="contact") ? (match "/#{action}", to: "main##{action}", via: [:get,:post]) : (get "/#{action}", to: "main##{action}")
   end
 
-  root 'main#index'
+
+  # See how all your routes lay out with "rake routes".
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

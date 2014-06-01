@@ -1,17 +1,44 @@
-<div class="container-fluid">
-	<div class="row">
-		<div class="container sign_in">
-			<h2>Create Plan</h2>
+<div class="content">
 
-			<%= simple_form_for @plan,:html => {:method => :post,class: "form-horizontal"} do |f| %>
-			<%= f.input :name %>
-			<%= f.input :price,label: "Price per/month" %>
-			<%= f.input :emails,label: "No of Emails",input_html: {:"data-toggle"=>"tooltip", :"data-placement"=>"right", :title => "Enter '-1' for unlimited "} %>
-			<%= f.input :groups,label: "No of Groups",input_html: {:"data-toggle"=>"tooltip", :"data-placement"=>"right", :title => "Enter '-1' for unlimited "} %>
-			<%= f.input :agents,label: "No of Agents",input_html: {:"data-toggle"=>"tooltip", :"data-placement"=>"right", :title => "Enter '-1' for unlimited "} %>
-			<%= f.input :tickets,label: "No of Tickets",input_html: {:"data-toggle"=>"tooltip", :"data-placement"=>"right", :title => "Enter '-1' for unlimited "} %>
-			<div class="col-sm-3 col-sm-offset-1 form_button"><%= f.button :submit ,"Create Plan" ,class: "btn btn-info" %></div>
-			<% end %>
-		</div>
+	<div class="container">
+
+		<div class="portlet">
+
+			<h4 class="portlet-title">
+			  <u>Create Plan</u>
+			  <%= link_to "Back",:back,class: "pull-right" %>
+			</h4>
+			<br>
+
+	        <div class="portlet-body">
+	        	<div class="row">
+	        		<div class="col-sm-12 col-md-8 col-md-offset-2"><br>
+	        			<%= simple_form_for @plan,:html => {:method => :post,class: "form-horizontal"}, :wrapper => :normal do |f| %>
+						<%= f.input :name,input_html: {class: "form-control"} %>
+						<%= f.input :price,label: "Price per/month",input_html: {class: "form-control"} %>
+						<%= f.input :emails,label: "No of Emails",input_html: {:"data-toggle"=>"tooltip", :"data-placement"=>"right", :title => "Enter '-1' for unlimited", class: "form-control"} %>
+						<%= f.input :groups,label: "No of Groups",input_html: {:"data-toggle"=>"tooltip", :"data-placement"=>"right", :title => "Enter '-1' for unlimited ", class: "form-control"} %>
+						<%= f.input :agents,label: "No of Agents",input_html: {:"data-toggle"=>"tooltip", :"data-placement"=>"right", :title => "Enter '-1' for unlimited ", class: "form-control"} %>
+						<%= f.input :tickets,label: "No of Tickets",input_html: {:"data-toggle"=>"tooltip", :"data-placement"=>"right", :title => "Enter '-1' for unlimited ", class: "form-control"} %>
+							<div class="form-group">
+			                  <div class="col-md-7 col-md-push-3">
+								<%= f.button :submit, "Create Plan",class: "btn btn-info" %>
+								</div> <!-- /.col -->
+			                </div>
+						<% end %>
+	        		</div>
+	        	</div>
+	        </div> <!-- /.portlet-body -->
+	    </div> <!-- /.portlet -->
 	</div>
 </div>
+<script type="text/javascript">
+	$(function () {
+		  $('.form-control').popover ({
+		    placement: 'right',
+		    trigger: 'focus',
+		    container: 'body',
+		    delay: { show: 250, hide: 250 }
+		});
+	});
+</script>

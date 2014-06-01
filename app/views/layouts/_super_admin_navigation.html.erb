@@ -1,0 +1,117 @@
+<div class="mainnav">
+
+    <div class="container">
+
+      <a class="mainnav-toggle" data-toggle="collapse" data-target=".mainnav-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-bars"></i>
+      </a>
+
+      <nav class="collapse mainnav-collapse" role="navigation">
+
+        <ul class="mainnav-menu">
+          <li class="active">
+            <%= link_to admin_path do %>
+              <i class="fa fa-dashboard"></i> 
+              &nbsp;&nbsp;Dashboard
+            <% end %>
+          </li>
+
+          <li class="dropdown">
+            <%= link_to 'javascript:;', :"data-toggle"=>"dropdown", class: "dropdown-toggle" do %>
+            Setup
+            <i class="mainnav-caret"></i>
+           <% end %>
+
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <%= link_to forwarding_addresses_path do %>
+                  <i class="fa fa-envelope"></i>&nbsp;&nbsp;Email
+                <% end %>
+              </li>
+              
+                <li>
+                  <%= link_to agents_path do %>
+                    <i class="fa fa-user"></i>&nbsp;&nbsp;Users
+                  <% end %>
+                </li>
+              
+                <li>
+                  <%= link_to groups_path do %>
+                    <i class="fa fa-users"></i>&nbsp;&nbsp;Groups
+                  <% end %>
+                </li>
+              
+            </ul>
+          </li>
+
+          <li class="dropdown ">
+
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+            Settings
+            <i class="mainnav-caret"></i>
+            </a>
+
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                  <%= link_to '' do %>
+                  <i class="fa fa-cog"></i>&nbsp;&nbsp;General
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to subscriptions_path do %>
+                  <i class="fa fa-money"></i>&nbsp;&nbsp;Billing
+                  <% end %>
+                </li>
+            </ul>
+          </li>
+
+          <li class="dropdown ">
+
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+            Organise
+            <i class="mainnav-caret"></i>
+            </a>
+
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <%= link_to labels_path do %>
+                  <i class="fa fa-tag"></i>&nbsp;&nbsp;Labels
+                <% end %>
+              </li>
+              <li>
+                <%= link_to snippets_path do %>
+                  <i class="fa fa-file-text"></i>&nbsp;&nbsp;Snippets
+                <% end %>
+              </li>
+            </ul>
+          </li>
+
+          <li class="dropdown ">
+
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+            Automate
+            <i class="mainnav-caret"></i>
+            </a>
+
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <%= link_to filters_path do %>
+                  <i class="fa fa-filter"></i>&nbsp;&nbsp;Filters
+                <% end %>
+              </li>
+              <li>
+                <%= link_to '' do %>
+                  <i class="fa fa-link"></i>&nbsp;&nbsp;Webhooks
+                <% end %>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+
+      </nav>
+
+    </div> <!-- /.container -->
+
+  </div> <!-- /.mainnav -->
