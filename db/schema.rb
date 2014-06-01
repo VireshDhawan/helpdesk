@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140531204606) do
+ActiveRecord::Schema.define(version: 20140601125528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,25 @@ ActiveRecord::Schema.define(version: 20140531204606) do
   end
 
   add_index "companies", ["email"], name: "index_companies_on_email", using: :btree
+
+  create_table "customer_profile_emails", force: true do |t|
+    t.string   "email"
+    t.integer  "customer_profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "customer_profile_emails", ["customer_profile_id"], name: "index_customer_profile_emails_on_customer_profile_id", using: :btree
+  add_index "customer_profile_emails", ["email"], name: "index_customer_profile_emails_on_email", using: :btree
+
+  create_table "customer_profiles", force: true do |t|
+    t.string   "name"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "customer_profiles", ["company_id"], name: "index_customer_profiles_on_company_id", using: :btree
 
   create_table "filters", force: true do |t|
     t.string   "from_email"
@@ -214,14 +233,15 @@ ActiveRecord::Schema.define(version: 20140531204606) do
   create_table "replies", force: true do |t|
     t.text     "content"
     t.integer  "ticket_id"
-    t.integer  "agent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "replier_name"
     t.integer  "company_id"
+    t.integer  "replier_id"
+    t.string   "replier_type"
   end
 
-  add_index "replies", ["agent_id"], name: "index_replies_on_agent_id", using: :btree
+  add_index "replies", ["replier_id"], name: "index_replies_on_replier_id", using: :btree
+  add_index "replies", ["replier_type"], name: "index_replies_on_replier_type", using: :btree
   add_index "replies", ["ticket_id"], name: "index_replies_on_ticket_id", using: :btree
 
   create_table "snippets", force: true do |t|
@@ -310,14 +330,16 @@ ActiveRecord::Schema.define(version: 20140531204606) do
     t.integer  "ticket_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "notify_customer",    default: false
+    t.boolean  "notify_customer",     default: false
     t.string   "cc"
-    t.boolean  "answered",           default: false
+    t.boolean  "answered",            default: false
+    t.integer  "customer_profile_id"
   end
 
   add_index "tickets", ["agent_id"], name: "index_tickets_on_agent_id", using: :btree
   add_index "tickets", ["company_id"], name: "index_tickets_on_company_id", using: :btree
   add_index "tickets", ["customer_email"], name: "index_tickets_on_customer_email", using: :btree
+  add_index "tickets", ["customer_profile_id"], name: "index_tickets_on_customer_profile_id", using: :btree
   add_index "tickets", ["group_id"], name: "index_tickets_on_group_id", using: :btree
   add_index "tickets", ["reply_email"], name: "index_tickets_on_reply_email", using: :btree
   add_index "tickets", ["ticket_category_id"], name: "index_tickets_on_ticket_category_id", using: :btree

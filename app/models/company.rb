@@ -9,6 +9,7 @@ class Company < ActiveRecord::Base
 	has_many :snippets, as: :snippetable
 	has_many :forwarding_addresses
 	has_many :replies
+	has_many :customer_profiles
 
 	attr_accessible :name,:email
 

@@ -65,9 +65,12 @@ class TicketsController < ApplicationController
 
   def show
     @ticket = current_agent.company.tickets.find(params[:id])
-    @activities = (@ticket.replies + @ticket.comments).sort{|a,b| a.created_at <=> b.created_at }
-    @reply = @ticket.replies.new
-    @comment = @ticket.comments.new
+    @replies = @ticket.replies
+    @at = @replies.last
+    @comments = @ticket.comments
+    @labels = @ticket.labels
+    @group = @ticket.group
+    @activities = (@replies + @comments).sort{|a,b| a.created_at <=> b.created_at }.reverse
   end
 
   def edit
@@ -109,7 +112,8 @@ class TicketsController < ApplicationController
       'subject ~ :pat', :pat => '(Re: |)^'+subject+'$').order("created_at DESC").first
     # if found add reply
     if ticket
-      reply = ticket.replies.create(params[:"stripped-html"])
+      reply_params = {content: params[:"stripped-html"]}
+      reply = ticket.replies.create(reply_params)
       if reply.save
         respond_to do |format|
           format.json {render json: "Reply was created successfully!"}
@@ -143,7 +147,6 @@ class TicketsController < ApplicationController
         end
       end
     end
-
     #avoid rendering template for post  
     render :nothing => true
   end

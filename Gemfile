@@ -52,6 +52,7 @@ group :development do
 	gem 'better_errors'
 	gem "binding_of_caller"
 	gem "unicorn-rails"
+	gem 'sql_queries_count'
 	gem 'capistrano', '~> 3.1.0'
 	gem 'capistrano-rvm'
 	gem 'capistrano-bundler', '~> 1.1.2'

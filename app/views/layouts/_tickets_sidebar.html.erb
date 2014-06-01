@@ -1,4 +1,4 @@
-<div class="col-md-2 col-sm-5">
+<div class="col-md-2 col-sm-5" id="tickets_sidebar">
 
     <div class="portlet" id="tickets_portlet">
 		<h4 class="portlet-title">
@@ -6,7 +6,7 @@
 		</h4>
 	</div>
 
-  <div class="list-group links_nav" id="tickets_sidebar">
+  <div class="list-group links_nav">
   	<%= link_to tickets_path(type: "unassigned"),class: "list-group-item" do %>
       <i class="fa fa-dollar kv-icon kv-icon-secondary"></i> &nbsp;&nbsp;Unassigned
       <span class="badge"><%= unassigned_count %></span>

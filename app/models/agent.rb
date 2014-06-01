@@ -12,7 +12,7 @@ class Agent < ActiveRecord::Base
   has_many :groups, :through => :groups_agents
   has_many :snippets, as: :snippetable
   has_one :notification
-  has_many :replies
+  has_many :replies,as: :replier
   has_many :comments
 
 	attr_accessible :email, :password, :password_confirmation, :remember_me,

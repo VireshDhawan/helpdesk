@@ -30,7 +30,7 @@ class LabelsController < ApplicationController
   def update
     @label = current_agent.company.labels.find(params[:id])
     if @label.update_attributes(params[:label])
-      flash[:success] = "label was successfully updated!"
+      flash[:success] = "Label was successfully updated!"
       redirect_to labels_path
     else
       flash[:error] = "There was some error. Please check again!"

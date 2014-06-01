@@ -8,7 +8,11 @@ module TicketsHelper
 	end
 
 	def reply_icon(reply)
-		reply.agent.blank? ? "feed-item-customer" : "feed-item-agent"
+		(reply.replier_type=="Agent") ? "feed-item-agent" : "feed-item-customer"
+	end
+
+	def replier_name(reply)
+		(reply.replier_type=="Agent") ? reply.replier.full_name : reply.replier.name
 	end
 
 	def table_layout(type)
@@ -51,4 +55,11 @@ module TicketsHelper
 		current_agent.company.labels
 	end
 
+	def assignee(ticket)
+		unless ticket.assignee_name.blank?
+			return ticket.assignee_name
+		else
+			return "Unassigned"
+		end
+	end
 end

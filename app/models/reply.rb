@@ -1,12 +1,11 @@
 class Reply < ActiveRecord::Base
 
 	belongs_to :ticket
-	belongs_to :agent
+	belongs_to :replier, polymorphic: true
 
 #	after_create :new_reply_notify
-	before_create :set_replier_name
 
-	attr_accessible :content,:agent_id,:ticket_id,:replier_name,:company_id
+	attr_accessible :content,:ticket_id,:replier_name,:company_id
 	validates :content, presence: true
 
 	def new_reply_notify
@@ -24,14 +23,6 @@ class Reply < ActiveRecord::Base
 			Mailer.delay(queue: "helpdesk_notification_queue").new_reply_notification(self.ticket,self,recipients) unless recipients.blank?
 		else
 			Mailer.delay(queue: "helpdesk_notification_queue").new_reply_notification(self.ticket,self,self.ticket.customer_email) unless self.ticket.customer_email.blank?
-		end
-	end
-
-	def set_replier_name
-		if self.agent_id.blank?
-			self.replier_name = self.ticket.customer_name
-		else
-			self.replier_name = self.agent.full_name
 		end
 	end
 

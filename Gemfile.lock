@@ -163,6 +163,8 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    sql_queries_count (0.0.1)
+      rails (> 3.0.0)
     sshkit (1.3.0)
       net-scp (>= 1.1.2)
       net-ssh
@@ -223,5 +225,6 @@ DEPENDENCIES
   sidekiq
   simple_form
   sinatra (>= 1.3.0)
+  sql_queries_count
   uglifier (>= 1.3.0)
   unicorn-rails

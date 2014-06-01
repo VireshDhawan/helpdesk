@@ -33,6 +33,10 @@ class Ticket < ActiveRecord::Base
 		hash = hash1.merge(hash).to_a
 	end
 
+	def assignee_name
+		self.agent ? self.agent.full_name : nil
+	end
+
 	def status?
 		self.answered? ? "Answered" : "Unanswered"
 	end

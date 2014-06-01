@@ -12,6 +12,7 @@
     <% ticket_status(@ticket).try(:each) do |status| %>
       <span class="label label-primary"><%= status %></span> 
     <% end %>
+    <span class="pull-right"><%= @ticket.created_at.to_date.to_formatted_s(:short) %></span>
   </p>
 
   <hr>
@@ -21,8 +22,7 @@
 
   <hr>
 
-
-  <br><br>
+  <br>
 
   <h4 class="content-title"><u>Ticket Activity</u></h4>
 
@@ -43,10 +43,11 @@
 
         <div class="tab-pane fade active in" id="reply">
 
-          <%= simple_form_for @reply ,url: replies_path, html: {method: :post} do |f| %>
+          <%= simple_form_for @ticket.replies.new ,url: replies_path, html: {method: :post} do |f| %>
             <%= f.error_notification %>
             <%= f.input :content, as: :text, placeholder: "Share what you've been up to...",label: false, input_html: {class: "share-widget-textarea form-control",:rows => 5} %>
             <%= f.input :ticket_id,as: :hidden,input_html: {value: @ticket.id} %>
+            <%= f.input :company_id,as: :hidden,input_html: {value: @ticket.company.id} %>
             <div class="share-widget-actions">
               <div class="share-widget-types pull-left">
                 <a href="javascript:;" class="fa fa-picture-o ui-tooltip" title="Post an Image"><i></i></a>
@@ -63,7 +64,7 @@
 
         <div class="tab-pane fade" id="comment">
 
-          <%= simple_form_for @comment ,url: comments_path, html: {method: :post} do |f| %>
+          <%= simple_form_for @ticket.comments.new ,url: comments_path, html: {method: :post} do |f| %>
             <%= f.error_notification %>
             <%= f.input :content, as: :text, placeholder: "Share what you've been up to...",label: false, input_html: {class: "share-widget-textarea form-control",:rows => 5} %>
             <%= f.input :ticket_id,as: :hidden,input_html: {value: @ticket.id} %>
@@ -97,7 +98,7 @@
 
           <div class="feed-subject">
             <p>
-              <a href="javascript:;"><%= activity.replier_name %></a> posted a <strong>reply</strong>
+              <a href="javascript:;"><%= replier_name(activity) %></a> posted a <strong>reply</strong>
             </p>
           </div> <!-- /.feed-subject -->
 

@@ -16,10 +16,10 @@
           <td>
             <%= link_to ticket_path(ticket.id) do %>
               <% unless ticket.labels.blank? %>
-                <% tickets.labels.each do |labels| %>
-                  <span class="label" style="background-color:#<%= raw "D74B4B".to_s %>"><%= labels.name %></span>
+                <% ticket.labels.each do |labels| %>
+                  <span class="label" style="background-color:<%= labels.color %>"><%= labels.name %></span>
                 <% end %>
-              <% end %>
+              <% end %>&nbsp;
               <b><%= ticket.subject %></b> - <%= truncate(strip_tags(ticket.message),:length => 60) %>
             <% end %>
           </td>

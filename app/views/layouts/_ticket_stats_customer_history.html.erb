@@ -2,29 +2,68 @@
 
 <div class="col-md-3">
 
-    <!--
     <h5 class="content-title"><u>Ticket Stats</u></h5>
-    <div class="list-group">  
 
-      <a href="javascript:;" class="list-group-item">
-          <h3 class="pull-right"><i class="fa fa-eye text-primary"></i></h3>
-          <h4 class="list-group-item-heading">38,847</h4>
-          <p class="list-group-item-text">Profile Views</p>                  
+      <div class="list-group" id="ticket_stats2">
+
+        <a href="javascript:;" class="list-group-item">
+          <h3 class="pull-right"><i class="fa fa-reply text-primary"></i></h3>
+          <h4 class="list-group-item-heading"><%= @ticket.replies.count %></h4>
+          <p class="list-group-item-text">Replies</p>
         </a>
 
-      <a href="javascript:;" class="list-group-item">
-        <h3 class="pull-right"><i class="fa fa-facebook-square  text-primary"></i></h3>
-        <h4 class="list-group-item-heading">3,482</h4>
-        <p class="list-group-item-text">Facebook Likes</p>
-      </a>
+        <a href="javascript:;" class="list-group-item">
+          <h3 class="pull-right"><i class="fa fa-comment text-primary"></i></h3>
+          <h4 class="list-group-item-heading"><%= @comments.count %></h4>
+          <p class="list-group-item-text">Comments</p>
+        </a>
 
-      <a href="javascript:;" class="list-group-item">
-        <h3 class="pull-right"><i class="fa fa-twitter-square  text-primary"></i></h3>
-        <h4 class="list-group-item-heading">5,845</h4>
-        <p class="list-group-item-text">Twitter Followers</p>
-      </a>
 
-    </div> <!-- /.list-group -->
+        <a href="javascript:;" class="list-group-item">
+          <h3 class="pull-right"><i class="fa fa-user text-primary"></i></h3>
+          <h4 class="list-group-item-heading"><%= assignee(@ticket).titleize %></h4>
+          <p class="list-group-item-text">Assignee</p>
+        </a>
+
+        <a href="javascript:;" class="list-group-item">
+          <h3 class="pull-right"><i class="fa fa-clock-o text-primary"></i></h3>
+          <h4 class="list-group-item-heading">
+            <% unless @at.blank? %>
+              <%= @at.created_at.to_formatted_s(:long) %>
+            <% else %>
+              No reply yet.
+            <% end %>
+          </h4>
+          <p class="list-group-item-text">Latest reply</p>
+        </a>
+
+        <a href="javascript:;" class="list-group-item">
+          <h3 class="pull-right"><i class="fa fa-users text-primary"></i></h3>
+          <h4 class="list-group-item-heading">
+            <% unless @group.blank? %>
+                <%= @group.name.capitalize %>
+            <% else %>
+              No Group
+            <% end %>
+          </h4>
+          <p class="list-group-item-text">Group</p>
+        </a>
+
+        <a href="javascript:;" class="list-group-item">
+          <h3 class="pull-right"><i class="fa fa-tag text-primary"></i></h3>
+          <h4 class="list-group-item-heading" id="label-heading">
+            <% unless @labels.blank? %>
+              <% @labels.each do |lab| %>
+                <span class="label" style="background-color: <%= lab.color %>;font-size:10px;"><%= lab.name %></span>
+              <% end %>
+            <% else %>
+              No label
+            <% end %>
+          </h4>
+          <p class="list-group-item-text">Label</p>
+        </a>
+
+      </div>
 
     <br>
 
@@ -37,7 +76,7 @@
         <li>
           <i class="icon-li fa fa-location-arrow"></i>
 
-          <strong>Rod</strong> uploaded 6 files. 
+          <strong>Rod</strong> uploaded 6 files.
           <br>
           <small>about 4 hours ago</small>
         </li>
