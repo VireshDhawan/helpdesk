@@ -1,6 +1,7 @@
 class AdminController < ApplicationController
 
 	before_filter :authenticate_agent!
+	prepend_before_filter :require_company
 	layout "admin_panel"
 
 	def index

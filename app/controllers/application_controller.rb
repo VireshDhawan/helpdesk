@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
-  # prepend_before_filter :require_company
   # prepend_before_filter :subscription_expired
   # around_filter :catch_not_found
 

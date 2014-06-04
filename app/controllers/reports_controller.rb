@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
 
 	before_filter :authenticate_agent!, :authorize_reporting
+	prepend_before_filter :require_company
 	layout "reports_panel"
 
 	protect_from_forgery with: :exception

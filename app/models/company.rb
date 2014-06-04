@@ -11,9 +11,8 @@ class Company < ActiveRecord::Base
 	has_many :replies
 	has_many :customer_profiles
 
-	attr_accessible :name,:email
+	attr_accessible :name
 
 	validates :name,presence: true
-	validates :email, :uniqueness => true
 	
 end

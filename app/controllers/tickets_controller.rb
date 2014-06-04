@@ -2,6 +2,7 @@ class TicketsController < ApplicationController
 
   before_filter :authenticate_agent!, except: [:messages]
   skip_before_filter :verify_authenticity_token, only: [:messages]
+  prepend_before_filter :require_company
   
   layout "control_panel"
 
@@ -149,11 +150,6 @@ class TicketsController < ApplicationController
     end
     #avoid rendering template for post  
     render :nothing => true
-  end
-
-  # Misc methods to assing, spam, trash tickets
-  def assign
-    
   end
 
 end

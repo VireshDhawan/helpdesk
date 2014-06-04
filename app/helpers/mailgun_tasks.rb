@@ -23,13 +23,12 @@ class MailgunTasks
 
 		##create email senders for each tenant
 		def create_first_credentials(company)
-		  response = RestClient.post("https://api:#{@@private_key}"\
-		  		  "@api.mailgun.net/v2/domains/#{@@domain}/credentials",
-		  		  :login => "#{company.name.parameterize}-support@#{@@domain}",
-		  		  :password => company.name.downcase.reverse
-		  		  )
+			response = RestClient.post "https://api:#{@@private_key}"\
+			  "@api.mailgun.net/v2/domains/#{@@domain}/credentials",
+			  :login => "#{company.name.parameterize}-support@#{@@domain}",
+			  :password => company.name.downcase.gsub(/\s+/, "").reverse
 
-		  response = JSON.parse(response)
+		  	response = JSON.parse(response)
 		end
 
 		def create_credentials(username,password)
