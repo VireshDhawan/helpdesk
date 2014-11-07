@@ -22,7 +22,6 @@ class Ticket < ActiveRecord::Base
 	# To find count of tickets grouped by category,date`
 	def self.in_date_range_with_count(date1,date2,category,company)
 		unless category.blank?
-			type = TicketCategory.find_by(name: category)
 			hash = company.tickets
 		else
 			hash = company.tickets.where("created_at >= ? AND created_at <=?", date1,date2).group("DATE(created_at)").count
